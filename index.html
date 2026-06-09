@@ -1600,110 +1600,100 @@ function sndPerfect(){if(!soundEnabled)return;[523,659,784,1047,1319].forEach(fu
 function sndTimeout(){if(!soundEnabled)return;tone(400,0,.09,.16,'square');tone(300,.11,.09,.15,'square');tone(200,.22,.22,.15,'square');}
 function sndClick(){if(!soundEnabled)return;tone(900,0,.05,.07,'sine');}
 /* ═══════════════════════════════════════════════
-   MÚSICA ORIGINAL — canción infantil alegre
-   Estilo: juego de patio, saltarina, Do mayor
-   BPM rápido, notas cortas, muy animada
+   MÚSICA ORIGINAL — arcade infantil alegre
+   180 BPM, notas muy cortas, súper movida
 ═══════════════════════════════════════════════ */
-var BPM=148, B=60/BPM, T=B/2;
-/* Melodía principal — saltarina y alegre */
+var BPM=182, B=60/BPM, T=B/2, S=B/4;
 var MELODY_NOTES=[
-  /* Frase A — sube rápido con rebote */
-  [523,T],[659,T],[784,T],[880,T],
-  [784,T],[659,T],[784,B],
-  [523,T],[659,T],[784,T],[880,T],
-  [1047,B],[880,T],[0,T],
+  /* Frase A — arranque explosivo */
+  [784,S],[880,S],[1047,S],[880,S],[784,S],[659,S],[784,B],
+  [659,S],[784,S],[880,S],[784,S],[659,S],[523,S],[659,B],
+  [784,S],[880,S],[1047,S],[1175,S],[1047,S],[880,S],[1047,B],
+  [880,S],[784,S],[659,S],[784,S],[698,S],[659,S],[523,B],
 
-  /* Frase B — juguetona con saltitos */
-  [880,T],[784,T],[659,T],[784,T],
-  [698,T],[587,T],[659,B],
-  [659,T],[587,T],[523,T],[587,T],
-  [698,B],[523,T],[0,T],
+  /* Frase B — rebota arriba y abajo */
+  [523,S],[659,S],[784,S],[659,S],[523,S],[659,S],[784,T],[523,T],
+  [587,S],[698,S],[784,S],[698,S],[587,S],[698,S],[784,T],[587,T],
+  [659,S],[784,S],[880,S],[784,S],[659,S],[784,S],[880,T],[659,T],
+  [784,S],[698,S],[659,S],[587,S],[523,S],[494,S],[523,B],
 
-  /* Frase C — más aguda, emocionante */
-  [784,T],[880,T],[1047,T],[880,T],
-  [784,T],[698,T],[784,B],
-  [1047,T],[880,T],[784,T],[698,T],
-  [659,B],[523,T],[0,T],
-
-  /* Frase D — cierre con energía */
-  [523,T],[659,T],[523,T],[659,T],
-  [784,T],[659,T],[784,B],
-  [880,T],[784,T],[698,T],[659,T],
-  [523,B*1.5],[0,T],[0,B],
+  /* Frase C — muy aguda y eufórica */
+  [1047,S],[880,S],[784,S],[880,S],[1047,S],[880,S],[784,B],
+  [880,S],[784,S],[698,S],[784,S],[880,S],[784,S],[698,B],
+  [784,S],[659,S],[587,S],[659,S],[784,S],[880,S],[1047,B],
+  [880,S],[784,S],[698,S],[659,S],[587,S],[523,S],[523,B],
 ];
-/* Bajo — bombo alegre en cada tiempo */
 var BASS_NOTES=[
-  [131,T],[0,T],[131,T],[0,T], [131,T],[0,T],[131,T],[0,T],
-  [131,T],[0,T],[131,T],[0,T], [131,T],[0,T],[131,T],[0,T],
-  [175,T],[0,T],[175,T],[0,T], [175,T],[0,T],[175,T],[0,T],
-  [175,T],[0,T],[175,T],[0,T], [175,T],[0,T],[175,T],[0,T],
-  [131,T],[0,T],[131,T],[0,T], [131,T],[0,T],[131,T],[0,T],
-  [165,T],[0,T],[165,T],[0,T], [165,T],[0,T],[165,T],[0,T],
-  [131,T],[0,T],[131,T],[0,T], [131,T],[0,T],[131,T],[0,T],
-  [131,T],[0,T],[131,T],[0,T], [131,T],[0,T],[131,T],[0,T],
+  [131,S],[0,S],[131,S],[0,S],[131,S],[0,S],[131,S],[0,S],
+  [131,S],[0,S],[131,S],[0,S],[131,S],[0,S],[131,S],[0,S],
+  [131,S],[0,S],[131,S],[0,S],[131,S],[0,S],[131,S],[0,S],
+  [131,S],[0,S],[131,S],[0,S],[131,S],[0,S],[131,S],[0,S],
+  [175,S],[0,S],[175,S],[0,S],[175,S],[0,S],[175,S],[0,S],
+  [175,S],[0,S],[175,S],[0,S],[175,S],[0,S],[175,S],[0,S],
+  [196,S],[0,S],[196,S],[0,S],[196,S],[0,S],[196,S],[0,S],
+  [196,S],[0,S],[196,S],[0,S],[196,S],[0,S],[196,S],[0,S],
+  [131,S],[0,S],[131,S],[0,S],[131,S],[0,S],[131,S],[0,S],
+  [131,S],[0,S],[131,S],[0,S],[131,S],[0,S],[131,S],[0,S],
+  [165,S],[0,S],[165,S],[0,S],[165,S],[0,S],[165,S],[0,S],
+  [131,S],[0,S],[131,S],[0,S],[131,S],[0,S],[131,S],[0,S],
 ];
-/* Acordes rítmicos — chuck en contratiempo */
 var CHORD_NOTES=[
-  [[330,T],[392,T]], [[330,T],[392,T]], [[330,T],[392,T]], [[330,T],[392,T]],
-  [[330,T],[392,T]], [[330,T],[392,T]], [[330,T],[392,T]], [[330,T],[392,T]],
-  [[349,T],[440,T]], [[349,T],[440,T]], [[349,T],[440,T]], [[349,T],[440,T]],
-  [[349,T],[440,T]], [[349,T],[440,T]], [[349,T],[440,T]], [[349,T],[440,T]],
-  [[330,T],[392,T]], [[330,T],[392,T]], [[330,T],[392,T]], [[330,T],[392,T]],
-  [[311,T],[392,T]], [[311,T],[392,T]], [[311,T],[392,T]], [[311,T],[392,T]],
-  [[294,T],[349,T]], [[294,T],[349,T]], [[294,T],[349,T]], [[294,T],[349,T]],
-  [[294,T],[349,T]], [[294,T],[349,T]], [[294,T],[349,T]], [[294,T],[349,T]],
+  [[330,S],[392,S]],[[0,S],[0,S]],[[330,S],[392,S]],[[0,S],[0,S]],
+  [[330,S],[392,S]],[[0,S],[0,S]],[[330,S],[392,S]],[[0,S],[0,S]],
+  [[330,S],[392,S]],[[0,S],[0,S]],[[330,S],[392,S]],[[0,S],[0,S]],
+  [[349,S],[440,S]],[[0,S],[0,S]],[[349,S],[440,S]],[[0,S],[0,S]],
+  [[349,S],[440,S]],[[0,S],[0,S]],[[349,S],[440,S]],[[0,S],[0,S]],
+  [[330,S],[392,S]],[[0,S],[0,S]],[[330,S],[392,S]],[[0,S],[0,S]],
+  [[294,S],[370,S]],[[0,S],[0,S]],[[294,S],[370,S]],[[0,S],[0,S]],
+  [[294,S],[370,S]],[[0,S],[0,S]],[[294,S],[370,S]],[[0,S],[0,S]],
+  [[330,S],[392,S]],[[0,S],[0,S]],[[330,S],[392,S]],[[0,S],[0,S]],
+  [[330,S],[392,S]],[[0,S],[0,S]],[[330,S],[392,S]],[[0,S],[0,S]],
+  [[311,S],[392,S]],[[0,S],[0,S]],[[311,S],[392,S]],[[0,S],[0,S]],
+  [[294,S],[349,S]],[[0,S],[0,S]],[[294,S],[349,S]],[[0,S],[0,S]],
 ];
 function scheduleLoop(){
   if(!musicPlaying||!soundEnabled)return;
   try{
     var ctx=getCtx();if(!ctx||!_actxReady){musicPlaying=false;return;}
-    var t=ctx.currentTime+0.05, mt=0, bt=0, ct=0;
-
-    /* Melodía — xilofón alegre (sine con ataque muy rápido) */
+    var t=ctx.currentTime+0.05,mt=0,bt=0,ct=0;
     MELODY_NOTES.forEach(function(n){
       if(n[0]>0){
         var o=ctx.createOscillator(),g=ctx.createGain();
         o.connect(g);g.connect(ctx.destination);
-        o.type='sine';o.frequency.value=n[0];
+        o.type='square';o.frequency.value=n[0];
         g.gain.setValueAtTime(0.001,t+mt);
-        g.gain.linearRampToValueAtTime(0.13,t+mt+0.008);
-        g.gain.exponentialRampToValueAtTime(0.001,t+mt+n[1]*.75);
+        g.gain.linearRampToValueAtTime(0.07,t+mt+0.005);
+        g.gain.exponentialRampToValueAtTime(0.001,t+mt+n[1]*.8);
         o.start(t+mt);o.stop(t+mt+n[1]);
       }
       mt+=n[1];
     });
-
-    /* Bajo — golpe corto percusivo */
     BASS_NOTES.forEach(function(n){
       if(n[0]>0){
         var o=ctx.createOscillator(),g=ctx.createGain();
         o.connect(g);g.connect(ctx.destination);
         o.type='triangle';o.frequency.value=n[0];
         g.gain.setValueAtTime(0.001,t+bt);
-        g.gain.linearRampToValueAtTime(0.12,t+bt+0.005);
-        g.gain.exponentialRampToValueAtTime(0.001,t+bt+0.12);
+        g.gain.linearRampToValueAtTime(0.13,t+bt+0.003);
+        g.gain.exponentialRampToValueAtTime(0.001,t+bt+0.09);
         o.start(t+bt);o.stop(t+bt+n[1]);
       }
       bt+=n[1];
     });
-
-    /* Acordes — chuck rítmico en contratiempo */
     CHORD_NOTES.forEach(function(chord){
       chord.forEach(function(cn){
         if(cn[0]>0){
           var o=ctx.createOscillator(),g=ctx.createGain();
           o.connect(g);g.connect(ctx.destination);
-          o.type='square';o.frequency.value=cn[0];
-          var st=t+ct+T; /* cae en el contratiempo */
-          g.gain.setValueAtTime(0.001,st);
-          g.gain.linearRampToValueAtTime(0.018,st+0.005);
-          g.gain.exponentialRampToValueAtTime(0.001,st+cn[1]*.5);
-          o.start(st);o.stop(st+cn[1]);
+          o.type='sawtooth';o.frequency.value=cn[0];
+          g.gain.setValueAtTime(0.001,t+ct);
+          g.gain.linearRampToValueAtTime(0.025,t+ct+0.003);
+          g.gain.exponentialRampToValueAtTime(0.001,t+ct+cn[1]*.6);
+          o.start(t+ct);o.stop(t+ct+cn[1]);
         }
       });
-      ct+=T*2;
+      ct+=S;
     });
-
     var loopDur=MELODY_NOTES.reduce(function(s,n){return s+n[1];},0);
     musicTimeout=setTimeout(scheduleLoop,(loopDur-.1)*1000);
   }catch(e){musicPlaying=false;}
