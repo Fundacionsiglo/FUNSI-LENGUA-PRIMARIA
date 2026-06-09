@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Funsi Lengua">
+<meta name="theme-color" content="#071a0f">
+<meta name="mobile-web-app-capable" content="yes">
+<title>Funsi — Lengua Adaptativa</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#081a0e;--card:#0f2918;--card2:#163520;
+  --pp:#34d399;--pp2:#6ee7b7;--pp3:#0d3320;--pp4:#071a0f;
+  --gg:#54d18c;--gg2:#1a3a2a;--gg3:#0f2018;
+  --rr:#ff6b6b;--rr2:#3a1a1a;--rr3:#2a0f0f;
+  --yy:#f7b731;--yy2:#3a2e0f;--yy3:#2a1f08;
+  --bb:#34d399;--bb2:#0d3320;
+  --oo:#ff9f43;--oo2:#3a2510;
+  --pu:#a7f3d0;--pu2:#0d3320;
+  --tt:#38bdf8;--tt2:#0c2a3a;
+  --text:#e8fff4;--text2:#7abf9a;--text3:#3a7a55;
+  --r:18px;--r2:14px;--r3:10px;
+  font-family:'Nunito',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;}
+html,body{min-height:100%;min-height:-webkit-fill-available;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-overflow-scrolling:touch;}
+body{background-image:radial-gradient(ellipse at 15% 5%,#0d4a2540 0%,transparent 55%),radial-gradient(ellipse at 85% 90%,#1b4a2a30 0%,transparent 55%);}
+.app{max-width:430px;margin:0 auto;min-height:100vh;min-height:-webkit-fill-available;position:relative;padding-bottom:3rem;}
+button{-webkit-appearance:none;appearance:none;}
+.scr{display:none;animation:scIn .3s cubic-bezier(.34,1.56,.64,1);}
+.scr.on{display:block;}
+@keyframes scIn{from{opacity:0;transform:translateY(16px)scale(.97)}to{opacity:1;transform:none}}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+
+/* ── TOPBAR ── */
+.topbar{background:var(--card);padding:.75rem 1rem;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:50;border-bottom:1.5px solid #ffffff10;}
+.topbar-logo{font-size:21px;font-weight:900;color:var(--pp);letter-spacing:-1px;text-shadow:none;}
+.topbar-sub{font-size:10px;color:var(--text2);font-weight:700;}
+.xp-pill{margin-left:auto;background:#34d39922;color:var(--pp);border:1.5px solid #34d39944;border-radius:99px;padding:4px 12px;font-size:13px;font-weight:900;}
+#sound-btn{background:none;border:none;font-size:20px;cursor:pointer;padding:0;margin-left:4px;}
+
+/* ── FUNSI AVATAR ── */
+.funsi-stage{display:flex;flex-direction:column;align-items:center;padding:1.2rem 1rem .3rem;position:relative;}
+.funsi-svg{width:108px;height:108px;filter:drop-shadow(0 8px 24px rgba(22,163,74,.25));animation:funsiFloat 3s ease-in-out infinite;}
+@keyframes funsiFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.funsi-svg.shake{animation:funsiShake .5s ease;}
+@keyframes funsiShake{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
+.funsi-svg.bounce{animation:funsiBounce .5s ease;}
+@keyframes funsiBounce{0%,100%{transform:translateY(0)}40%{transform:translateY(-18px)}70%{transform:translateY(-8px)}}
+.speech{background:var(--card2);border:2px solid var(--pp3);border-radius:18px 18px 18px 4px;padding:10px 14px;font-size:13px;font-weight:700;color:var(--pp2);max-width:240px;text-align:center;line-height:1.4;margin-top:8px;animation:speechPop .4s cubic-bezier(.34,1.56,.64,1);position:relative;box-shadow:0 2px 8px #16a34a15;}
+.speech::before{content:'';position:absolute;top:-10px;left:18px;border:5px solid transparent;border-bottom-color:var(--pp3);}
+.speech::after{content:'';position:absolute;top:-7px;left:19px;border:4px solid transparent;border-bottom-color:var(--card2);}
+@keyframes speechPop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+
+/* ── XP BAR ── */
+.xp-wrap{padding:.4rem 1rem .8rem;}
+.xp-row{display:flex;justify-content:space-between;font-size:11px;font-weight:800;color:var(--text2);margin-bottom:4px;}
+.xp-bar{height:8px;background:#ffffff12;border-radius:99px;overflow:hidden;}
+.xp-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--pp),var(--pp2));transition:width .7s ease;}
+
+/* ── CARDS & SECTIONS ── */
+.pad{padding:0 1rem 1.5rem;}
+.sec-title{font-size:19px;font-weight:900;color:var(--text);margin-bottom:3px;}
+.sec-sub{font-size:13px;color:var(--text2);font-weight:700;margin-bottom:1rem;line-height:1.5;}
+.back-btn{background:none;border:none;cursor:pointer;font-size:14px;color:var(--text2);padding:.5rem 1rem;display:flex;align-items:center;gap:5px;font-weight:800;font-family:'Nunito',sans-serif;}
+.back-btn:active{opacity:.6;}
+
+/* ── GRADE GRID ── */
+.grade-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.grade-card{background:var(--card);border-radius:var(--r);padding:1rem .8rem;cursor:pointer;text-align:center;border:2px solid #ffffff10;box-shadow:0 2px 14px #00000044;transition:transform .12s;position:relative;overflow:hidden;}
+.grade-card:active{transform:scale(.94);}
+.gc-emoji{font-size:34px;display:block;margin-bottom:4px;}
+.gc-label{font-size:13px;font-weight:900;color:var(--text);}
+.gc-bar{height:5px;border-radius:99px;background:#ffffff12;margin-top:7px;overflow:hidden;}
+.gc-fill{height:100%;border-radius:99px;transition:width .6s;}
+.gc-pct{font-size:11px;color:var(--text2);font-weight:700;margin-top:3px;}
+.gc-medal{position:absolute;top:7px;right:8px;font-size:16px;}
+
+/* ── DASHBOARD ── */
+.dash-hero{background:linear-gradient(135deg,#0d3320,#081a0e);border-radius:var(--r);margin:0 1rem .8rem;padding:1.2rem;border:1.5px solid var(--pp3);box-shadow:0 6px 20px rgba(52,211,153,.15);}
+.dash-hero-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;}
+.dash-grade{font-size:21px;font-weight:900;letter-spacing:-.5px;color:var(--text);}
+.dash-streak{background:rgba(247,183,49,.15);border:1.5px solid rgba(247,183,49,.3);border-radius:99px;padding:4px 12px;font-size:13px;font-weight:800;color:var(--yy);}
+.dash-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:.5rem;}
+.dash-stat{background:rgba(255,255,255,.07);border-radius:var(--r3);padding:.5rem;text-align:center;}
+.dash-stat-n{font-size:20px;font-weight:900;color:var(--text);}
+.dash-stat-l{font-size:10px;font-weight:800;color:var(--text2);margin-top:2px;}
+
+/* ── MISSION CARD ── */
+.mission-card{background:var(--card);border-radius:var(--r);margin:0 1rem .8rem;padding:1.1rem 1.2rem;border:2px solid var(--pp3);cursor:pointer;transition:transform .1s;box-shadow:0 2px 16px rgba(52,211,153,.1);}
+.mission-card:active{transform:scale(.97);}
+.mission-tag{font-size:11px;font-weight:900;color:var(--pp2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;}
+.mission-title{font-size:17px;font-weight:900;color:var(--text);margin-bottom:3px;}
+.mission-sub{font-size:13px;color:var(--text2);font-weight:700;}
+.mission-row{display:flex;justify-content:space-between;align-items:center;}
+.mission-arrow{font-size:22px;color:var(--pp3);}
+
+/* ── WEAK GRID ── */
+.weak-title{font-size:11px;font-weight:800;color:var(--text2);margin:0 1rem .5rem;text-transform:uppercase;letter-spacing:.05em;}
+.weak-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 1rem .8rem;}
+.weak-card{background:var(--card);border-radius:var(--r2);padding:.8rem;cursor:pointer;border:2px solid #ffffff10;transition:transform .1s;}
+.weak-card:active{transform:scale(.96);}
+.weak-card.needs-work{border-color:var(--rr);background:var(--rr3);}
+.weak-card.progressing{border-color:var(--yy);background:var(--yy3);}
+.weak-card.mastered{border-color:var(--gg);background:var(--gg3);}
+.wc-icon{font-size:22px;margin-bottom:4px;}
+.wc-name{font-size:13px;font-weight:900;color:var(--text);}
+.wc-bar{height:4px;border-radius:99px;margin-top:6px;overflow:hidden;background:#ffffff12;}
+.wc-fill{height:100%;border-radius:99px;transition:width .5s;}
+.wc-label{font-size:10px;font-weight:800;margin-top:3px;}
+.all-topics-btn{display:flex;align-items:center;justify-content:space-between;background:var(--card);border-radius:var(--r2);margin:0 1rem .5rem;padding:.9rem 1.1rem;border:2px solid #ffffff10;cursor:pointer;font-size:14px;font-weight:800;color:var(--text2);transition:opacity .1s;}
+.all-topics-btn:active{opacity:.7;}
+
+/* ── TOPIC LIST ── */
+.topic-list{display:flex;flex-direction:column;gap:10px;}
+.topic-card{background:var(--card);border-radius:var(--r2);padding:.9rem 1.1rem;cursor:pointer;display:flex;align-items:center;gap:12px;border:2px solid #ffffff0f;transition:transform .1s;}
+.topic-card:active{transform:scale(.97);}
+.topic-card.tc-weak{border-color:var(--rr);}
+.topic-card.tc-strong{border-color:var(--gg);}
+.tc-icon{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.tc-name{font-size:14px;font-weight:900;color:var(--text);}
+.tc-meta{font-size:12px;color:var(--text2);font-weight:700;margin-top:2px;}
+.tc-status{font-size:10px;font-weight:800;border-radius:99px;padding:2px 8px;display:inline-block;margin-top:4px;}
+.tc-arr{font-size:20px;color:var(--text3);font-weight:900;margin-left:auto;}
+
+/* ── LEVEL SELECT ── */
+.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.lv-card{background:var(--card);border-radius:var(--r2);padding:.9rem .4rem;cursor:pointer;text-align:center;border:2px solid #ffffff12;transition:transform .1s;}
+.lv-card:active{transform:scale(.92);}
+.lv-card .lv-num{font-size:22px;font-weight:900;color:var(--text);}
+.lv-card .lv-stars{font-size:13px;margin-top:4px;min-height:18px;}
+.lv-card .lv-tag{font-size:10px;font-weight:800;border-radius:99px;padding:2px 8px;margin-top:5px;display:inline-block;}
+.lv-card.lv-done{background:var(--gg3);border-color:var(--gg);}
+.lv-card.lv-done .lv-num{color:var(--gg);}
+.lv-card.lv-done .lv-tag{background:var(--gg);color:#fff;}
+.lv-card.lv-go{background:var(--pp3);border-color:var(--pp);}
+.lv-card.lv-go .lv-num{color:var(--pp2);}
+.lv-card.lv-go .lv-tag{background:var(--pp);color:#fff;}
+.lv-card.lv-rec{border-color:var(--rr);}
+.lv-card.lv-rec .lv-tag{background:var(--rr);color:#fff;}
+.lv-card.lv-lock{opacity:.25;cursor:not-allowed;pointer-events:none;}
+.lv-card.lv-lock .lv-tag{background:#444;color:#fff;}
+
+/* ── GAME HUD ── */
+.game-hud{background:linear-gradient(135deg,#0d3320,#071a0f);border-radius:var(--r);padding:1rem 1.2rem;margin-bottom:1rem;border:1.5px solid var(--pp3);box-shadow:0 6px 24px rgba(52,211,153,.25);}
+.hud-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.hud-lv{font-size:11px;font-weight:800;opacity:.8;text-transform:uppercase;letter-spacing:.06em;color:var(--pp2);}
+.hud-score{font-size:20px;font-weight:900;letter-spacing:-.5px;color:var(--text);}
+.hud-right{display:flex;flex-direction:column;align-items:flex-end;gap:5px;}
+.hud-lives{display:flex;gap:2px;font-size:18px;}
+.hud-combo{font-size:12px;font-weight:800;background:rgba(255,255,255,.1);border-radius:99px;padding:3px 10px;color:var(--yy);transition:all .2s;}
+.hud-combo.hot{background:rgba(247,183,49,.25);animation:comboPulse .3s ease;}
+@keyframes comboPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+.timer-bar{height:7px;background:rgba(255,255,255,.15);border-radius:99px;overflow:hidden;}
+.timer-fill{height:100%;border-radius:99px;background:#fff;transition:width .1s linear;}
+
+/* ── GAME BODY ── */
+.game-funsi-row{display:flex;align-items:flex-end;gap:10px;margin-bottom:.8rem;padding:0 .2rem;}
+.mini-funsi-svg{width:50px;height:50px;flex-shrink:0;filter:drop-shadow(0 3px 8px rgba(52,211,153,.3));}
+.mini-bubble{background:var(--card2);border:2px solid var(--pp3);border-radius:16px 16px 16px 4px;padding:8px 11px;font-size:13px;font-weight:700;color:var(--pp2);line-height:1.4;flex:1;animation:speechPop .3s ease;}
+.hint-banner{background:var(--yy3);border:2px solid var(--yy2);border-radius:var(--r3);padding:.7rem 1rem;margin-bottom:.8rem;font-size:13px;font-weight:700;color:var(--yy);display:none;}
+.hint-banner.show{display:block;}
+.q-wrap{background:var(--card);border-radius:var(--r);padding:1.6rem 1.2rem 1.4rem;text-align:center;position:relative;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,.3);border:1px solid #ffffff0e;}
+.q-wrap::before{content:'';position:absolute;top:-50px;right:-50px;width:130px;height:130px;background:radial-gradient(circle,rgba(22,163,74,.04) 0%,transparent 70%);border-radius:50%;pointer-events:none;}
+.q-num{font-size:11px;color:var(--text2);font-weight:800;margin-bottom:7px;text-transform:uppercase;letter-spacing:.07em;}
+.q-text{font-size:20px;font-weight:900;color:var(--text);margin-bottom:1.2rem;line-height:1.4;}
+.q-text .highlight{color:var(--pp);background:var(--pp3);padding:2px 6px;border-radius:6px;}
+
+/* ── OPTIONS ── */
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:.8rem;}
+.opts.one-col{grid-template-columns:1fr;}
+.opt{background:var(--card2);border:2px solid #ffffff12;border-radius:var(--r2);padding:.75rem .6rem;font-size:15px;font-weight:800;color:var(--text);cursor:pointer;text-align:center;transition:transform .1s,background .1s;font-family:'Nunito',sans-serif;line-height:1.3;}
+.opt:active{transform:scale(.94);}
+.opt.hit{background:var(--gg3)!important;border-color:var(--gg)!important;color:var(--gg)!important;}
+.opt.miss{background:var(--rr3)!important;border-color:var(--rr)!important;color:var(--rr)!important;}
+.opt.show{background:var(--gg3)!important;border-color:var(--gg)!important;color:var(--gg)!important;}
+.fb{font-size:13px;font-weight:800;text-align:center;min-height:20px;padding:.3rem;}
+.fb.ok{color:var(--gg);}
+.fb.no{color:var(--rr);}
+
+/* ── RESULT ── */
+.adapt-panel{background:var(--card);border-radius:var(--r);padding:1.5rem 1.2rem;border:1.5px solid var(--pp3);box-shadow:0 6px 24px rgba(52,211,153,.12);}
+.ap-avatar{width:80px;height:80px;display:block;margin:0 auto .8rem;}
+.ap-stars{display:flex;justify-content:center;gap:8px;margin-bottom:.5rem;}
+.ap-star{font-size:28px;opacity:.2;transition:opacity .3s,transform .3s;}
+.ap-star.on{opacity:1;animation:starPop .4s cubic-bezier(.34,1.56,.64,1) forwards;}
+.ap-star.off{opacity:.2;}
+@keyframes starPop{0%{transform:scale(0)}60%{transform:scale(1.3)}100%{transform:scale(1);opacity:1}}
+.ap-title{font-size:21px;font-weight:900;text-align:center;margin-bottom:.3rem;}
+.ap-sub{font-size:13px;color:var(--text2);font-weight:700;text-align:center;margin-bottom:1rem;line-height:1.6;}
+.rec-box{border-radius:var(--r2);padding:.9rem 1rem;margin-bottom:1rem;border:2px solid;}
+.rec-box.go-up{background:var(--gg3);border-color:var(--gg);}
+.rec-box.go-down{background:var(--rr3);border-color:var(--rr);}
+.rec-box.stay{background:var(--yy3);border-color:var(--yy);}
+.rec-box.challenge{background:var(--pu2);border-color:var(--pu);}
+.rec-icon{font-size:24px;margin-bottom:4px;}
+.rec-title{font-size:14px;font-weight:900;color:var(--text);}
+.rec-desc{font-size:12px;color:var(--text2);font-weight:700;margin-top:3px;line-height:1.4;}
+.badges-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem;}
+.rbadge{font-size:11px;font-weight:800;border-radius:99px;padding:4px 10px;}
+.rb-unlock{background:var(--gg3);color:var(--gg);border:1.5px solid var(--gg);}
+.rb-perfect{background:#2d1b69;color:#a78bfa;border:1.5px solid #7c83fd;}
+.rb-combo{background:var(--yy3);color:var(--yy);border:1.5px solid var(--yy);}
+.rb-clean{background:var(--gg3);color:var(--gg);border:1.5px solid var(--gg);}
+.rb-speed{background:var(--bb2);color:var(--bb);border:1.5px solid var(--bb);}
+.rb-keep{background:var(--rr3);color:#ff9f9f;border:1.5px solid var(--rr);}
+.ap-actions{display:flex;flex-direction:column;gap:8px;}
+.btn-gg{background:linear-gradient(135deg,#1a3a2a,#0f2018);border:2px solid var(--gg);border-radius:var(--r2);padding:.85rem;font-size:14px;font-weight:900;color:var(--gg);cursor:pointer;font-family:'Nunito',sans-serif;}
+.btn-pp{background:linear-gradient(135deg,#0d3320,#081a0e);border:2px solid var(--pp);border-radius:var(--r2);padding:.85rem;font-size:14px;font-weight:900;color:var(--pp);cursor:pointer;font-family:'Nunito',sans-serif;}
+.btn-yy{background:linear-gradient(135deg,#3a2e0f,#2a1f08);border:2px solid var(--yy);border-radius:var(--r2);padding:.85rem;font-size:14px;font-weight:900;color:var(--yy);cursor:pointer;font-family:'Nunito',sans-serif;}
+.btn-sec{background:var(--card2);border:2px solid #ffffff15;border-radius:var(--r2);padding:.75rem;font-size:13px;font-weight:800;color:var(--text2);cursor:pointer;font-family:'Nunito',sans-serif;}
+
+/* ── DIFF PILL ── */
+.diff-pill{display:inline-block;border-radius:99px;padding:3px 12px;font-size:11px;font-weight:800;border:1.5px solid;}
+.diff-toast{position:fixed;top:80px;left:50%;transform:translateX(-50%);border-radius:var(--r);padding:.8rem 1.2rem;display:flex;align-items:center;gap:10px;z-index:200;animation:scIn .3s cubic-bezier(.34,1.56,.64,1);max-width:320px;box-shadow:0 4px 20px rgba(0,0,0,.5);}
+
+/* ── BADGES ── */
+.badge-shelf{padding:0 1rem;}
+.badge-shelf-title{font-size:12px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;}
+.badge-grid{display:flex;flex-wrap:wrap;gap:8px;}
+.badge-item{background:var(--card);border-radius:10px;padding:.5rem .6rem;text-align:center;border:2px solid #ffffff10;min-width:60px;opacity:.3;transition:opacity .3s;}
+.badge-item.unlocked{opacity:1;border-color:var(--pp3);}
+.bi-emoji{font-size:22px;}
+.bi-label{font-size:9px;font-weight:800;color:var(--text2);margin-top:2px;}
+.badge-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--card);border:2px solid var(--pp);border-radius:var(--r);padding:.8rem 1rem;display:flex;align-items:center;gap:10px;z-index:200;animation:scIn .3s cubic-bezier(.34,1.56,.64,1);max-width:320px;box-shadow:0 4px 24px rgba(52,211,153,.25);}
+.bt-title{font-size:11px;font-weight:800;color:var(--pp2);text-transform:uppercase;}
+.bt-name{font-size:14px;font-weight:900;color:var(--text);}
+.bt-desc{font-size:11px;color:var(--text2);font-weight:700;}
+
+/* ── COMBO BURST ── */
+.combo-burst{position:fixed;top:38%;left:50%;transform:translate(-50%,-50%);font-size:26px;font-weight:900;color:var(--yy);text-shadow:0 0 16px #f7b731;z-index:300;animation:burstAnim .9s ease forwards;pointer-events:none;}
+@keyframes burstAnim{0%{transform:translate(-50%,-50%)scale(.5);opacity:0}20%{opacity:1;transform:translate(-50%,-50%)scale(1.2)}70%{opacity:1;transform:translate(-50%,-60%)scale(1)}100%{opacity:0;transform:translate(-50%,-80%)scale(.8)}}
+.pts-float{position:absolute;font-size:18px;font-weight:900;color:var(--gg);z-index:10;animation:ptsUp 1s ease forwards;pointer-events:none;}
+@keyframes ptsUp{0%{transform:translateY(0);opacity:1}100%{transform:translateY(-40px);opacity:0}}
+
+/* ── CHALLENGE BANNER ── */
+.challenge-banner{background:linear-gradient(135deg,#0d3320,#081a0e);border:2px solid var(--pp);border-radius:var(--r);margin:0 1rem .8rem;padding:1rem 1.1rem;cursor:pointer;}
+.cb-title{font-size:14px;font-weight:900;color:var(--pp2);}
+.cb-sub{font-size:12px;color:var(--text2);font-weight:700;margin-top:3px;}
+
+/* ── CONFETTI ── */
+.conf{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100;overflow:hidden;}
+.cp{position:absolute;top:-14px;animation:cfFall linear forwards;}
+@keyframes cfFall{to{transform:translateY(105vh) rotate(720deg);opacity:0}}
+
+/* ── APA OVERLAY ── */
+.apa-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:150;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:1rem;}
+.apa-panel{background:var(--card);border-radius:var(--r);max-width:390px;width:100%;border:1.5px solid var(--pp3);margin:auto;padding:1.2rem 1.2rem 1.5rem;animation:scIn .3s cubic-bezier(.34,1.56,.64,1);}
+.apa-head{display:flex;align-items:center;gap:10px;margin-bottom:.8rem;}
+.apa-funsi-wrap{width:52px;height:52px;flex-shrink:0;}
+.apa-funsi{width:100%;height:100%;}
+.apa-bubble{background:var(--card2);border:2px solid var(--pp3);border-radius:12px;padding:.6rem .9rem;font-size:13px;font-weight:700;color:var(--pp2);flex:1;line-height:1.4;}
+.apa-tag{display:inline-flex;align-items:center;gap:6px;background:var(--pp3);border-radius:99px;padding:4px 12px;margin-bottom:.8rem;}
+.apa-tag-emoji{font-size:14px;}
+.apa-tag-text{font-size:11px;font-weight:800;color:var(--pp2);text-transform:uppercase;letter-spacing:.06em;}
+.apa-topic-title{font-size:16px;font-weight:900;color:var(--text);margin-bottom:.8rem;}
+.apa-steps{display:flex;flex-direction:column;gap:7px;margin-bottom:1rem;}
+.apa-step{display:flex;align-items:flex-start;gap:8px;background:var(--card2);border-radius:var(--r3);padding:.6rem .8rem;}
+.apa-step-num{width:22px;height:22px;border-radius:50%;background:var(--pp);color:#fff;font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.apa-step-text{font-size:13px;font-weight:700;color:var(--text);line-height:1.4;}
+.apa-example{background:var(--card2);border-radius:var(--r2);padding:.8rem 1rem;margin-bottom:.8rem;border:1.5px solid #ffffff10;}
+.apa-ex-header{display:flex;align-items:center;gap:6px;margin-bottom:.5rem;}
+.apa-ex-emoji{font-size:16px;}
+.apa-ex-title{font-size:12px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;}
+.apa-ex-body{display:flex;flex-direction:column;gap:4px;}
+.apa-ex-step{display:flex;align-items:flex-start;gap:6px;font-size:13px;font-weight:700;color:var(--text);line-height:1.4;}
+.apa-ex-arrow{color:var(--gg);font-size:14px;min-width:18px;}
+.apa-formula-box{background:linear-gradient(135deg,var(--pp3),#041008);border-radius:var(--r2);padding:.8rem 1rem;margin-bottom:1rem;border:2px solid var(--pp3);}
+.apa-formula-header{display:flex;align-items:center;gap:6px;margin-bottom:.4rem;}
+.apa-formula-emoji{font-size:16px;}
+.apa-formula-title{font-size:12px;font-weight:800;color:var(--pp2);text-transform:uppercase;letter-spacing:.05em;}
+.apa-formula-text{font-size:13px;font-weight:700;color:var(--text2);line-height:1.7;white-space:pre-line;}
+.apa-ok-btn{width:100%;background:linear-gradient(135deg,#0d3320,#081a0e);border:2px solid var(--pp);border-radius:var(--r2);padding:.9rem;font-size:14px;font-weight:900;color:var(--pp2);cursor:pointer;font-family:'Nunito',sans-serif;}
+
+/* ── MODO POESÍA 2024 ── */
+.poesia-btn{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#0d3320,#1a5c35);border:2px solid var(--pp);border-radius:var(--r);padding:1rem 1.2rem;cursor:pointer;margin:0 0 .8rem;width:100%;transition:transform .12s;box-shadow:0 4px 20px rgba(52,211,153,.25);}
+.poesia-btn:active{transform:scale(.97);}
+.poesia-btn-left{display:flex;align-items:center;gap:12px;}
+.poesia-btn-emoji{font-size:30px;}
+.poesia-btn-title{font-size:17px;font-weight:900;color:var(--pp2);}
+.poesia-btn-sub{font-size:11px;color:rgba(110,231,183,.65);font-weight:700;margin-top:2px;}
+.poesia-btn-arr{font-size:22px;color:var(--pp3);font-weight:900;}
+.poesia-hud{background:linear-gradient(135deg,#0d3320,#081a0e);border-bottom:2px solid var(--pp);padding:.8rem 1rem;}
+.pq-wrap{background:var(--card);border-radius:var(--r);padding:0;margin:1rem;border:2px solid rgba(52,211,153,.2);overflow:hidden;}
+.pq-info{background:rgba(52,211,153,.05);border-bottom:1px solid rgba(52,211,153,.15);padding:1rem 1.1rem;}
+.pq-info-tag{font-size:10px;font-weight:800;color:var(--pp);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;}
+.pq-info-text{font-size:14px;color:var(--text);font-weight:700;line-height:1.7;}
+.pq-info-text b{color:var(--pp2);}
+.pq-pregunta{padding:1rem 1.1rem 1.2rem;}
+.pq-pregunta-tag{font-size:10px;font-weight:800;color:var(--pp);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;}
+.pq-text{font-size:18px;font-weight:900;color:var(--text);margin-bottom:1rem;line-height:1.5;}
+.pr-panel{background:linear-gradient(180deg,#0d3320,#081a0e);border:2px solid var(--pp);border-radius:var(--r);padding:1.6rem 1.4rem;text-align:center;margin:1rem;}
+.pr-emoji{font-size:58px;margin-bottom:.3rem;}
+.pr-title{font-size:21px;font-weight:900;color:var(--pp2);margin-bottom:.3rem;}
+.pr-score{font-size:46px;font-weight:900;color:#fff;margin:.4rem 0;}
+.pr-sub{font-size:13px;color:var(--text2);font-weight:700;margin-bottom:1rem;}
+.p-notimer-btn{background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.25);border-radius:8px;padding:5px 12px;font-size:11px;font-weight:800;color:rgba(52,211,153,.8);cursor:pointer;font-family:inherit;transition:all .15s;}
+.p-notimer-btn.off{background:rgba(255,80,80,.1);border-color:rgba(255,80,80,.3);color:rgba(255,80,80,.7);}
+.hud-combo.hot{background:rgba(247,183,49,.25);}
+</style>
+</head>
+<body>
+<h1 class="sr-only">Funsi — Lengua Adaptativa</h1>
+<div id="conf" class="conf"></div>
+<div class="app">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <span style="font-size:22px">📚</span>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#7c3aed,#c77dff);display:flex;align-items:center;justify-content:center;font-size:18px;">✏️</div>
+      <div>
+        <div class="topbar-logo">Funsi Lengua</div>
+        <div class="topbar-sub">Aplicación creada por el equipo de investigación de Fundación Siglo</div>
+      </div>
+    </div>
+    <div class="xp-pill">⭐ <span id="g-stars">0</span></div>
+    <button id="sound-btn" onclick="toggleSound()">🔊</button>
+  </div>
+
+  <!-- HOME -->
+  <div class="scr on" id="s-home">
+    <div class="funsi-stage">
+      <!-- FUNSI LENGUA AVATAR -->
+      <svg class="funsi-svg" id="funsi-main" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="60" cy="65" r="42" fill="#7C3AED"/>
+        <ellipse cx="60" cy="72" rx="26" ry="20" fill="#A78BFA"/>
+        <circle cx="60" cy="38" r="28" fill="#EC4899"/>
+        <polygon points="32,18 22,2 44,12" fill="#EC4899"/>
+        <polygon points="88,18 98,2 76,12" fill="#EC4899"/>
+        <polygon points="34,16 26,5 42,13" fill="#FCA5A5"/>
+        <polygon points="86,16 94,5 78,13" fill="#FCA5A5"/>
+        <ellipse cx="60" cy="38" rx="22" ry="20" fill="#FDE8F5"/>
+        <circle cx="51" cy="33" r="5" fill="#1E1B4B"/>
+        <circle cx="69" cy="33" r="5" fill="#1E1B4B"/>
+        <circle cx="53" cy="31" r="2" fill="#fff"/>
+        <circle cx="71" cy="31" r="2" fill="#fff"/>
+        <ellipse cx="60" cy="41" rx="4" ry="3" fill="#BE185D"/>
+        <path d="M51 46 Q60 54 69 46" fill="none" stroke="#BE185D" stroke-width="2.5" stroke-linecap="round" id="hm-mouth"/>
+        <circle cx="44" cy="43" r="6" fill="#FCA5A5" opacity=".5"/>
+        <circle cx="76" cy="43" r="6" fill="#FCA5A5" opacity=".5"/>
+        <text x="44" y="76" font-size="10" fill="#EDE9FE" font-weight="900" font-family="Nunito,sans-serif">A·B·C</text>
+      </svg>
+      <div class="speech" id="home-speech">¡Hola, soy Funsi Lengua! 📚</div>
+    </div>
+    <div class="xp-wrap">
+      <div class="xp-row"><span id="xp-lv-lbl">Nivel 1</span><span id="xp-pts-lbl">0 / 200 XP</span></div>
+      <div class="xp-bar"><div class="xp-fill" id="xp-fill" style="width:0%"></div></div>
+    </div>
+    <div class="pad">
+      <div class="sec-title">¡Hola, soy Funsi Lengua!</div>
+      <div class="sec-sub">Bienvenidos a Lengua Adaptativa.<br>Elegí tu grado para empezar.</div>
+      <div class="grade-grid" id="grade-grid"></div>
+    </div>
+    <div style="padding:0 1rem .5rem;">
+      <button class="poesia-btn" onclick="sndClick();startPoesiaGame()">
+        <div class="poesia-btn-left">
+          <span class="poesia-btn-emoji">🌸</span>
+          <div>
+            <div class="poesia-btn-title">MODO POETAS ARGENTINOS</div>
+            <div class="poesia-btn-sub">¡Lengua con poesía y literatura argentina!</div>
+          </div>
+        </div>
+        <span class="poesia-btn-arr">›</span>
+      </button>
+    </div>
+    <div id="badge-shelf-home" style="margin-bottom:1.5rem;"></div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="scr" id="s-dash">
+    <button class="back-btn" onclick="go('s-home')">← Volver</button>
+    <div class="dash-hero">
+      <div class="dash-hero-top">
+        <div class="dash-grade" id="dash-grade-lbl">1° grado</div>
+        <div class="dash-streak" id="dash-streak-lbl">🔥 0 racha</div>
+      </div>
+      <div class="dash-stats">
+        <div class="dash-stat"><div class="dash-stat-n" id="ds-lvl">1</div><div class="dash-stat-l">Nivel actual</div></div>
+        <div class="dash-stat"><div class="dash-stat-n" id="ds-acc">-</div><div class="dash-stat-l">Precisión</div></div>
+        <div class="dash-stat"><div class="dash-stat-n" id="ds-xp">0</div><div class="dash-stat-l">XP ganado</div></div>
+      </div>
+    </div>
+    <div id="challenge-banner-wrap"></div>
+    <div class="mission-card" id="next-mission" onclick="launchMission()">
+      <div class="mission-tag">🎯 Misión sugerida</div>
+      <div class="mission-row">
+        <div><div class="mission-title" id="mission-title">Cargando...</div><div class="mission-sub" id="mission-sub"></div></div>
+        <div class="mission-arrow">▶</div>
+      </div>
+    </div>
+    <div class="weak-title">📊 TUS TEMAS</div>
+    <div class="weak-grid" id="weak-grid"></div>
+    <button class="all-topics-btn" onclick="sndClick();go('s-topic')"><span>Ver todos los temas</span><span>›</span></button>
+    <button class="all-topics-btn" onclick="confirmReset()" style="color:var(--rr);border-color:var(--rr3);"><span>🗑️ Reiniciar progreso</span><span>›</span></button>
+  </div>
+
+  <!-- TEMAS -->
+  <div class="scr" id="s-topic">
+    <button class="back-btn" onclick="go('s-dash')">← Volver</button>
+    <div class="pad">
+      <div class="sec-title" id="topic-title">Temas</div>
+      <div class="sec-sub">Elegí un tema para practicar</div>
+      <div class="topic-list" id="topic-list"></div>
+    </div>
+  </div>
+
+  <!-- NIVELES -->
+  <div class="scr" id="s-level">
+    <button class="back-btn" onclick="go('s-topic')">← Volver</button>
+    <div class="pad">
+      <div class="sec-title" id="level-title">Niveles</div>
+      <div class="sec-sub">⭐ Sacá al menos 1 estrella para desbloquear el siguiente</div>
+      <div class="level-grid" id="level-grid"></div>
+    </div>
+  </div>
+
+  <!-- JUEGO -->
+  <div class="scr" id="s-game">
+    <button class="back-btn" onclick="abortGame()">← Salir</button>
+    <div style="padding:0 1rem 1.5rem">
+      <div class="game-hud">
+        <div class="hud-row">
+          <div>
+            <div class="hud-lv" id="hud-lv">Nivel 1</div>
+            <div class="hud-score" id="hud-score">0 pts</div>
+          </div>
+          <div class="hud-right">
+            <div class="hud-lives" id="hud-lives"></div>
+            <div class="hud-combo" id="hud-combo">✨ ×1</div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+          <span class="diff-pill" id="diff-pill">🌱 Inicio</span>
+          <span style="font-size:11px;color:rgba(255,255,255,.5);font-weight:700;" id="q-num-hud">1/6</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div class="timer-bar" style="flex:1"><div class="timer-fill" id="timer-fill" style="width:100%"></div></div>
+          <button id="no-timer-btn" onclick="toggleNoTimer()" style="background:rgba(255,255,255,.12);border:none;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:800;color:rgba(255,255,255,.7);cursor:pointer;white-space:nowrap;font-family:'Nunito',sans-serif;">⏸ Sin tiempo</button>
+        </div>
+      </div>
+      <div class="game-funsi-row">
+        <svg class="mini-funsi-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="60" cy="65" r="42" fill="#7C3AED"/>
+          <ellipse cx="60" cy="72" rx="26" ry="20" fill="#A78BFA"/>
+          <circle cx="60" cy="38" r="28" fill="#EC4899"/>
+          <polygon points="32,18 22,2 44,12" fill="#EC4899"/>
+          <polygon points="88,18 98,2 76,12" fill="#EC4899"/>
+          <ellipse cx="60" cy="38" rx="22" ry="20" fill="#FDE8F5"/>
+          <circle cx="51" cy="33" r="5" fill="#1E1B4B"/>
+          <circle cx="69" cy="33" r="5" fill="#1E1B4B"/>
+          <circle cx="53" cy="31" r="2" fill="#fff"/>
+          <circle cx="71" cy="31" r="2" fill="#fff"/>
+          <path d="M51 46 Q60 54 69 46" fill="none" stroke="#BE185D" stroke-width="2.5" stroke-linecap="round" id="gm-mouth"/>
+          <circle cx="44" cy="43" r="6" fill="#FCA5A5" opacity=".5"/>
+          <circle cx="76" cy="43" r="6" fill="#FCA5A5" opacity=".5"/>
+          <text x="44" y="76" font-size="10" fill="#EDE9FE" font-weight="900" font-family="Nunito,sans-serif">A·B·C</text>
+        </svg>
+        <div class="mini-bubble" id="mini-bubble">¡A leer y pensar! 💪</div>
+      </div>
+      <div class="hint-banner" id="hint-banner">💡 <span id="hint-text"></span></div>
+      <div class="q-wrap" id="q-wrap">
+        <div class="q-num" id="q-num">Pregunta 1 de 6</div>
+        <div class="q-text" id="q-text"></div>
+        <div class="opts" id="opts"></div>
+        <div class="fb" id="fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTADO -->
+  <div class="scr" id="s-result">
+    <div style="padding:.5rem 1rem 2rem">
+      <div class="adapt-panel">
+        <svg class="ap-avatar" id="res-avatar" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="60" cy="65" r="42" fill="#7C3AED"/>
+          <ellipse cx="60" cy="72" rx="26" ry="20" fill="#A78BFA"/>
+          <circle cx="60" cy="38" r="28" fill="#EC4899"/>
+          <ellipse cx="60" cy="38" rx="22" ry="20" fill="#FDE8F5"/>
+          <circle cx="51" cy="33" r="5" fill="#1E1B4B"/>
+          <circle cx="69" cy="33" r="5" fill="#1E1B4B"/>
+          <circle cx="53" cy="31" r="2" fill="#fff"/>
+          <circle cx="71" cy="31" r="2" fill="#fff"/>
+          <path d="M51 46 Q60 54 69 46" fill="none" stroke="#BE185D" stroke-width="2.5" stroke-linecap="round" id="res-mouth"/>
+          <circle cx="44" cy="43" r="6" fill="#FCA5A5" opacity=".5"/>
+          <circle cx="76" cy="43" r="6" fill="#FCA5A5" opacity=".5"/>
+        </svg>
+        <div class="ap-stars" id="ap-stars"></div>
+        <div class="ap-title" id="ap-title"></div>
+        <div class="ap-sub" id="ap-sub"></div>
+        <div class="rec-box" id="rec-box"><div class="rec-icon" id="rec-icon"></div><div class="rec-title" id="rec-title"></div><div class="rec-desc" id="rec-desc"></div></div>
+        <div class="badges-row" id="badges-row"></div>
+        <div class="ap-actions" id="ap-actions"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODO POESÍA -->
+  <div class="scr" id="s-poesia-game">
+    <button class="back-btn" onclick="abortPoesia()">← Salir</button>
+    <div class="poesia-hud">
+      <div class="hud-row">
+        <div>
+          <div class="hud-lv" id="p-hud-n" style="color:#c77dff;">🌸 Pregunta 1/10</div>
+          <div class="hud-score" id="p-hud-score">0 pts</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
+          <div class="hud-lives" id="p-hud-lives"></div>
+          <div class="hud-combo" id="p-hud-combo" style="border-color:rgba(199,125,255,.3);color:#c77dff;">✨ ×1</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div class="timer-bar" style="flex:1"><div class="timer-fill" id="p-timer" style="width:100%;background:#c77dff;box-shadow:0 0 6px #c77dff;"></div></div>
+        <button class="p-notimer-btn" id="p-notimer-btn" onclick="togglePoesiaTimer()">⏱ Timer</button>
+      </div>
+    </div>
+    <div style="padding:0 0 1.5rem;">
+      <div class="pq-wrap">
+        <div class="pq-info">
+          <div class="pq-info-tag">📖 Dato literario</div>
+          <div class="pq-info-text" id="pq-info"></div>
+        </div>
+        <div class="pq-pregunta">
+          <div class="pq-pregunta-tag">❓ Pregunta</div>
+          <div class="pq-text" id="pq-text"></div>
+          <div class="opts" id="p-opts"></div>
+          <div class="fb" id="p-fb"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scr" id="s-poesia-result">
+    <div style="padding:.5rem 1rem 2rem;">
+      <div class="pr-panel">
+        <div class="pr-emoji" id="pr-emoji">🌸</div>
+        <div class="pr-title" id="pr-title">¡Gran poeta!</div>
+        <div class="pr-score" id="pr-score">0/10</div>
+        <div class="pr-sub" id="pr-sub"></div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:1.2rem;">
+          <button class="btn-pp" onclick="startPoesiaGame()">🔄 Jugar de nuevo</button>
+          <button class="btn-sec" onclick="go('s-home')">🏠 Volver al inicio</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /app -->
+
+<!-- RESET MODAL -->
+<div id="reset-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;align-items:center;justify-content:center;padding:1rem;">
+  <div style="background:var(--card);border-radius:24px;padding:2rem 1.5rem;max-width:340px;width:100%;text-align:center;border:1.5px solid #ffffff15;">
+    <div style="font-size:36px;margin-bottom:.5rem;">⚠️</div>
+    <div style="font-size:17px;font-weight:900;margin-bottom:.5rem;">¿Reiniciar progreso?</div>
+    <div style="font-size:13px;color:var(--text2);font-weight:700;margin-bottom:1.2rem;">Se borrará todo tu progreso, estrellas y XP.</div>
+    <button onclick="doReset()" style="width:100%;background:var(--rr3);border:2px solid var(--rr);border-radius:var(--r2);padding:.8rem;font-size:14px;font-weight:900;color:var(--rr);cursor:pointer;font-family:'Nunito',sans-serif;margin-bottom:8px;">Sí, borrar todo</button>
+    <button onclick="closeReset()" style="width:100%;background:var(--card2);border:2px solid #ffffff15;border-radius:var(--r2);padding:.8rem;font-size:14px;font-weight:800;color:var(--text2);cursor:pointer;font-family:'Nunito',sans-serif;">Cancelar</button>
+  </div>
+</div>
+
+<!-- APA OVERLAY -->
+<div class="apa-overlay" id="apa-overlay">
+  <div class="apa-panel">
+    <div class="apa-head">
+      <div class="apa-funsi-wrap">
+        <svg class="apa-funsi" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="60" cy="65" r="42" fill="#7C3AED"/>
+          <ellipse cx="60" cy="72" rx="26" ry="20" fill="#A78BFA"/>
+          <circle cx="60" cy="38" r="28" fill="#EC4899"/>
+          <ellipse cx="60" cy="38" rx="22" ry="20" fill="#FDE8F5"/>
+          <circle cx="51" cy="33" r="5" fill="#1E1B4B"/>
+          <circle cx="69" cy="33" r="5" fill="#1E1B4B"/>
+          <circle cx="53" cy="31" r="2" fill="#fff"/>
+          <circle cx="71" cy="31" r="2" fill="#fff"/>
+          <path d="M51 46 Q60 54 69 46" fill="none" stroke="#BE185D" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="44" cy="43" r="6" fill="#FCA5A5" opacity=".5"/>
+          <circle cx="76" cy="43" r="6" fill="#FCA5A5" opacity=".5"/>
+        </svg>
+      </div>
+      <div class="apa-bubble" id="apa-bubble">¡Te explico yo! 😊</div>
+    </div>
+    <div class="apa-tag"><span class="apa-tag-emoji">💡</span><span class="apa-tag-text">APA — Ayuda Para Avanzar</span></div>
+    <div class="apa-topic-title" id="apa-topic-title">Tema</div>
+    <div class="apa-steps" id="apa-steps"></div>
+    <div class="apa-example">
+      <div class="apa-ex-header"><span class="apa-ex-emoji">📝</span><span class="apa-ex-title">Ejemplo resuelto</span></div>
+      <div class="apa-ex-body" id="apa-ex-body"></div>
+    </div>
+    <div class="apa-formula-box">
+      <div class="apa-formula-header"><span class="apa-formula-emoji">⭐</span><span class="apa-formula-title">Para recordar</span></div>
+      <div class="apa-formula-text" id="apa-formula-text"></div>
+    </div>
+    <button class="apa-ok-btn" onclick="closeApa()">✓ ¡Entendí! Voy a intentarlo</button>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════
+   GRADOS Y TEMAS DE LENGUA
+═══════════════════════════ */
+const GRADES=[
+  {id:1,label:"1° grado",emoji:"🐣",bar:"#e879f9",topics:["vocales","silabas","lectura"]},
+  {id:2,label:"2° grado",emoji:"🐥",bar:"#54d18c",topics:["silabas","lectura","sustantivos","ortografia"]},
+  {id:3,label:"3° grado",emoji:"🦊",bar:"#f7b731",topics:["sustantivos","verbos","ortografia","oraciones"]},
+  {id:4,label:"4° grado",emoji:"🦁",bar:"#ff9f43",topics:["sustantivos","verbos","adjetivos","ortografia","oraciones"]},
+  {id:5,label:"5° grado",emoji:"🐯",bar:"#7c83fd",topics:["verbos","adjetivos","acentuacion","oraciones","signos"]},
+  {id:6,label:"6° grado",emoji:"🦅",bar:"#c77dff",topics:["acentuacion","signos","oraciones","textos"]},
+  {id:7,label:"7° grado",emoji:"🚀",bar:"#ff6b6b",topics:["acentuacion","signos","textos","sinonimos","figuras"]},
+];
+
+const TOPICS={
+  vocales:{name:"Vocales",icon:"🔤",bg:"#2d1b69",ic:"#7c83fd",
+    hints:["Las vocales son: A, E, I, O, U","Toda sílaba tiene al menos una vocal","¿Escuchás el sonido de la vocal?"]},
+  silabas:{name:"Sílabas",icon:"🔡",bg:"#1a3a2a",ic:"#54d18c",
+    hints:["Golpeá la mesa con cada sílaba","CA-SA tiene 2 sílabas","Cada golpe es una sílaba"]},
+  lectura:{name:"Lectura y comprensión",icon:"📖",bg:"#1a2e0f",ic:"#a3e635",
+    hints:["Leé el texto completo antes de responder","Buscá la idea principal","Fijate qué dice el texto, no lo que vos pensás"]},
+  sustantivos:{name:"Sustantivos",icon:"🏠",bg:"#3a2510",ic:"#ff9f43",
+    hints:["Un sustantivo nombra personas, animales o cosas","Podés ponerle 'el' o 'la' adelante","¿Es el nombre de algo?"]},
+  verbos:{name:"Verbos",icon:"🏃",bg:"#1a1d3a",ic:"#7c83fd",
+    hints:["El verbo es la acción de la oración","¿Qué hace el sujeto?","Cambia con el tiempo: corro, corrí, correré"]},
+  adjetivos:{name:"Adjetivos",icon:"🎨",bg:"#2d1a3a",ic:"#c77dff",
+    hints:["El adjetivo describe al sustantivo","¿Cómo es? ¿De qué color? ¿Qué tamaño?","Grande, rojo, feliz son adjetivos"]},
+  ortografia:{name:"Ortografía",icon:"✍️",bg:"#1a3a2a",ic:"#54d18c",
+    hints:["B suena igual que V pero se escriben diferente","La H es muda, no suena","La C antes de E o I suena como S"]},
+  oraciones:{name:"Oraciones",icon:"💬",bg:"#0f1f30",ic:"#7c83fd",
+    hints:["Toda oración tiene sujeto y predicado","El sujeto dice de quién se habla","El predicado dice qué hace el sujeto"]},
+  acentuacion:{name:"Acentuación",icon:"´",bg:"#3a2e0f",ic:"#f7b731",
+    hints:["Agudas: acento en la última sílaba","Graves: acento en la anteúltima","Esdrújulas: acento en la antepenúltima"]},
+  signos:{name:"Signos de puntuación",icon:"❓",bg:"#2d1a3a",ic:"#c77dff",
+    hints:["El punto cierra una idea completa","La coma hace una pausa breve","Los signos de ¡! expresan emoción"]},
+  textos:{name:"Tipos de texto",icon:"📖",bg:"#0f2018",ic:"#54d18c",
+    hints:["Un cuento tiene personajes y un problema","Una noticia informa sobre algo real","Un poema tiene versos y rima"]},
+  sinonimos:{name:"Sinónimos y antónimos",icon:"🔄",bg:"#3a1a1a",ic:"#ff6b6b",
+    hints:["Sinónimos = palabras con significado similar","Antónimos = palabras opuestas","Grande / chico son antónimos"]},
+  figuras:{name:"Figuras literarias",icon:"🌟",bg:"#1a0f25",ic:"#e879f9",
+    hints:["La metáfora compara sin usar 'como'","El símil compara usando 'como'","La personificación da vida a cosas"]},
+};
+
+/* ── Insignias ── */
+const BADGES=[
+  {id:"first_correct",  emoji:"⭐", label:"Primera Estrella",   desc:"Primera respuesta correcta"},
+  {id:"combo5",         emoji:"🔥", label:"En Llamas",          desc:"5 respuestas seguidas"},
+  {id:"combo10",        emoji:"⚡", label:"Imparable",          desc:"10 respuestas seguidas"},
+  {id:"xp200",          emoji:"🥉", label:"Bronce",             desc:"200 XP acumulados"},
+  {id:"xp500",          emoji:"🥈", label:"Plata",              desc:"500 XP acumulados"},
+  {id:"xp1000",         emoji:"🥇", label:"Oro",                desc:"1000 XP acumulados"},
+  {id:"perfect_round",  emoji:"🌟", label:"Ronda Perfecta",     desc:"6/6 sin errores"},
+  {id:"diff5",          emoji:"🏆", label:"Nivel Experto",      desc:"Llegar a dificultad máxima"},
+  {id:"ortografia5",    emoji:"✍️", label:"Corrector",          desc:"5 ortografías correctas"},
+  {id:"all_topics",     emoji:"💎", label:"Enciclopedia",       desc:"Jugar todos los temas de un grado"},
+  {id:"poesia_perfect", emoji:"🌸", label:"Gran Poeta",         desc:"10/10 en Modo Poetas"},
+];
+
+const DIFF_LABELS=["","🌱 Inicio","⚡ Básico","🔥 Medio","💫 Avanzado","🏆 Experto"];
+const DIFF_COLORS=["","#54d18c","#7c83fd","#f7b731","#c77dff","#ff6b6b"];
+const DIFF_BG=["","#1a3a2a","#1a1d3a","#3a2e0f","#2d1a3a","#3a1a1a"];
+
+const ML=6, QPL=6, TIMER=25;
+const CC=["#e879f9","#54d18c","#f7b731","#c77dff","#ff6b6b","#ff9f43","#7c83fd"];
+
+let prog={}, totalXP=0, globalStreak=0;
+let currentGrade=null, currentTopic=null, pendingMission=null;
+let unlockedBadges=[], ortografiaOkTotal=0;
+
+function getP(gid,tid){
+  let k=gid+"-"+tid;
+  if(!prog[k]) prog[k]={ml:1,stars:[0,0,0,0,0,0],attempts:0,totalCorrect:0,streak:0,badStreak:0,xp:0,diff:1};
+  return prog[k];
+}
+function saveP(){try{localStorage.setItem("funsi_lengua_v1",JSON.stringify({prog,totalXP,globalStreak,unlockedBadges,ortografiaOkTotal}));}catch(e){}}
+function loadP(){
+  try{let d=localStorage.getItem("funsi_lengua_v1");if(d){let o=JSON.parse(d);prog=o.prog||{};totalXP=o.totalXP||0;globalStreak=o.globalStreak||0;unlockedBadges=o.unlockedBadges||[];ortografiaOkTotal=o.ortografiaOkTotal||0;}}catch(e){}
+  updateXPBar();renderGrades();renderBadgeShelf();
+}
+
+/* ── Badges ── */
+function unlockBadge(id){
+  if(unlockedBadges.includes(id)) return;
+  unlockedBadges.push(id);saveP();
+  let b=BADGES.find(x=>x.id===id);if(b)showBadgeToast(b);
+}
+function checkXPBadges(){if(totalXP>=200)unlockBadge('xp200');if(totalXP>=500)unlockBadge('xp500');if(totalXP>=1000)unlockBadge('xp1000');}
+function showBadgeToast(b){
+  let old=document.getElementById('badge-toast-el');if(old)old.remove();
+  let el=document.createElement('div');el.id='badge-toast-el';el.className='badge-toast';
+  el.innerHTML='<span style="font-size:32px">'+b.emoji+'</span><div><div class="bt-title">¡Insignia desbloqueada!</div><div class="bt-name">'+b.label+'</div><div class="bt-desc">'+b.desc+'</div></div>';
+  document.body.appendChild(el);sndUnlock();setTimeout(()=>{if(el.parentNode)el.remove();},3500);
+}
+function renderBadgeShelf(){
+  let sh=document.getElementById('badge-shelf-home');if(!sh)return;
+  if(unlockedBadges.length===0){sh.innerHTML='';return;}
+  let html='<div class="badge-shelf"><div class="badge-shelf-title">🏅 Mis Insignias</div><div class="badge-grid">';
+  BADGES.forEach(b=>{let on=unlockedBadges.includes(b.id);html+='<div class="badge-item'+(on?' unlocked':'')+'" title="'+b.desc+'"><div class="bi-emoji">'+(on?b.emoji:'🔒')+'</div><div class="bi-label">'+b.label+'</div></div>';});
+  html+='</div></div>';sh.innerHTML=html;
+}
+
+/* ═══════════════════════════
+   GENERADOR DE PREGUNTAS DE LENGUA
+═══════════════════════════ */
+function pick(arr){return arr[Math.floor(Math.random()*arr.length)];}
+function shuffle(arr){let a=arr.slice();for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function rnd(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
+
+function makeQ(g, topic, lv, idx, easy, diff){
+  diff=Math.min(6,Math.max(1,diff||1));
+  let ediff=easy?Math.max(1,diff-1):diff;
+  let q, answer, opts;
+
+  if(topic==='vocales'){
+    const banks=[
+      // diff 1-2
+      [
+        {q:'¿Cuántas vocales tiene la palabra "CASA"?', a:'2', o:['2','3','4','1']},
+        {q:'¿Cuál de estas letras es una vocal?', a:'E', o:['E','R','T','S']},
+        {q:'¿Cuántas vocales tiene "AMIGO"?', a:'3', o:['3','2','4','5']},
+        {q:'¿Cuál de estas palabras tiene 4 vocales?', a:'AVIÓN', o:['AVIÓN','CASA','SOL','FLOR']},
+        {q:'¿Cuántas vocales hay en "ELEFANTE"?', a:'4', o:['4','3','5','2']},
+        {q:'¿Cuál NO es una vocal?', a:'P', o:['P','A','O','U']},
+      ],
+      // diff 3-4
+      [
+        {q:'¿Cuántas vocales tiene "UNIVERSO"?', a:'4', o:['4','3','5','6']},
+        {q:'¿Cuántas sílabas tiene "ÁRBOL"?', a:'2', o:['2','3','1','4']},
+        {q:'¿Qué vocal tiene acento en "ÁRBOL"?', a:'A', o:['A','O','E','U']},
+        {q:'¿Cuántas vocales tiene "ESCUELA"?', a:'4', o:['4','3','5','6']},
+      ],
+      // diff 5-6
+      [
+        {q:'¿Cuántas vocales tiene "EXTRAORDINARIO"?', a:'6', o:['6','5','7','4']},
+        {q:'¿Qué diptongo tiene "CIUDAD"?', a:'iu', o:['iu','iu','ci','da']},
+      ]
+    ];
+    let bank=ediff<=2?banks[0]:ediff<=4?banks[1]:banks[2];
+    let item=bank[idx%bank.length];
+    q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
+
+  } else if(topic==='silabas'){
+    const palabras=[
+      {w:'CA-SA',n:2},{w:'PA-LO-MA',n:3},{w:'SOL',n:1},{w:'ME-SA',n:2},
+      {w:'TE-LÉ-FO-NO',n:4},{w:'A-VE',n:2},{w:'PE-LO-TA',n:3},{w:'TRE-N',n:1},
+      {w:'MU-ÑE-CA',n:3},{w:'CE-RE-BRO',n:3},{w:'MA-RI-PO-SA',n:4},
+      {w:'E-LEF-AN-TE',n:4},{w:'CA-BA-LLO',n:3},{w:'JA-RDÍ-N',n:2},
+      {w:'COM-PU-TA-DO-RA',n:5},{w:'PLA-YA',n:2},{w:'LU-NA',n:2},
+    ];
+    const dificiles=[
+      {w:'CONS-TRU-YEN-DO',n:4},{w:'SU-BRE-A-LIS-TA',n:5},{w:'TRANS-POR-TE',n:3},
+      {w:'ES-TRUC-TU-RA',n:4},{w:'COM-PREN-SIÓN',n:3},
+    ];
+    let pool=ediff<=2?palabras.slice(0,8):ediff<=4?palabras:dificiles;
+    let item=pool[idx%pool.length];
+    q='¿Cuántas sílabas tiene la palabra "'+item.w.replace(/-/g,'')+'"?';
+    answer=String(item.n);
+    let ws=new Set([answer]);while(ws.size<4){ws.add(String(rnd(1,5)));} 
+    opts=shuffle(Array.from(ws)).map(v=>({key:v,html:v}));
+
+  } else if(topic==='lectura'){
+    const banks=[
+      // diff 1-2: textos muy cortos, preguntas literales simples
+      [
+        {q:'Lee: "El sol salió temprano. Los pájaros cantaban en el árbol. Era un día hermoso."\n¿Qué hacían los pájaros?', a:'cantaban', o:['cantaban','dormían','volaban','comían']},
+        {q:'Lee: "Lucía tiene un perro llamado Canela. A Canela le gusta jugar con la pelota en el patio."\n¿Cómo se llama el perro de Lucía?', a:'Canela', o:['Canela','Pelota','Lucía','Patio']},
+        {q:'Lee: "Tomás fue a la plaza con su mamá. Tomaron un helado de frutilla. Estaban muy contentos."\n¿Qué sabor de helado tomaron?', a:'frutilla', o:['frutilla','chocolate','vainilla','limón']},
+        {q:'Lee: "El gato gris duerme en el sillón todo el día. Por la noche sale a pasear por el techo."\n¿De qué color es el gato?', a:'gris', o:['gris','negro','blanco','naranja']},
+        {q:'Lee: "Martina leyó tres libros en las vacaciones. Su favorito fue el del dragón verde."\n¿Cuántos libros leyó Martina?', a:'tres', o:['tres','dos','cuatro','cinco']},
+        {q:'Lee: "Llovió toda la tarde. Las calles se llenaron de charcos. Los chicos saltaron sobre ellos con sus botas."\n¿Qué tenían los chicos en los pies?', a:'botas', o:['botas','zapatillas','sandalias','pantuflas']},
+      ],
+      // diff 3-4: textos con algo de inferencia
+      [
+        {q:'Lee: "El abuelo plantó semillas en la huerta. Regó la tierra todos los días. Después de un mes, vio brotes verdes asomando."\n¿Por qué salieron brotes?', a:'porque las regó todos los días', o:['porque las regó todos los días','porque hacía frío','porque no llovió','porque las cortó']},
+        {q:'Lee: "Sara llegó tarde a la escuela. Tenía la mochila abierta y los cuadernos mojados. Afuera llovía a cántaros."\n¿Por qué estaban mojados los cuadernos?', a:'porque llovía y la mochila estaba abierta', o:['porque llovía y la mochila estaba abierta','porque los lavó','porque los olvidó afuera','porque se cayeron al río']},
+        {q:'Lee: "Pedro no podía dormir. Daba vueltas en la cama. Mañana era su primer día en la escuela nueva."\n¿Por qué no dormía Pedro?', a:'estaba nervioso por la escuela nueva', o:['estaba nervioso por la escuela nueva','tenía hambre','hacía mucho calor','estaba enfermo']},
+        {q:'Lee: "La biblioteca estaba en silencio. Solo se escuchaba el pasar de las páginas. Nadie hablaba."\n¿Qué se infiere del lugar?', a:'es un lugar donde hay que guardar silencio', o:['es un lugar donde hay que guardar silencio','es un lugar ruidoso','es una cancha de fútbol','es un mercado']},
+      ],
+      // diff 5-6: textos con inferencia y vocabulario
+      [
+        {q:'Lee: "El zorro, astuto como pocos, convenció a la gallina de bajar del árbol prometiéndole maíz. Cuando estuvo abajo, huyó con el collar de oro que ella llevaba al cuello."\n¿Qué rasgo del zorro muestra el texto?', a:'la astucia y el engaño', o:['la astucia y el engaño','la generosidad','la valentía','la torpeza']},
+        {q:'Lee: "La palabra \'veloz\' significa que algo se mueve con gran rapidez. El guepardo es el animal terrestre más veloz del mundo."\n¿Cuál es el sinónimo de "veloz" según el texto?', a:'rápido', o:['rápido','lento','torpe','enorme']},
+        {q:'Lee: "Aunque tenía miedo, la niña subió al escenario. Respiró hondo y comenzó a cantar. Al terminar, el público aplaudió de pie."\n¿Qué muestra este texto sobre la niña?', a:'que fue valiente a pesar del miedo', o:['que fue valiente a pesar del miedo','que era una cantante profesional','que le encantaba actuar','que no tenía nervios']},
+      ]
+    ];
+    let bank=ediff<=2?banks[0]:ediff<=4?banks[1]:banks[2];
+    let item=bank[idx%bank.length];
+    q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
+
+  } else if(topic==='sustantivos'){
+    const banks=[
+      [
+        {q:'¿Cuál es el sustantivo de la oración "El perro ladra fuerte"?', a:'perro', o:['perro','ladra','fuerte','el']},
+        {q:'¿Cuál de estas palabras es un sustantivo?', a:'mesa', o:['mesa','correr','alto','rápido']},
+        {q:'¿Cuál es el sustantivo en "La casa es grande"?', a:'casa', o:['casa','grande','es','la']},
+        {q:'¿Qué tipo de sustantivo es "Buenos Aires"?', a:'propio', o:['propio','común','concreto','abstracto']},
+        {q:'"Felicidad" es un sustantivo…', a:'abstracto', o:['abstracto','concreto','propio','común']},
+        {q:'¿Cuál es el plural de "ciudad"?', a:'ciudades', o:['ciudades','ciudads','ciudad','ciudanes']},
+      ],
+      [
+        {q:'¿Qué género tiene "el árbol"?', a:'masculino', o:['masculino','femenino','neutro','plural']},
+        {q:'"El grupo de alumnos" — ¿el sustantivo colectivo es?', a:'grupo', o:['grupo','alumnos','de','el']},
+        {q:'¿Cuál es el diminutivo de "casa"?', a:'casita', o:['casita','casona','casota','casuca']},
+        {q:'¿Cuál es el aumentativo de "perro"?', a:'perrazo', o:['perrazo','perrito','perrete','perruco']},
+      ],
+      [
+        {q:'¿Cuál de estas es un sustantivo abstracto?', a:'amor', o:['amor','mesa','Juan','ciudad']},
+        {q:'"Bandada" es un sustantivo colectivo de...', a:'pájaros', o:['pájaros','peces','lobos','abejas']},
+        {q:'¿Cuál es el género de "la mano"?', a:'femenino', o:['femenino','masculino','ambiguo','invariable']},
+      ]
+    ];
+    let bank=ediff<=2?banks[0]:ediff<=4?banks[1]:banks[2];
+    let item=bank[idx%bank.length];
+    q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
+
+  } else if(topic==='verbos'){
+    const banks=[
+      [
+        {q:'¿Cuál es el verbo en "Juan corre en el parque"?', a:'corre', o:['corre','Juan','parque','en']},
+        {q:'¿Cuál de estas palabras es un verbo?', a:'cantar', o:['cantar','mesa','azul','niño']},
+        {q:'"Ella COME una manzana" — el verbo en infinitivo es:', a:'comer', o:['comer','caminar','correr','saltar']},
+        {q:'¿En qué tiempo está el verbo "corrí"?', a:'pasado', o:['pasado','presente','futuro','gerundio']},
+        {q:'¿En qué tiempo está "voy a estudiar"?', a:'futuro', o:['futuro','pasado','presente','imperativo']},
+        {q:'¿Cuál es el verbo en "Los chicos juegan a la pelota"?', a:'juegan', o:['juegan','chicos','pelota','los']},
+      ],
+      [
+        {q:'¿A qué conjugación pertenece el verbo "CANTAR"?', a:'1ra (-AR)', o:['1ra (-AR)','2da (-ER)','3ra (-IR)','irregular']},
+        {q:'"Ellos HABÍAN comido" — el tiempo verbal es:', a:'pretérito pluscuamperfecto', o:['pretérito pluscuamperfecto','presente','futuro simple','pretérito perfecto']},
+        {q:'El verbo "SER" es:', a:'irregular', o:['irregular','regular','reflexivo','impersonal']},
+        {q:'¿Cuál es la 1ra persona del plural de "CANTAR" en presente?', a:'cantamos', o:['cantamos','cantan','canta','cantáis']},
+      ],
+      [
+        {q:'¿Qué modo verbal expresa una orden? "¡Vení acá!"', a:'imperativo', o:['imperativo','indicativo','subjuntivo','infinitivo']},
+        {q:'"Si estudiara más, aprobaría" — el modo del primer verbo es:', a:'subjuntivo', o:['subjuntivo','indicativo','imperativo','condicional']},
+        {q:'¿Cuál es el participio del verbo "ESCRIBIR"?', a:'escrito', o:['escrito','escribido','escribiendo','escribir']},
+      ]
+    ];
+    let bank=ediff<=2?banks[0]:ediff<=4?banks[1]:banks[2];
+    let item=bank[idx%bank.length];
+    q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
+
+  } else if(topic==='adjetivos'){
+    const banks=[
+      [
+        {q:'¿Cuál es el adjetivo en "La casa grande"?', a:'grande', o:['grande','casa','la','y']},
+        {q:'¿Cuál de estas palabras es un adjetivo?', a:'rojo', o:['rojo','correr','mesa','Juan']},
+        {q:'¿Qué adjetivo describe el color de algo?', a:'azul', o:['azul','alto','gordo','feo']},
+        {q:'¿Cuál es el adjetivo opuesto de "grande"?', a:'pequeño', o:['pequeño','alto','gordo','nuevo']},
+        {q:'¿Cuál es el adjetivo en "El niño inteligente resolvió el problema"?', a:'inteligente', o:['inteligente','niño','problema','resolvió']},
+        {q:'¿Cuál es el grado superlativo de "bueno"?', a:'óptimo', o:['óptimo','mejor','bonísimo','muy bueno']},
+      ],
+      [
+        {q:'"Un libro interesantísimo" — el sufijo -ísimo indica:', a:'grado superlativo', o:['grado superlativo','grado comparativo','grado positivo','plural']},
+        {q:'¿Cuál es el comparativo de superioridad de "alto"?', a:'más alto que', o:['más alto que','tan alto como','menos alto que','altísimo']},
+        {q:'"Ese chico es tan inteligente como su hermana" — es un comparativo de:', a:'igualdad', o:['igualdad','superioridad','inferioridad','superlativo']},
+      ],
+      [
+        {q:'¿Qué tipo de adjetivo es "primero" en "el primer día"?', a:'numeral ordinal', o:['numeral ordinal','calificativo','posesivo','demostrativo']},
+        {q:'"Mi libro, tu carpeta, su mochila" — estos adjetivos son:', a:'posesivos', o:['posesivos','demostrativos','indefinidos','numerales']},
+      ]
+    ];
+    let bank=ediff<=2?banks[0]:ediff<=4?banks[1]:banks[2];
+    let item=bank[idx%bank.length];
+    q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
+
+  } else if(topic==='ortografia'){
+    const banks=[
+      [
+        {q:'¿Cómo se escribe? Un animal que ladra:', a:'perro', o:['perro','pherro','pero','perro']},
+        {q:'¿Cuál es la correcta?', a:'vaca', o:['vaca','baca','waca','vaka']},
+        {q:'¿Cómo se escribe el número 15?', a:'quince', o:['quince','kuince','quinse','quinze']},
+        {q:'¿Cuál es la escritura correcta?', a:'caballo', o:['caballo','kavallo','cabayo','caballlo']},
+        {q:'¿Cómo se escribe? Lugar donde se aprende:', a:'escuela', o:['escuela','escuella','iscuela','escuéla']},
+        {q:'"La ___aca da leche" — ¿V o B?', a:'v (vaca)', o:['v (vaca)','b (baca)','v (vaka)','b (baka)']},
+      ],
+      [
+        {q:'"Ella ___ino a la fiesta" — ¿V o B?', a:'v (vino)', o:['v (vino)','b (bino)','ambas','ninguna']},
+        {q:'¿Cuál va con H? El verbo del corazón:', a:'haber', o:['haber','aber','aver','abeer']},
+        {q:'"El ___uque navega" — ¿B o V?', a:'b (buque)', o:['b (buque)','v (vuque)','ambas','ninguna']},
+        {q:'¿Cuál es correcta? La herramienta para cortar:', a:'hacha', o:['hacha','acha','hasha','asha']},
+        {q:'"Se rom___ió el vaso" — ¿P o B?', a:'p (rompió)', o:['p (rompió)','b (rombió)','v (romvió)','ambas']},
+      ],
+      [
+        {q:'"La ___ermosa flor" — ¿H o sin H?', a:'h (hermosa)', o:['h (hermosa)','sin h (ermosa)','ambas','ninguna']},
+        {q:'¿Cuál es correcta? Relativo a los ojos:', a:'ocular', o:['ocular','ohcular','okular','ockular']},
+        {q:'"El ___igor del invierno" — ¿R o RR?', a:'r (rigor)', o:['r (rigor)','rr (rrigor)','ninguna','ambas']},
+        {q:'¿Cómo se escribe? Animal marino con tentáculos:', a:'pulpo', o:['pulpo','purpo','pulppo','purppo']},
+      ]
+    ];
+    let bank=ediff<=2?banks[0]:ediff<=4?banks[1]:banks[2];
+    let item=bank[idx%bank.length];
+    q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
+
+  } else if(topic==='oraciones'){
+    const banks=[
+      [
+        {q:'¿Cuál es el sujeto en "La maestra explica la lección"?', a:'La maestra', o:['La maestra','explica','la lección','la']},
+        {q:'¿Cuál es el predicado en "El perro duerme en la alfombra"?', a:'duerme en la alfombra', o:['duerme en la alfombra','el perro','la alfombra','en']},
+        {q:'¿Qué tipo de oración es "¿Dónde está mi mochila?"', a:'interrogativa', o:['interrogativa','exclamativa','afirmativa','negativa']},
+        {q:'¿Qué tipo de oración es "¡Qué lindo día!"?', a:'exclamativa', o:['exclamativa','interrogativa','negativa','afirmativa']},
+        {q:'"No quiero comer verduras" es una oración:', a:'negativa', o:['negativa','afirmativa','interrogativa','exclamativa']},
+        {q:'¿Cuál es el núcleo del sujeto en "Los alumnos estudian"?', a:'alumnos', o:['alumnos','los','estudian','estudio']},
+      ],
+      [
+        {q:'¿Cuál es el núcleo del predicado en "Juan corre rápido"?', a:'corre', o:['corre','Juan','rápido','corre rápido']},
+        {q:'"Aunque llovió, salimos a jugar" — la oración es:', a:'compuesta', o:['compuesta','simple','bimembre','impersonal']},
+        {q:'¿Cuántos verbos tiene "Llegué, vi y vencí"?', a:'3', o:['3','1','2','4']},
+        {q:'"Llueve mucho hoy" — esta oración es:', a:'unimembre', o:['unimembre','bimembre','compuesta','negativa']},
+      ],
+      [
+        {q:'"El libro que leí era interesante" — la proposición subordinada es:', a:'que leí', o:['que leí','el libro','era interesante','el libro era']},
+        {q:'¿Qué tipo de oración es "Llegaron tarde porque perdieron el tren"?', a:'causal', o:['causal','condicional','concesiva','consecutiva']},
+        {q:'"Si estudiás, aprobás" — la oración es:', a:'condicional', o:['condicional','causal','consecutiva','adversativa']},
+      ]
+    ];
+    let bank=ediff<=2?banks[0]:ediff<=4?banks[1]:banks[2];
+    let item=bank[idx%bank.length];
+    q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
+
+  } else if(topic==='acentuacion'){
+    const banks=[
+      [
+        {q:'"CAMIÓN" es una palabra:', a:'aguda', o:['aguda','grave','esdrújula','sobreesdrújula']},
+        {q:'"MESA" es una palabra:', a:'grave', o:['grave','aguda','esdrújula','paroxítona']},
+        {q:'"MÚSICA" es una palabra:', a:'esdrújula', o:['esdrújula','aguda','grave','paroxítona']},
+        {q:'¿Cuál lleva tilde? La palabra que significa "más de uno":', a:'más', o:['más','mas','maas','mas']},
+        {q:'¿Lleva tilde "EXAMEN"?', a:'no, es grave terminada en N', o:['no, es grave terminada en N','sí, es aguda','sí, es esdrújula','no, es aguda']},
+        {q:'"ÁRBOL" lleva tilde porque es…', a:'grave que termina en consonante (no n, s)', o:['grave que termina en consonante (no n, s)','aguda terminada en vocal','esdrújula','sobreesdrújula']},
+      ],
+      [
+        {q:'"SÁBADO" lleva tilde porque es…', a:'esdrújula (siempre llevan tilde)', o:['esdrújula (siempre llevan tilde)','aguda terminada en vocal','grave terminada en consonante','llana']},
+        {q:'¿Cuál lleva tilde diacrítica? El que consulta libros:', a:'él (pronombre)', o:['él (pronombre)','el (artículo)','ambos','ninguno']},
+        {q:'"CAFÉ" lleva tilde porque es una palabra:', a:'aguda terminada en vocal', o:['aguda terminada en vocal','grave terminada en vocal','esdrújula','no lleva tilde']},
+        {q:'¿Cuántas sílabas tiene "BIOLOGÍA"?', a:'5 (bio-lo-gí-a)', o:['5 (bio-lo-gí-a)','4 (bio-lo-gi-a)','4 (biol-o-gí-a)','3']},
+      ],
+      [
+        {q:'"¿Por qué viniste?" — "por qué" se escribe así porque es:', a:'interrogativo (dos palabras)', o:['interrogativo (dos palabras)','causal (porque)','pronombre (porqué)','cualquiera sirve']},
+        {q:'"POLICÍA" tiene hiato porque:', a:'dos vocales que se pronuncian en sílabas distintas', o:['dos vocales que se pronuncian en sílabas distintas','forman diptongo','lleva tilde aguda','es esdrújula']},
+      ]
+    ];
+    let bank=ediff<=2?banks[0]:ediff<=4?banks[1]:banks[2];
+    let item=bank[idx%bank.length];
+    q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
+
+  } else if(topic==='signos'){
+    const banks=[
+      [
+        {q:'¿Qué signo va al final de una pregunta?', a:'?', o:['?','!','.','...']},
+        {q:'¿Qué signo va al final de una exclamación?', a:'!', o:['!','?','.','...']},
+        {q:'¿Qué signo separa ideas dentro de una oración?', a:',', o:[',','.','!','?']},
+        {q:'"Compré manzanas, peras y naranjas" — la coma se usa para:', a:'enumerar', o:['enumerar','separar oraciones','hacer pausa larga','expresar emoción']},
+        {q:'Los puntos suspensivos (...) se usan para:', a:'dejar algo incompleto o en suspenso', o:['dejar algo incompleto o en suspenso','terminar una oración','hacer una pregunta','expresar alegría']},
+        {q:'¿En qué momento se usa mayúscula?', a:'Al inicio de oración y en nombres propios', o:['Al inicio de oración y en nombres propios','Solo en nombres propios','Al azar','Solo al inicio']},
+      ],
+      [
+        {q:'¿Qué signo introduce una aclaración? "Mi amigo —el más alto— llegó tarde"', a:'raya (—)', o:['raya (—)','guión (-)','coma (,)','punto y coma (;)']},
+        {q:'El punto y coma (;) se usa para:', a:'separar oraciones relacionadas con pausa mayor que la coma', o:['separar oraciones relacionadas con pausa mayor que la coma','hacer una pregunta','terminar un párrafo','enumerar siempre']},
+        {q:'¿Cuándo se usan comillas?', a:'Para citar palabras textuales o títulos', o:['Para citar palabras textuales o títulos','Siempre después de punto','Para enumerar','Nunca se usan']},
+      ],
+      [
+        {q:'"El director dijo: «Mañana hay feriado»" — las comillas indican:', a:'discurso directo (cita textual)', o:['discurso directo (cita textual)','ironía','énfasis','título de obra']},
+        {q:'¿Qué diferencia hay entre ":" y ";"?', a:'Los dos puntos anuncian, el punto y coma separa', o:['Los dos puntos anuncian, el punto y coma separa','Son lo mismo','El ; anuncia y el : separa','Ninguna']},
+      ]
+    ];
+    let bank=ediff<=2?banks[0]:ediff<=4?banks[1]:banks[2];
+    let item=bank[idx%bank.length];
+    q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
+
+  } else if(topic==='textos'){
+    const banks=[
+      [
+        {q:'¿Qué tipo de texto narra una historia inventada con personajes?', a:'cuento', o:['cuento','noticia','receta','poema']},
+        {q:'¿Qué tipo de texto informa sobre un hecho real reciente?', a:'noticia', o:['noticia','cuento','fábula','carta']},
+        {q:'¿Qué tipo de texto da instrucciones paso a paso?', a:'texto instructivo', o:['texto instructivo','cuento','noticia','poema']},
+        {q:'¿Qué característica tiene un poema?', a:'Está escrito en versos', o:['Está escrito en versos','Informa hechos reales','Da instrucciones','Tiene sujeto y predicado']},
+        {q:'¿Qué tipo de texto explica cómo se produce un fenómeno?', a:'texto expositivo', o:['texto expositivo','narrativo','instructivo','poético']},
+        {q:'La fábula siempre termina con:', a:'una moraleja', o:['una moraleja','un diálogo','una receta','una noticia']},
+      ],
+      [
+        {q:'¿Cuáles son las partes del cuento?', a:'inicio, nudo y desenlace', o:['inicio, nudo y desenlace','introducción y conclusión','título y texto','planteo y moraleja']},
+        {q:'"Había una vez un dragón..." — comienza con fórmula de:', a:'cuento', o:['cuento','noticia','carta','obra de teatro']},
+        {q:'¿Qué tipo de texto tiene "yo te escribo para contarte..."?', a:'carta o email', o:['carta o email','noticia','cuento','fábula']},
+        {q:'¿Qué tipo de narrador participa en la historia?', a:'protagonista (1ra persona)', o:['protagonista (1ra persona)','omnisciente (3ra)','testigo (1ra ajena)','autor real']},
+      ],
+      [
+        {q:'¿Qué es la coherencia en un texto?', a:'Que las ideas estén bien conectadas y tengan sentido', o:['Que las ideas estén bien conectadas y tengan sentido','Que no tenga errores ortográficos','Que sea corto','Que rime']},
+        {q:'"Por lo tanto, entonces, así que" son conectores:', a:'consecutivos', o:['consecutivos','causales','adversativos','temporales']},
+      ]
+    ];
+    let bank=ediff<=2?banks[0]:ediff<=4?banks[1]:banks[2];
+    let item=bank[idx%bank.length];
+    q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
+
+  } else if(topic==='sinonimos'){
+    const banks=[
+      [
+        {q:'¿Cuál es un sinónimo de "grande"?', a:'enorme', o:['enorme','chico','rápido','lento']},
+        {q:'¿Cuál es un antónimo de "feliz"?', a:'triste', o:['triste','contento','alegre','sonriente']},
+        {q:'¿Cuál es un sinónimo de "bonito"?', a:'lindo', o:['lindo','feo','horrible','oscuro']},
+        {q:'¿Cuál es un antónimo de "frío"?', a:'caliente', o:['caliente','tibio','fresco','frío']},
+        {q:'¿Cuál es un sinónimo de "hablar"?', a:'conversar', o:['conversar','callar','gritar siempre','nunca']},
+        {q:'¿Cuál es un antónimo de "rápido"?', a:'lento', o:['lento','veloz','ágil','pronto']},
+      ],
+      [
+        {q:'¿Cuál es un sinónimo de "valiente"?', a:'audaz', o:['audaz','cobarde','miedoso','tímido']},
+        {q:'¿Cuál es un antónimo de "construir"?', a:'demoler', o:['demoler','edificar','levantar','armar']},
+        {q:'"Delgado" y "flaco" son:', a:'sinónimos', o:['sinónimos','antónimos','homófonos','parónimos']},
+        {q:'"Amor" y "odio" son:', a:'antónimos', o:['antónimos','sinónimos','parónimos','homófonos']},
+      ],
+      [
+        {q:'"Sabiduría" y "ignorancia" son:', a:'antónimos', o:['antónimos','sinónimos','homónimos','parónimos']},
+        {q:'"Bello, hermoso, precioso" son:', a:'sinónimos', o:['sinónimos','antónimos','parónimos','homófonos']},
+        {q:'¿Cuál es un sinónimo de "efímero"?', a:'pasajero', o:['pasajero','eterno','permanente','duradero']},
+      ]
+    ];
+    let bank=ediff<=2?banks[0]:ediff<=4?banks[1]:banks[2];
+    let item=bank[idx%bank.length];
+    q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
+
+  } else if(topic==='figuras'){
+    const banks=[
+      [
+        {q:'"Sus ojos son dos luceros" — esta figura es:', a:'metáfora', o:['metáfora','símil','personificación','hipérbole']},
+        {q:'"Corre como el viento" — esta figura es:', a:'símil o comparación', o:['símil o comparación','metáfora','personificación','hipérbole']},
+        {q:'"El viento susurraba entre los árboles" — esta figura es:', a:'personificación', o:['personificación','metáfora','símil','hipérbole']},
+        {q:'"Te lo dije un millón de veces" — esta figura es:', a:'hipérbole', o:['hipérbole','símil','metáfora','antítesis']},
+        {q:'"Blanco y negro, vida y muerte" — esta figura es:', a:'antítesis', o:['antítesis','metáfora','aliteración','eufemismo']},
+        {q:'"El murmullo del mar" — el sonido repetido es un ejemplo de:', a:'aliteración', o:['aliteración','metáfora','símil','antítesis']},
+      ],
+      [
+        {q:'"Falleció" en lugar de "murió" es un ejemplo de:', a:'eufemismo', o:['eufemismo','metáfora','hipérbole','antítesis']},
+        {q:'"La vida es un sueño" — esta figura es:', a:'metáfora', o:['metáfora','símil','personificación','alegoría']},
+        {q:'"Luz de mi vida, fuego de mis entrañas" — el tipo de imagen es:', a:'metáfora sensorial', o:['metáfora sensorial','hipérbole','símil','antítesis']},
+      ],
+      [
+        {q:'La ironía es decir algo pero querer decir:', a:'lo contrario', o:['lo contrario','lo mismo','algo exagerado','algo bello']},
+        {q:'¿Qué figura usa el poema "verde que te quiero verde"?', a:'políptoton/anáfora', o:['políptoton/anáfora','metáfora','hipérbole','símil']},
+        {q:'"Una gota de sangre que no late" — la imagen es:', a:'sinestesia', o:['sinestesia','metáfora','hipérbole','personificación']},
+      ]
+    ];
+    let bank=ediff<=2?banks[0]:ediff<=4?banks[1]:banks[2];
+    let item=bank[idx%bank.length];
+    q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
+
+  } else {
+    // fallback
+    q='¿Cuántas letras tiene el abecedario español?';
+    answer='27'; opts=shuffle(['27','26','28','25']).map(v=>({key:v,html:v}));
+  }
+
+  return {q, answer, opts};
+}
+
+/* ═══════════════════════════
+   GAME STATE & ADAPTIVE DIFF
+═══════════════════════════ */
+let gs={lv:1,score:0,lives:3,cur:0,qs:[],answered:false,correct:0,combo:1,maxCombo:1,timerID:null,timeLeft:TIMER,fastCount:0,reinforceMode:false,hintShown:false,diff:1,consecutiveCorrect:0,consecutiveWrong:0};
+let noTimerMode=false;
+let gsApaErrors=0, apaShownForCurrent=false;
+
+function toggleNoTimer(){
+  noTimerMode=!noTimerMode;
+  let btn=document.getElementById('no-timer-btn');
+  let bar=document.getElementById('timer-fill');
+  if(noTimerMode){if(gs.timerID){clearInterval(gs.timerID);gs.timerID=null;}btn.textContent='▶ Con tiempo';btn.style.background='rgba(247,183,49,.2)';btn.style.color='#FCD34D';if(bar){bar.style.width='100%';bar.style.background='rgba(252,211,77,.4)';}}
+  else{btn.textContent='⏸ Sin tiempo';btn.style.background='rgba(255,255,255,.12)';btn.style.color='rgba(255,255,255,.7)';if(!gs.answered)startTimer();}
+}
+
+function startGame(lv,reinforceMode){
+  if(gs.timerID)clearInterval(gs.timerID);
+  let p=getP(currentGrade.id,currentTopic);
+  let startDiff=reinforceMode?Math.max(1,(p.diff||1)-1):(p.diff||1);
+  gs={lv,score:0,lives:3,cur:0,qs:[],answered:false,correct:0,combo:1,maxCombo:1,timerID:null,timeLeft:TIMER,fastCount:0,reinforceMode,hintShown:false,diff:startDiff,consecutiveCorrect:0,consecutiveWrong:0};
+  noTimerMode=false;
+  let nb=document.getElementById('no-timer-btn');
+  if(nb){nb.textContent='⏸ Sin tiempo';nb.style.background='rgba(255,255,255,.12)';nb.style.color='rgba(255,255,255,.7)';}
+  gsApaErrors=0;apaShownForCurrent=false;
+  gs.qs=Array.from({length:QPL},(_,i)=>makeQ(currentGrade.id,currentTopic,lv,i,reinforceMode,gs.diff));
+  document.getElementById('hud-lv').textContent=TOPICS[currentTopic].name+' · Nivel '+lv+(reinforceMode?' 🔁':'');
+  document.getElementById('hint-banner').classList.remove('show');
+  updateDiffPill();sndClick();playMusic();renderQ();go('s-game');
+}
+
+function updateDiffPill(){
+  let pill=document.getElementById('diff-pill');if(!pill)return;
+  pill.textContent=DIFF_LABELS[gs.diff];pill.style.color=DIFF_COLORS[gs.diff];
+  pill.style.borderColor=DIFF_COLORS[gs.diff]+'55';pill.style.background=DIFF_BG[gs.diff];
+}
+
+function adaptDifficulty(wasCorrect){
+  if(wasCorrect){gs.consecutiveCorrect++;gs.consecutiveWrong=0;if(gs.consecutiveCorrect>=3&&gs.diff<5){gs.diff++;gs.consecutiveCorrect=0;updateDiffPill();showDiffToast(true);if(gs.diff>=5)unlockBadge('diff5');}}
+  else{gs.consecutiveWrong++;gs.consecutiveCorrect=0;if(gs.consecutiveWrong>=2&&gs.diff>1){gs.diff=Math.max(1,gs.diff-1);gs.consecutiveWrong=0;updateDiffPill();showDiffToast(false);}}
+}
+
+function showDiffToast(up){
+  let old=document.getElementById('diff-toast-el');if(old)old.remove();
+  let el=document.createElement('div');el.id='diff-toast-el';el.className='diff-toast';
+  el.style.background=up?'linear-gradient(135deg,#1a3a2a,#0f2018)':'linear-gradient(135deg,#3a1a1a,#2a0f0f)';
+  el.style.border='2px solid '+(up?'#54d18c':'#ff6b6b');
+  el.innerHTML='<span style="font-size:24px">'+(up?'🚀':'💙')+'</span><div style="font-size:14px;font-weight:800;color:'+(up?'#54d18c':'#ff6b6b')+'">'+(up?'¡Subió la dificultad! '+DIFF_LABELS[gs.diff]:'Bajó la dificultad. ¡Seguí! '+DIFF_LABELS[gs.diff])+'</div>';
+  document.body.appendChild(el);setTimeout(()=>{if(el.parentNode)el.remove();},2200);
+}
+
+function abortGame(){
+  if(gs.timerID)clearInterval(gs.timerID);
+  let p=getP(currentGrade.id,currentTopic);p.diff=gs.diff;saveP();
+  stopMusic();go('s-level');
+}
+
+/* ═══════════════════════════
+   RENDER QUESTION
+═══════════════════════════ */
+function renderQ(){
+  let q=gs.qs[gs.cur];
+  document.getElementById('q-num').textContent='Pregunta '+(gs.cur+1)+' de '+QPL;
+  document.getElementById('q-num-hud').textContent=(gs.cur+1)+'/'+QPL;
+  document.getElementById('q-text').innerHTML=q.q.replace(/\n/g,'<br>');
+  document.getElementById('hud-score').textContent=gs.score+' pts';
+  document.getElementById('hud-combo').textContent='✨ ×'+gs.combo;
+  document.getElementById('hud-combo').classList.toggle('hot',gs.combo>1);
+  let lv=document.getElementById('hud-lives');lv.innerHTML='';
+  for(let i=0;i<3;i++)lv.innerHTML+='<span style="opacity:'+(i<gs.lives?1:.2)+';transition:opacity .3s">❤️</span>';
+  let og=document.getElementById('opts');og.innerHTML='';
+  document.getElementById('fb').textContent='';
+  if(gs.reinforceMode&&!gs.hintShown&&gs.cur===2){
+    let hints=TOPICS[currentTopic].hints;
+    document.getElementById('hint-text').textContent=pick(hints);
+    document.getElementById('hint-banner').classList.add('show');
+    gs.hintShown=true;
+  }
+  setMouth('gm-mouth',true);setSay('mini-bubble',gs.reinforceMode?'reinforce':'ready');
+  gs.answered=false;
+  q.opts.forEach(opt=>{
+    let b=document.createElement('button');b.className='opt';
+    b.innerHTML=opt.html;
+    b.onclick=()=>checkAns(opt.key,b,q);
+    og.appendChild(b);
+  });
+  // Si las opciones son largas, usar columna única
+  let maxLen=Math.max(...q.opts.map(o=>o.html.length));
+  if(maxLen>12) og.classList.add('one-col'); else og.classList.remove('one-col');
+  // Si la pregunta tiene texto largo (lectura), reducir fuente
+  let qTextEl=document.getElementById('q-text');
+  if(q.q.length>80){qTextEl.style.fontSize='14px';qTextEl.style.textAlign='left';}
+  else{qTextEl.style.fontSize='20px';qTextEl.style.textAlign='center';}
+  startTimer();
+}
+
+function startTimer(){
+  if(noTimerMode)return;
+  if(gs.timerID)clearInterval(gs.timerID);
+  gs.timeLeft=TIMER;updateTimerBar();
+  gs.timerID=setInterval(()=>{gs.timeLeft--;updateTimerBar();if(gs.timeLeft<=0){clearInterval(gs.timerID);if(!gs.answered)timeOut();}},1000);
+}
+function updateTimerBar(){
+  let pct=(gs.timeLeft/TIMER)*100;
+  let fill=document.getElementById('timer-fill');
+  fill.style.width=pct+'%';fill.style.background=pct>50?'#fff':pct>25?'#FCD34D':'#FCA5A5';
+}
+function timeOut(){
+  gs.answered=true;gs.combo=1;gs.lives--;adaptDifficulty(false);
+  setMouth('gm-mouth',false);setSay('mini-bubble','timeout');
+  document.getElementById('fb').textContent='⏰ ¡Tiempo!';document.getElementById('fb').className='fb no';
+  updateLives();
+  let allBtns=document.querySelectorAll('.opt');
+  gs.qs[gs.cur].opts.forEach((opt,i)=>{if(opt.key===gs.qs[gs.cur].answer)allBtns[i].classList.add('show');});
+  sndTimeout();
+  setTimeout(()=>{gs.cur++;if(gs.lives<=0||gs.cur>=QPL)showResult();else{gs.qs[gs.cur]=makeQ(currentGrade.id,currentTopic,gs.lv,gs.cur,gs.reinforceMode,gs.diff);renderQ();}},1300);
+}
+
+function checkAns(key,btn,q){
+  if(gs.answered)return;
+  gs.answered=true;clearInterval(gs.timerID);
+  let fast=gs.timeLeft>=16;
+  let fb=document.getElementById('fb');
+  if(key===q.answer){
+    btn.classList.add('hit');
+    gs.correct++;gs.combo=Math.min(gs.combo+1,8);gs.maxCombo=Math.max(gs.maxCombo,gs.combo);
+    let pts=(10+(gs.lv-1)*5)*gs.combo+(fast?5:0);
+    if(fast)gs.fastCount++;
+    gs.score+=pts;totalXP+=pts;
+    fb.innerHTML='¡Correcto! +'+pts+' pts'+(fast?' ⚡':'')+(gs.combo>1?' ×'+gs.combo:'');
+    fb.className='fb ok';
+    let fp=document.createElement('div');fp.className='pts-float';fp.style.left='calc(50% - 24px)';fp.style.top='38px';fp.textContent='+'+pts;
+    document.getElementById('q-wrap').appendChild(fp);setTimeout(()=>fp.remove(),1000);
+    setMouth('gm-mouth',true);
+    if(gs.combo>=3){setSay('mini-bubble','combo');let burst=document.createElement('div');burst.className='combo-burst';burst.textContent='✨ COMBO ×'+gs.combo;document.body.appendChild(burst);setTimeout(()=>burst.remove(),900);}
+    else setSay('mini-bubble','ok');
+    if(gs.combo>=3)sndCombo(gs.combo);else sndCorrect();
+    if(gs.correct===1&&gs.cur===0)unlockBadge('first_correct');
+    if(gs.maxCombo>=5)unlockBadge('combo5');
+    if(gs.maxCombo>=10)unlockBadge('combo10');
+    if(currentTopic==='ortografia'){ortografiaOkTotal++;if(ortografiaOkTotal>=5)unlockBadge('ortografia5');}
+    checkXPBadges();adaptDifficulty(true);
+  } else {
+    btn.classList.add('miss');gs.lives--;gs.combo=1;gsApaErrors++;
+    updateLives();
+    let allBtns=document.querySelectorAll('.opt');
+    q.opts.forEach((opt,i)=>{if(opt.key===q.answer)allBtns[i].classList.add('show');});
+    fb.textContent='¡Casi! La respuesta correcta es: '+q.answer;fb.className='fb no';
+    setMouth('gm-mouth',false);setSay('mini-bubble','fail');sndWrong();adaptDifficulty(false);
+  }
+  document.getElementById('hud-combo').textContent='✨ ×'+gs.combo;
+  document.getElementById('hud-combo').classList.toggle('hot',gs.combo>1);
+  setTimeout(()=>{
+    gs.cur++;
+    if(gs.lives<=0||gs.cur>=QPL)showResult();
+    else{gs.qs[gs.cur]=makeQ(currentGrade.id,currentTopic,gs.lv,gs.cur,gs.reinforceMode,gs.diff);renderQ();}
+  },1300);
+}
+
+function updateLives(){document.getElementById('hud-lives').querySelectorAll('span').forEach((s,i)=>{s.style.opacity=i<gs.lives?1:.2;});}
+
+/* ═══════════════════════════
+   RESULT
+═══════════════════════════ */
+function showResult(){
+  if(gs.timerID)clearInterval(gs.timerID);stopMusic();
+  let pct=gs.correct/QPL;
+  let stars=pct>=.85?3:pct>=.6?2:pct>=.33?1:0;
+  let p=getP(currentGrade.id,currentTopic);
+  let prev=p.stars[gs.lv-1]||0;
+  p.stars[gs.lv-1]=Math.max(prev,stars);p.attempts++;p.totalCorrect+=gs.correct;p.xp=(p.xp||0)+gs.score;p.diff=gs.diff;
+  if(stars>=2){p.streak++;p.badStreak=0;}else if(stars===0){p.badStreak++;p.streak=0;}else{p.badStreak=0;}
+  let unlocked=false;
+  if(stars>=1&&gs.lv>=p.ml&&p.ml<ML){p.ml=gs.lv+1;unlocked=true;}
+  globalStreak=stars>0?globalStreak+1:0;
+  saveP();updateXPBar();renderBadgeShelf();
+  if(gs.correct===QPL&&gs.lives===3)unlockBadge('perfect_round');
+  checkXPBadges();
+  let gTopics=currentGrade.topics;
+  if(gTopics.every(t=>getP(currentGrade.id,t).attempts>0))unlockBadge('all_topics');
+  setMouth('res-mouth',stars>0);
+  let sr=document.getElementById('ap-stars');sr.innerHTML='';
+  for(let i=1;i<=3;i++){let s=document.createElement('span');s.className='ap-star';s.textContent='⭐';if(i<=stars){s.classList.add('on');s.style.animationDelay=(.2+i*.25)+'s';}else s.classList.add('off');sr.appendChild(s);}
+  let titles=['¡Seguí practicando! 💪','¡Buen intento! 😊','¡Muy bien! 🎉','¡Perfecto! 🏆'];
+  document.getElementById('ap-title').textContent=titles[stars];
+  document.getElementById('ap-sub').innerHTML=gs.correct+' de '+QPL+' correctas · '+gs.score+' puntos<br><span style="color:'+DIFF_COLORS[gs.diff]+'">'+DIFF_LABELS[gs.diff]+'</span>'+(gs.lives<=0?'<br>Se te acabaron las vidas 💔':'');
+  let rb=document.getElementById('rec-box'),ri=document.getElementById('rec-icon'),rt=document.getElementById('rec-title'),rd=document.getElementById('rec-desc');
+  let actions=document.getElementById('ap-actions');actions.innerHTML='';
+  let nextLv=gs.lv+1,sameLv=gs.lv,prevLv=Math.max(1,gs.lv-1);
+  if(unlocked&&nextLv<=ML){
+    rb.className='rec-box go-up';ri.textContent='🚀';
+    rt.textContent=nextLv===ML?'💎 ¡NIVEL EXTREMO DESBLOQUEADO!':'¡Nivel '+nextLv+' desbloqueado!';
+    rd.textContent=nextLv===ML?'¡Superaste todos los niveles! El Nivel Extremo es el desafío máximo.':'Con '+gs.correct+' correctas desbloqueaste el Nivel '+nextLv+'. ¡A seguir!';
+    actions.innerHTML='<button class="btn-gg" onclick="startGame('+nextLv+',false)">'+(nextLv===ML?'💎 ¡Ir al Nivel Extremo!':'🚀 ¡Ir al Nivel '+nextLv+'!')+'</button>'+'<button class="btn-sec" onclick="startGame('+sameLv+',false)">Repetir Nivel '+sameLv+'</button>'+'<button class="btn-sec" onclick="go(\'s-dash\')">🏠 Dashboard</button>';
+  } else if(stars>=1&&gs.lv<p.ml){
+    rb.className='rec-box go-up';ri.textContent='⭐';rt.textContent='¡El Nivel '+nextLv+' ya está desbloqueado!';rd.textContent='Mejoraste tu puntaje. ¿Querés probar el siguiente?';
+    actions.innerHTML='<button class="btn-gg" onclick="startGame('+nextLv+',false)">▶ Ir al Nivel '+nextLv+'</button>'+'<button class="btn-sec" onclick="startGame('+sameLv+',false)">Repetir este nivel</button>'+'<button class="btn-sec" onclick="go(\'s-dash\')">Dashboard</button>';
+  } else if(stars>=1&&gs.lv===ML){
+    rb.className='rec-box challenge';ri.textContent='💎';rt.textContent='💎 ¡Completaste el Nivel Extremo!';rd.textContent='¡Llegaste al máximo de este tema! Sos increíble. Intentá otro tema.';
+    actions.innerHTML='<button class="btn-pp" onclick="go(\'s-dash\')">💎 Ver Dashboard</button>'+'<button class="btn-sec" onclick="startGame('+sameLv+',false)">🔄 Repetir Extremo</button>';
+  } else if(stars===0&&p.badStreak>=2){
+    rb.className='rec-box go-down';ri.textContent='💙';rt.textContent='Repasemos desde la base';rd.textContent='¡No te preocupes! Funsi te propone repasar el Nivel '+prevLv+' con pistas.';
+    actions.innerHTML='<button class="btn-pp" onclick="showApaFromResult(\''+currentTopic+'\',2)">💡 Ver explicación de Funsi</button>'+'<button class="btn-sec" onclick="startGame('+prevLv+',true)">💙 Repasar Nivel '+prevLv+'</button>'+'<button class="btn-sec" onclick="go(\'s-dash\')">Dashboard</button>';
+  } else if(stars===0){
+    rb.className='rec-box go-down';ri.textContent='💡';rt.textContent='¡Intentalo de nuevo!';rd.textContent='Necesitás al menos 2 respuestas para ganar una estrella. ¡Funsi te ayuda!';
+    actions.innerHTML='<button class="btn-pp" onclick="showApaFromResult(\''+currentTopic+'\',1)">💡 ¿Cómo se hace? Funsi explica</button>'+'<button class="btn-sec" onclick="startGame('+sameLv+',false)">🔄 Intentar de nuevo</button>'+'<button class="btn-sec" onclick="go(\'s-dash\')">Dashboard</button>';
+  } else {
+    rb.className='rec-box stay';ri.textContent='💛';rt.textContent='¡Seguí mejorando!';rd.textContent='Sacaste '+gs.correct+' de '+QPL+'. Con '+Math.ceil(QPL*.6)+' o más podés sacar 2 estrellas.';
+    actions.innerHTML='<button class="btn-yy" onclick="startGame('+sameLv+',false)">🔄 Repetir Nivel '+sameLv+'</button>'+'<button class="btn-sec" onclick="startGame('+sameLv+',true)">💡 Con pistas</button>'+'<button class="btn-sec" onclick="go(\'s-dash\')">Dashboard</button>';
+  }
+  let bd=document.getElementById('badges-row');bd.innerHTML='';
+  if(unlocked)bd.innerHTML+='<span class="rbadge rb-unlock">🔓 Nivel '+(gs.lv+1)+' desbloqueado</span>';
+  if(stars===3)bd.innerHTML+='<span class="rbadge rb-perfect">✨ ¡Perfecto!</span>';
+  if(gs.maxCombo>=3)bd.innerHTML+='<span class="rbadge rb-combo">✨ Combo ×'+gs.maxCombo+'</span>';
+  if(gs.correct===QPL&&gs.lives===3)bd.innerHTML+='<span class="rbadge rb-clean">🏅 Sin errores</span>';
+  if(gs.fastCount>=3)bd.innerHTML+='<span class="rbadge rb-speed">⚡ Velocidad</span>';
+  if(p.badStreak>=3)bd.innerHTML+='<span class="rbadge rb-keep">💙 ¡Persistencia!</span>';
+  if(stars>=2||unlocked)setTimeout(()=>confetti(),400);
+  if(unlocked)setTimeout(()=>sndUnlock(),600);else if(stars===3)setTimeout(()=>sndPerfect(),300);else if(stars===0)sndWrong();
+  go('s-result');
+}
+
+/* ═══════════════════════════
+   ADAPTIVE ENGINE
+═══════════════════════════ */
+function topicAccuracy(gid,tid){let p=getP(gid,tid);if(p.attempts===0)return null;return Math.round(p.totalCorrect/(p.attempts*QPL)*100);}
+function computeMission(grade){
+  let topics=grade.topics,weakest=null,weakAcc=999,toReinforce=null,toAdvance=null;
+  topics.forEach(tid=>{
+    let p=getP(grade.id,tid);
+    if(p.attempts>0){let acc=p.totalCorrect/(p.attempts*QPL);if(acc<weakAcc){weakAcc=acc;weakest=tid;}if(p.badStreak>=2)toReinforce=tid;}
+    if(p.ml<ML&&p.streak>=2&&!toAdvance)toAdvance={tid,lv:p.ml};
+  });
+  let tid,lv,mode,title,sub;
+  if(toReinforce){tid=toReinforce;let p=getP(grade.id,tid);lv=Math.max(1,p.ml-1);mode='reinforce';title='Repasemos '+TOPICS[tid].name;sub='Funsi notó que necesitás más práctica 💪';}
+  else if(toAdvance){tid=toAdvance.tid;lv=toAdvance.lv;mode='advance';title='¡Subí al Nivel '+lv+' de '+TOPICS[tid].name+'!';sub='¡Lo estás haciendo muy bien! 🚀';}
+  else{let fresh=topics.find(t=>getP(grade.id,t).attempts===0);if(fresh){tid=fresh;lv=1;mode='new';title='¡Empecemos con '+TOPICS[tid].name+'!';sub='Tema nuevo — ¡Funsi te va a guiar! 🌟';}else{tid=weakest||topics[0];let p=getP(grade.id,tid);lv=p.ml;mode='practice';title='Practicá '+TOPICS[tid].name;sub='Un poco más de práctica para afianzar';}}
+  pendingMission={tid,lv,mode};
+  document.getElementById('mission-title').textContent=title;
+  document.getElementById('mission-sub').textContent=sub;
+}
+function checkChallenge(grade){
+  let count=grade.topics.filter(t=>getP(grade.id,t).streak>=3).length;
+  let wrap=document.getElementById('challenge-banner-wrap');
+  if(count>=3)wrap.innerHTML='<div class="challenge-banner"><div class="cb-title">🔥 ¡MODO DESAFÍO DESBLOQUEADO!</div><div class="cb-sub">Superaste 3 temas — ¡intentá el nivel máximo!</div></div>';
+  else wrap.innerHTML='';
+}
+function launchMission(){if(!pendingMission)return;currentTopic=pendingMission.tid;startGame(pendingMission.lv,pendingMission.mode==='reinforce');}
+
+/* ═══════════════════════════
+   RENDER SCREENS
+═══════════════════════════ */
+function go(id){document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));let el=document.getElementById(id);if(el)el.classList.add('on');window.scrollTo(0,0);}
+function renderGrades(){
+  let g=document.getElementById('grade-grid');g.innerHTML='';
+  GRADES.forEach(gr=>{
+    let ts=0,tp=0;gr.topics.forEach(t=>{let p=getP(gr.id,t);for(let l=0;l<ML;l++){tp+=3;ts+=(p.stars[l]||0);}});
+    let pct=tp>0?Math.round(ts/tp*100):0;
+    let medal=pct>=100?'🏆':pct>=60?'🥇':pct>=30?'🥈':pct>0?'🥉':'';
+    let b=document.createElement('button');b.className='grade-card';b.style.borderTop='4px solid '+gr.bar;
+    b.innerHTML='<span class="gc-emoji">'+gr.emoji+'</span><span class="gc-label">'+gr.label+'</span>'+(medal?'<span class="gc-medal">'+medal+'</span>':'')+'<div class="gc-pct">'+(pct>0?pct+'% completado':'¡Empezá!')+'</div><div class="gc-bar"><div class="gc-fill" style="width:'+pct+'%;background:'+gr.bar+'"></div></div>';
+    b.onclick=()=>{sndClick();selectGrade(gr);};g.appendChild(b);
+  });
+}
+function selectGrade(gr){currentGrade=gr;renderDash(gr);go('s-dash');}
+function renderDash(gr){
+  document.getElementById('dash-grade-lbl').textContent=gr.label;
+  let totalAttempts=0,totalCorrectAll=0,maxStreak=0,totalXPgrade=0;
+  gr.topics.forEach(t=>{let p=getP(gr.id,t);totalAttempts+=p.attempts;totalCorrectAll+=p.totalCorrect;maxStreak=Math.max(maxStreak,p.streak);totalXPgrade+=p.xp||0;});
+  let acc=totalAttempts>0?Math.round(totalCorrectAll/(totalAttempts*QPL)*100):0;
+  let avgLevel=Math.round(gr.topics.reduce((s,t)=>s+getP(gr.id,t).ml,0)/gr.topics.length);
+  document.getElementById('ds-lvl').textContent=avgLevel;
+  document.getElementById('ds-acc').textContent=totalAttempts>0?acc+'%':'-';
+  document.getElementById('ds-xp').textContent=totalXPgrade;
+  document.getElementById('dash-streak-lbl').textContent='🔥 '+maxStreak+' racha';
+  computeMission(gr);checkChallenge(gr);renderWeakGrid(gr);
+}
+function renderWeakGrid(gr){
+  let wg=document.getElementById('weak-grid');wg.innerHTML='';
+  gr.topics.forEach(tid=>{
+    let t=TOPICS[tid],p=getP(gr.id,tid),acc=topicAccuracy(gr.id,tid);
+    let cls='weak-card',statusTxt='',fillColor='#666',fillPct=0;
+    if(p.attempts===0){statusTxt='Nuevo';fillPct=0;fillColor='#555';}
+    else if(acc>=80){cls='weak-card mastered';statusTxt='✓ Dominado';fillPct=acc;fillColor='#54d18c';}
+    else if(acc>=50){cls='weak-card progressing';statusTxt='Progresando';fillPct=acc;fillColor='#f7b731';}
+    else{cls='weak-card needs-work';statusTxt='Necesita práctica';fillPct=acc||0;fillColor='#ff6b6b';}
+    let b=document.createElement('button');b.className=cls;
+    b.innerHTML='<div class="wc-icon">'+t.icon+'</div><div class="wc-name">'+t.name+'</div>'+(acc!==null?'<div class="wc-bar"><div class="wc-fill" style="width:'+fillPct+'%;background:'+fillColor+'"></div></div>':'')+'<div class="wc-label" style="color:'+fillColor+'">'+statusTxt+'</div>';
+    b.onclick=()=>{sndClick();currentTopic=tid;renderLevels();go('s-level');};wg.appendChild(b);
+  });
+}
+function renderTopics(){
+  let gr=currentGrade;document.getElementById('topic-title').textContent=gr.label+' — Temas';
+  let tl=document.getElementById('topic-list');tl.innerHTML='';
+  gr.topics.forEach(tid=>{
+    let t=TOPICS[tid],p=getP(gr.id,tid),acc=topicAccuracy(gr.id,tid);
+    let cardCls='topic-card',statusTxt='',statusBg='',statusColor='';
+    if(acc===null){statusTxt='Nuevo';statusBg='#ffffff10';statusColor='#8a8caa';}
+    else if(acc>=80){cardCls+=' tc-strong';statusTxt='✓ Dominado';statusBg='#1a3a2a';statusColor='#54d18c';}
+    else if(acc<50){cardCls+=' tc-weak';statusTxt='Necesita práctica';statusBg='#3a1a1a';statusColor='#ff6b6b';}
+    else{statusTxt='Progresando';statusBg='#3a2e0f';statusColor='#f7b731';}
+    let b=document.createElement('button');b.className=cardCls;
+    b.innerHTML='<div class="tc-icon" style="background:'+t.bg+'">'+t.icon+'</div><div><div class="tc-name">'+t.name+'</div><div class="tc-meta">Nivel '+p.ml+' / '+ML+(acc!==null?' · '+acc+'% prec.':'')+'</div><span class="tc-status" style="background:'+statusBg+';color:'+statusColor+'">'+statusTxt+'</span></div><span class="tc-arr">›</span>';
+    b.onclick=()=>{sndClick();currentTopic=tid;renderLevels();go('s-level');};tl.appendChild(b);
+  });
+}
+function renderLevels(){
+  let p=getP(currentGrade.id,currentTopic),acc=topicAccuracy(currentGrade.id,currentTopic);
+  document.getElementById('level-title').textContent=TOPICS[currentTopic].name+' — Niveles';
+  let lg=document.getElementById('level-grid');lg.innerHTML='';
+  for(let i=1;i<=ML;i++){
+    let b=document.createElement('button');b.className='lv-card';
+    let stars=p.stars[i-1]||0,unlocked=i<=p.ml;
+    let sStr=stars>0?'⭐'.repeat(stars)+'🌑'.repeat(3-stars):'🌑🌑🌑';
+    let isWeak=acc!==null&&acc<60&&i===p.ml&&stars<2;
+    if(!unlocked){b.classList.add('lv-lock');b.innerHTML='<div class="lv-num">'+i+'</div><div class="lv-stars">🔒</div><div class="lv-tag" style="background:#444;color:#aaa">Bloqueado</div>';}
+    else if(isWeak){b.classList.add('lv-rec');b.innerHTML='<div class="lv-num">'+i+'</div><div class="lv-stars">'+sStr+'</div><div class="lv-tag">Repasar</div>';b.onclick=()=>{sndClick();startGame(i,true);};}
+    else if(stars>0){b.classList.add('lv-done');b.innerHTML='<div class="lv-num">'+i+'</div><div class="lv-stars">'+sStr+'</div><div class="lv-tag">Hecho ✓</div>';b.onclick=()=>{sndClick();startGame(i,false);};}
+    else{b.classList.add('lv-go');if(i===ML){b.style.cssText+='border-color:#c77dff;background:linear-gradient(135deg,rgba(199,125,255,.08),rgba(100,50,200,.05))';}
+    b.innerHTML='<div class="lv-num" style="'+(i===ML?'color:#c77dff;text-shadow:0 0 8px #c77dff':'')+'">'+( i===ML?'💎':i)+'</div><div class="lv-stars">'+( i===ML?'💎':'▶')+'</div><div class="lv-tag" style="'+(i===ML?'background:linear-gradient(135deg,#7c3aed,#a855f7)':'')+'">'+( i===ML?'EXTREMO':'¡Jugá!')+'</div>';b.onclick=()=>{sndClick();startGame(i,false);};}
+    lg.appendChild(b);
+  }
+}
+
+/* ═══════════════════════════
+   HELPERS
+═══════════════════════════ */
+const SAYS={
+  idle:["¡Hola, soy Funsi Lengua! 📚","¿Listo para aprender?","¡La lengua es divertida!","¿Qué grado sos?","¡A leer y escribir! 💪"],
+  ready:["¡A pensar bien! 💪","¡Leé con atención!","¡Vos podés!","¡Dale con todo! 🔥","¡Concentración!"],
+  reinforce:["¡Mirá la pista! 💡","Vamos paso a paso","¡Sin apuros!","¡Pensemos juntos! 🤔"],
+  ok:["¡Genial! ¡Eso es! 🎉","¡Correcto! ⭐","¡Excelente!","¡Muy bien! 🌟","¡Sos un crack!"],
+  fail:["¡Casi! Intentá de nuevo","¡No te rindás!","¡La próxima! 💪","¡El error enseña!"],
+  combo:["¡COMBO! ✨✨","¡Imparable! 🔥","¡En llamas! 💥","¡RACHA ÉPICA! ✨✨✨"],
+  timeout:["⏰ ¡Tiempo! Más rápido","¡Se fue el tiempo!"],
+};
+function setSay(el,mood){let e=document.getElementById(el);if(!e)return;e.textContent=pick(SAYS[mood]||SAYS.idle);e.style.animation='none';void e.offsetHeight;e.style.animation='speechPop .4s cubic-bezier(.34,1.56,.64,1)';}
+function setMouth(id,happy){let m=document.getElementById(id);if(!m)return;m.setAttribute('d',happy?'M51 46 Q60 54 69 46':'M51 50 Q60 44 69 50');}
+
+function totalStars(){
+  let s=0;
+  GRADES.forEach(gr=>gr.topics.forEach(t=>{let p=getP(gr.id,t);for(let l=0;l<ML;l++)s+=(p.stars[l]||0);}));
+  return s;
+}
+function updateXPBar(){
+  document.getElementById('g-stars').textContent=totalStars();
+  let lvl=Math.floor(totalXP/200)+1,xpIn=totalXP%200;
+  document.getElementById('xp-lv-lbl').textContent='Nivel '+lvl;
+  document.getElementById('xp-pts-lbl').textContent=xpIn+' / 200 XP';
+  document.getElementById('xp-fill').style.width=(xpIn/200*100)+'%';
+}
+function confetti(){
+  let c=document.getElementById('conf');c.innerHTML='';
+  for(let i=0;i<85;i++){let p=document.createElement('div');p.className='cp';p.style.left=rnd(0,100)+'%';p.style.background=CC[rnd(0,CC.length-1)];p.style.transform='rotate('+rnd(0,360)+'deg)';let dur=rnd(16,28)/10;p.style.animation='cfFall '+dur+'s ease '+rnd(0,12)/10+'s forwards';p.style.width=rnd(6,14)+'px';p.style.height=rnd(6,14)+'px';p.style.borderRadius=rnd(0,1)?'50%':'3px';c.appendChild(p);}
+  setTimeout(()=>{c.innerHTML='';},5000);
+}
+function confirmReset(){sndClick();document.getElementById('reset-modal').style.display='flex';}
+function closeReset(){sndClick();document.getElementById('reset-modal').style.display='none';}
+function doReset(){prog={};totalXP=0;globalStreak=0;unlockedBadges=[];ortografiaOkTotal=0;try{localStorage.removeItem('funsi_lengua_v1');}catch(e){}document.getElementById('reset-modal').style.display='none';currentGrade=null;currentTopic=null;updateXPBar();renderGrades();renderBadgeShelf();go('s-home');sndUnlock();}
+
+/* ═══════════════════════════
+   APA — AYUDAS PARA AVANZAR
+═══════════════════════════ */
+var APA_DATA={
+  lectura:{title:'Cómo leer y comprender un texto',
+    b1:'Para responder bien, primero hay que leer el texto con atención. La respuesta siempre está en el texto, ¡no hay que inventar! 😊',
+    s1:[{n:'1',t:'Leé el texto entero sin apuro'},{n:'2',t:'Leé la pregunta y buscá la palabra clave'},{n:'3',t:'Volvé al texto y encontrá esa parte'}],
+    e1:[{a:false,t:'"El gato duerme en el sillón azul."'},{a:false,t:'Pregunta: ¿Dónde duerme el gato?'},{a:true,t:'→ Busco en el texto "duerme"'},{a:true,t:'→ Respuesta: en el sillón azul ✅'}],
+    f1:'1. Leé todo el texto\n2. ¿Qué te pregunta exactamente?\n3. Volvé al texto y encontrá esa parte\n¡La respuesta siempre está en el texto!',
+    b2:'A veces la respuesta no está dicha directamente — hay que pensar un poco 😊',
+    s2:[{n:'1',t:'Preguntate: ¿por qué pasó eso?'},{n:'2',t:'¿Qué siente o piensa el personaje?'},{n:'3',t:'Elegí la opción que más encaje con el texto'}],
+    e2:[{a:false,t:'"Pedro no quería comer. Miraba el plato sin tocarlo."'},{a:false,t:'Pregunta: ¿Cómo se sentía Pedro?'},{a:true,t:'→ No dice "triste" pero no quería comer...'},{a:true,t:'→ Se infiere que no tenía hambre o estaba preocupado ✅'}],
+    f2:'Leer bien = entender lo que dice Y lo que sugiere\nPalabra clave → buscala en el texto\nSi no está dicho, pensá qué tiene más sentido'},
+  vocales:{title:'Las vocales',
+    b1:'Las vocales son las 5 letras más importantes del español: A, E, I, O, U. ¡Toda sílaba tiene al menos una vocal! 😊',
+    s1:[{n:'1',t:'Aprendé las 5 vocales: A, E, I, O, U'},{n:'2',t:'Toda sílaba tiene al menos una vocal'},{n:'3',t:'Para contar las vocales de una palabra, buscá las A, E, I, O, U'}],
+    e1:[{a:false,t:'¿Cuántas vocales tiene "AMIGO"?'},{a:true,t:'A - M - I - G - O'},{a:true,t:'Las vocales son: A, I, O → son 3 ✅'}],
+    f1:'Las vocales son: A E I O U\nCada sílaba tiene AL MENOS una vocal\nEjemplo: CA-SA tiene 2 sílabas → 2 vocales (A y A)',
+    b2:'¡Subrayá las vocales! Es un truco fácil 😊',
+    s2:[{n:'1',t:'Escribí la palabra'},{n:'2',t:'Subrayá o marcá cada A, E, I, O, U'},{n:'3',t:'Contá cuántas marcaste'}],
+    e2:[{a:false,t:'¿Cuántas vocales tiene "ESCUELA"?'},{a:true,t:'E-S-C-U-E-L-A → marco E, U, E, A'},{a:true,t:'Son 4 vocales ✅'}],
+    f2:'A E I O U → siempre son 5\nSon las únicas vocales del español\n¡Sin vocales no hay sílabas!'},
+  silabas:{title:'Las sílabas',
+    b1:'Las sílabas son los golpes de voz que tiene una palabra. ¡Si golpeás la mesa al hablar, cada golpe es una sílaba! 😊',
+    s1:[{n:'1',t:'Decí la palabra en voz alta'},{n:'2',t:'Golpeá la mesa con cada sílaba'},{n:'3',t:'Contá los golpes — ese es el número de sílabas'}],
+    e1:[{a:false,t:'¿Cuántas sílabas tiene "MARIPOSA"?'},{a:true,t:'MA-RI-PO-SA → 4 golpes'},{a:true,t:'Tiene 4 sílabas ✅'}],
+    f1:'1 sílaba: SOL, PAN, TRE-N\n2 sílabas: CA-SA, ME-SA\n3 sílabas: PÁ-JA-RO\n4+ sílabas: TE-LÉ-FO-NO',
+    b2:'¡Las palabras tienen nombres según sus sílabas! 😊',
+    s2:[{n:'1',t:'Monosílaba: 1 sílaba (sol, pan)'},{n:'2',t:'Bisílaba: 2 sílabas (ca-sa)'},{n:'3',t:'Trisílaba: 3 sílabas (pá-ja-ro)'},{n:'3',t:'Polisílaba: 4 o más (ma-ri-po-sa)'}],
+    e2:[{a:false,t:'COMPUTADORA'},{a:true,t:'COM-PU-TA-DO-RA → 5 sílabas'},{a:true,t:'Es una palabra polisílaba ✅'}],
+    f2:'Golpeá la mesa para contar sílabas\nCA - SA = 2 golpes = 2 sílabas\n¡Cada sílaba tiene al menos una vocal!'},
+  sustantivos:{title:'Los sustantivos',
+    b1:'Los sustantivos son las palabras que nombran personas, animales, lugares o cosas. ¡Son los nombres de todo! 😊',
+    s1:[{n:'1',t:'Preguntate: ¿Es el nombre de una persona, animal, lugar o cosa?'},{n:'2',t:'Si podés poner "el" o "la" adelante, ¡es sustantivo!'},{n:'3',t:'Los sustantivos propios (nombres únicos) se escriben con mayúscula'}],
+    e1:[{a:false,t:'¿Cuál es el sustantivo en "El gato duerme"?'},{a:true,t:'→ Pregunto: ¿"gato" es el nombre de algo? ¡Sí!'},{a:true,t:'→ "el gato" funciona → GATO es sustantivo ✅'}],
+    f1:'Sustantivo común: mesa, perro, ciudad\nSustantivo propio: Juan, Buenos Aires\nSustantivo concreto: libro (lo tocás)\nSustantivo abstracto: amor (no lo tocás)',
+    b2:'¡Los sustantivos tienen género y número! 😊',
+    s2:[{n:'1',t:'Género: masculino (el) o femenino (la)'},{n:'2',t:'Número: singular (un gato) o plural (los gatos)'},{n:'3',t:'Plural en español: agrego -S o -ES al final'}],
+    e2:[{a:false,t:'"ciudad" → ¿masculino o femenino?'},{a:true,t:'→ "la ciudad" → es femenino'},{a:true,t:'→ plural: las ciudades (agrego -ES) ✅'}],
+    f2:'Sustantivo = nombre de persona, animal, lugar o cosa\n"El/La + palabra" → ¡es sustantivo!\nPropio = nombre único → mayúscula'},
+  verbos:{title:'Los verbos',
+    b1:'Los verbos expresan acciones, estados o procesos. ¡Son la palabra que dice qué HACE el sujeto! 😊',
+    s1:[{n:'1',t:'Preguntate: ¿Qué HACE o qué ES el sujeto?'},{n:'2',t:'Los verbos cambian según el tiempo: corro (hoy), corrí (ayer), correré (mañana)'},{n:'3',t:'El infinitivo termina en -AR, -ER, o -IR'}],
+    e1:[{a:false,t:'¿Cuál es el verbo en "Ana estudia mucho"?'},{a:true,t:'→ ¿Qué HACE Ana? → estudia'},{a:true,t:'→ ESTUDIA es el verbo ✅ (infinitivo: estudiar)'}],
+    f1:'Presente: yo canto, tú cantas\nPasado: yo canté, tú cantaste\nFuturo: yo cantaré, tú cantarás\n-AR (cantar), -ER (comer), -IR (vivir)',
+    b2:'¡Los verbos tienen personas y números! 😊',
+    s2:[{n:'1',t:'1ra persona: YO hablo / NOSOTROS hablamos'},{n:'2',t:'2da persona: TÚ hablás / USTEDES hablan'},{n:'3',t:'3ra persona: ÉL habla / ELLOS hablan'}],
+    e2:[{a:false,t:'¿Qué persona es "ellos corren"?'},{a:true,t:'→ ellos = 3ra persona plural'},{a:true,t:'→ "corren" está en 3ra persona plural ✅'}],
+    f2:'Verbo = acción o estado\n¿Qué HACE el sujeto? → ese es el verbo\n-AR, -ER, -IR = infinitivo'},
+  adjetivos:{title:'Los adjetivos',
+    b1:'Los adjetivos describen o califican a los sustantivos. ¡Dicen cómo es una cosa! 😊',
+    s1:[{n:'1',t:'Preguntate: ¿Cómo es? ¿De qué color? ¿Qué tamaño? ¿Qué forma?'},{n:'2',t:'El adjetivo siempre va junto al sustantivo'},{n:'3',t:'Concuerda en género y número: niño alto / niña alta'}],
+    e1:[{a:false,t:'¿Cuál es el adjetivo en "La casa grande"?'},{a:true,t:'→ ¿Cómo es la casa? → grande'},{a:true,t:'→ GRANDE es el adjetivo ✅'}],
+    f1:'Grado positivo: alto\nGrado comparativo: más alto que\nGrado superlativo: altísimo\nAdjetivos: bonito, rojo, grande, feliz',
+    b2:'¡Los adjetivos tienen grados! 😊',
+    s2:[{n:'1',t:'Positivo: simplemente describe (alto)'},{n:'2',t:'Comparativo: compara (más alto que Pedro)'},{n:'3',t:'Superlativo: el máximo grado (altísimo, el más alto)'}],
+    e2:[{a:false,t:'Transformá "bueno" a superlativo:'},{a:true,t:'→ "bueno" → "óptimo" (superlativo irregular)'},{a:true,t:'→ también: "muy bueno" o "bonísimo" ✅'}],
+    f2:'Adjetivo = describe al sustantivo\n¿Cómo ES? → busco el adjetivo\nConcuerda: niño alto / niña alta'},
+  ortografia:{title:'Ortografía básica',
+    b1:'La ortografía es escribir las palabras correctamente. ¡Hay reglas que nos ayudan a recordar! 😊',
+    s1:[{n:'1',t:'B y V suenan igual pero se escriben distinto → boca (B), vaca (V)'},{n:'2',t:'La H es muda → no suena: huevo, hola'},{n:'3',t:'La C antes de E o I suena como S: cebra, cine'}],
+    e1:[{a:false,t:'¿"vaca" se escribe con V o B?'},{a:true,t:'→ Se escribe con V → "vaca"'},{a:true,t:'→ Truco: "la vaca vive en el valle" ✅'}],
+    f1:'B: boca, barco, bueno, blanco, br-\nV: vaca, verde, vino, vivir, -ivo\nH: huevo, hola, hacer, hay\nC antes de A,O,U: cama, coco, cubo',
+    b2:'¡Más reglas de ortografía! 😊',
+    s2:[{n:'1',t:'G antes de E o I se escribe GU: guerra, guinda'},{n:'2',t:'R al inicio de palabra suena fuerte: rana, roca'},{n:'3',t:'MP y MB siempre juntas: campo, sombra'}],
+    e2:[{a:false,t:'¿"campo" o "canpo"?'},{a:true,t:'→ Regla: antes de P siempre va M'},{a:true,t:'→ Se escribe CAMPO ✅'}],
+    f2:'Reglas de oro:\nMB/MP (nunca NB/NP): sombra, campo\nRR en medio de vocales: carro\nLL: llave, lluvia\n¡Leé mucho para recordar!'},
+  oraciones:{title:'Las oraciones',
+    b1:'La oración es un grupo de palabras que tiene sentido completo. Toda oración tiene sujeto y predicado. 😊',
+    s1:[{n:'1',t:'Sujeto: de quién se habla (puede ser una persona, animal o cosa)'},{n:'2',t:'Predicado: qué hace o cómo es el sujeto'},{n:'3',t:'El núcleo del sujeto suele ser un sustantivo; el del predicado, un verbo'}],
+    e1:[{a:false,t:'"La maestra explica la lección"'},{a:true,t:'→ ¿De quién se habla? De "la maestra" → SUJETO'},{a:true,t:'→ ¿Qué hace? "explica la lección" → PREDICADO ✅'}],
+    f1:'Sujeto (¿de quién?) | Predicado (¿qué hace?)\n"El perro" | "corre en el parque"\nNúcleo sujeto: sustantivo\nNúcleo predicado: verbo',
+    b2:'¡Los tipos de oración según la actitud del hablante! 😊',
+    s2:[{n:'1',t:'Afirmativa: El cielo es azul.'},{n:'2',t:'Negativa: No quiero ir.'},{n:'3',t:'Interrogativa: ¿Dónde estás? — Exclamativa: ¡Qué lindo!'}],
+    e2:[{a:false,t:'¿Qué tipo de oración es "¡Qué calor!"?'},{a:true,t:'→ Expresa emoción, lleva signos ¡!'},{a:true,t:'→ Es una oración EXCLAMATIVA ✅'}],
+    f2:'? = interrogativa (pregunta)\n! = exclamativa (emoción)\nNO + verbo = negativa\nSin modificadores = afirmativa'},
+  acentuacion:{title:'La acentuación',
+    b1:'Las palabras se clasifican según dónde cae el acento (la sílaba que suena más fuerte). ¡Hay reglas para saber cuándo poner tilde! 😊',
+    s1:[{n:'1',t:'Agudas: acento en la ÚLTIMA sílaba → llevan tilde si terminan en vocal, N o S'},{n:'2',t:'Graves: acento en la ANTEÚLTIMA → llevan tilde si terminan en consonante (excepto N, S)'},{n:'3',t:'Esdrújulas: acento en la ANTEPENÚLTIMA → SIEMPRE llevan tilde'}],
+    e1:[{a:false,t:'¿"CAMIÓN" lleva tilde?'},{a:true,t:'→ ca-MIÓN → el acento está en la última → es AGUDA'},{a:true,t:'→ Termina en N → ¡lleva tilde! ✅'}],
+    f1:'Aguda + vocal/N/S = tilde: camión, café\nGrave + consonante ≠ N,S = tilde: árbol\nEsdrújula = SIEMPRE tilde: música, pájaro\nSobreesdrújula = SIEMPRE: dígamelo',
+    b2:'¡La tilde diacrítica distingue significados! 😊',
+    s2:[{n:'1',t:'"el" (artículo) vs "él" (pronombre) → él lleva tilde'},{n:'2',t:'"tu" (posesivo) vs "tú" (pronombre) → tú lleva tilde'},{n:'3',t:'"si" (condicional) vs "sí" (afirmación) → sí lleva tilde'}],
+    e2:[{a:false,t:'¿"el" o "él" en: "_____ llegó tarde"?'},{a:true,t:'→ Es un pronombre (reemplaza a una persona)'},{a:true,t:'→ Lleva tilde: ÉL llegó tarde ✅'}],
+    f2:'Aguda: ca-MIÓN, ca-FÉ\nGrave: ÁR-bol, CÁR-cel\nEsdrújula: MÚ-si-ca, PÁ-ja-ro\n¡Las esdrújulas SIEMPRE llevan tilde!'},
+  signos:{title:'Los signos de puntuación',
+    b1:'Los signos de puntuación nos ayudan a darle sentido y ritmo a lo que escribimos. ¡Son como las señales de tránsito de la escritura! 😊',
+    s1:[{n:'1',t:'El punto (.) cierra una idea completa'},{n:'2',t:'La coma (,) indica una pausa corta o enumera'},{n:'3',t:'Los signos ¿? y ¡! van siempre al inicio Y al final'}],
+    e1:[{a:false,t:'"Me gustan las manzanas peras y uvas"'},{a:true,t:'→ Agrego comas para enumerar'},{a:true,t:'→ "Me gustan las manzanas, peras y uvas" ✅'}],
+    f1:'Punto (.): fin de oración\nComa (,): pausa / enumeración\n¿? interrogativa\n¡! exclamativa\n... suspenso',
+    b2:'¡Más signos y sus usos! 😊',
+    s2:[{n:'1',t:'Punto y coma (;): pausa mayor que la coma, separa oraciones relacionadas'},{n:'2',t:'Dos puntos (:): anuncian una lista o cita'},{n:'3',t:'Comillas ("") o («»): para citar textualmente o títulos'}],
+    e2:[{a:false,t:'¿Qué signo usa "Juan dijo: «Hola»"?'},{a:true,t:'→ Los dos puntos (:) anuncian lo que dijo'},{a:true,t:'→ Las comillas («») citan sus palabras exactas ✅'}],
+    f2:'En español: ¡¡siempre signo de apertura!!\n¿¿y también de cierre??\nLa coma NO va antes de "y" (en español)\nEl punto va FUERA de las comillas'},
+  textos:{title:'Los tipos de texto',
+    b1:'Existen muchos tipos de texto, cada uno con un propósito diferente. ¡Aprendamos a reconocerlos! 😊',
+    s1:[{n:'1',t:'Narrativo: cuenta una historia (cuento, novela, fábula)'},{n:'2',t:'Informativo: comunica hechos reales (noticia, enciclopedia)'},{n:'3',t:'Instructivo: da instrucciones (receta, manual, reglas de juego)'}],
+    e1:[{a:false,t:'"Batí 3 huevos y agregá 100g de harina..."'},{a:true,t:'→ Da instrucciones paso a paso'},{a:true,t:'→ Es un texto INSTRUCTIVO (receta) ✅'}],
+    f1:'Cuento: personajes + problema + solución\nNoticia: qué, quién, cuándo, dónde, cómo\nPoema: versos + rima + sentimientos\nFábula: animales + moraleja',
+    b2:'¡Las partes del cuento! 😊',
+    s2:[{n:'1',t:'Inicio: se presentan los personajes y el lugar'},{n:'2',t:'Nudo: aparece el problema o conflicto'},{n:'3',t:'Desenlace: se resuelve el problema'}],
+    e2:[{a:false,t:'¿Qué parte es "y colorín colorado..."?'},{a:true,t:'→ Es el final de la historia'},{a:true,t:'→ Es el DESENLACE del cuento ✅'}],
+    f2:'Cuento: inicio → nudo → desenlace\nPoema: tiene versos (líneas) y estrofas (grupos)\nNoticia: título + copete + cuerpo\nFábula: historia + moraleja al final'},
+  sinonimos:{title:'Sinónimos y antónimos',
+    b1:'Los sinónimos son palabras con significado parecido. Los antónimos son palabras con significado opuesto. ¡Son muy útiles para escribir mejor! 😊',
+    s1:[{n:'1',t:'Sinónimos: palabras distintas, significado similar → grande / enorme / gigante'},{n:'2',t:'Antónimos: palabras opuestas → grande ≠ pequeño'},{n:'3',t:'¡Usarlos enriquece la escritura!'}],
+    e1:[{a:false,t:'¿Cuál es un sinónimo de "feliz"?'},{a:true,t:'→ Palabras con significado similar a feliz:'},{a:true,t:'→ contento, alegre, dichoso ✅'}],
+    f1:'Sinónimos: lindo = bonito = hermoso\nAntónimos: frío ≠ caliente\nParónimos: palabras similares pero ≠ significado\nHomófonos: suenan igual, se escriben diferente',
+    b2:'¡Cómo encontrar sinónimos y antónimos! 😊',
+    s2:[{n:'1',t:'Para sinónimos: pensá en palabras que signifiquen lo mismo'},{n:'2',t:'Para antónimos: pensá en lo contrario'},{n:'3',t:'Prefijos: "in-", "des-" forman antónimos → feliz → infeliz'}],
+    e2:[{a:false,t:'¿Cuál es el antónimo de "construir"?'},{a:true,t:'→ Lo opuesto de construir es...'},{a:true,t:'→ ¡DEMOLER! (también destruir) ✅'}],
+    f2:'Sinónimos: misma idea, distinta palabra\nAntónimos: idea opuesta\nin- + feliz = infeliz (antónimo)\ndes- + hacer = deshacer (antónimo)'},
+  figuras:{title:'Figuras literarias',
+    b1:'Las figuras literarias son recursos que usan los escritores para expresarse de manera más bella o impactante. ¡Hacen el lenguaje más vivo! 😊',
+    s1:[{n:'1',t:'Metáfora: compara sin usar "como" → "Sus ojos son estrellas"'},{n:'2',t:'Símil/comparación: compara USANDO "como" → "Corre como el viento"'},{n:'3',t:'Personificación: da cualidades humanas a cosas → "El viento susurraba"'}],
+    e1:[{a:false,t:'"Ella es una rosa" — ¿qué figura es?'},{a:true,t:'→ Compara a una persona con una rosa'},{a:true,t:'→ No usa "como" → es una METÁFORA ✅'}],
+    f1:'Metáfora: A es B (sin "como")\nSímil: A es como B (con "como")\nPersonificación: cosa hace algo humano\nHipérbole: exageración',
+    b2:'¡Más figuras literarias! 😊',
+    s2:[{n:'1',t:'Hipérbole: exageración → "Te lo dije mil veces"'},{n:'2',t:'Antítesis: dos ideas opuestas juntas → "vida o muerte"'},{n:'3',t:'Aliteración: repetición de sonidos → "el susurro suave"'}],
+    e2:[{a:false,t:'"Me muero de hambre" — ¿qué figura es?'},{a:true,t:'→ Es una exageración (no me muero literalmente)'},{a:true,t:'→ Es una HIPÉRBOLE ✅'}],
+    f2:'Metáfora: identifica dos cosas (sin "como")\nSímil: compara con "como"\nPersonificación: cosa que actúa como persona\nHipérbole: exageración expresiva'},
+};
+
+function showApaFromResult(topic,strategy){
+  var d=APA_DATA[topic];if(!d){return;}sndClick();
+  var bubble=strategy===1?d.b1:d.b2;
+  var steps=strategy===1?d.s1:d.s2;
+  var example=strategy===1?d.e1:d.e2;
+  var formula=strategy===1?d.f1:d.f2;
+  document.getElementById('apa-bubble').textContent=bubble;
+  document.getElementById('apa-topic-title').textContent=(strategy===1?'📚 ':'🌟 Otra perspectiva: ')+d.title;
+  var stEl=document.getElementById('apa-steps');stEl.innerHTML='';
+  steps.forEach(function(s){stEl.innerHTML+='<div class="apa-step"><div class="apa-step-num">'+s.n+'</div><div class="apa-step-text">'+s.t+'</div></div>';});
+  var exEl=document.getElementById('apa-ex-body');exEl.innerHTML='';
+  example.forEach(function(l){exEl.innerHTML+='<div class="apa-ex-step">'+(l.a?'<span class="apa-ex-arrow">→</span>':'<span style="min-width:18px;font-size:14px">▶</span>')+'<span>'+l.t+'</span></div>';});
+  document.getElementById('apa-formula-text').innerHTML=formula.replace(/\n/g,'<br>');
+  document.getElementById('apa-overlay').style.display='flex';
+}
+function closeApa(){document.getElementById('apa-overlay').style.display='none';}
+
+/* ═══════════════════════════
+   MODO POETAS ARGENTINOS
+═══════════════════════════ */
+var PQ=[
+  {info:'<b>Jorge Luis Borges</b> (1899-1986) fue uno de los escritores argentinos más importantes del mundo. Escribió cuentos fantásticos como <b>"El Aleph"</b> y <b>"Ficciones"</b>. Vivió muchos años en Europa pero siempre volvió a su país.',q:'¿En qué país nació Borges?',answer:'Argentina',opts:['Argentina','España','Uruguay','Chile']},
+  {info:'<b>Alfonsina Storni</b> (1892-1938) fue una gran poetisa argentina que llegó de niña desde Suiza. Escribió sobre los sentimientos y la vida de las mujeres. Publicó varios libros de poemas a lo largo de su vida.',q:'¿Cuál de estos es un libro de poemas de Alfonsina Storni?',answer:'"Irremediablemente"',opts:['"Irremediablemente"','"Rayuela"','"Martín Fierro"','"El Aleph"']},
+  {info:'<b>Julio Cortázar</b> (1914-1984) escribió cuentos fantásticos como <b>"Casa Tomada"</b> y <b>"La noche boca arriba"</b>. Inventó personajes imaginarios llamados los <b>cronopios</b> y los <b>famas</b>.',q:'¿Cómo se llama la novela más famosa de Cortázar, que se puede leer en distintos órdenes?',answer:'"Rayuela"',opts:['"Rayuela"','"El Aleph"','"Ficciones"','"Casa Tomada"']},
+  {info:'En un poema, el conjunto de todas las líneas forma el texto. Cada grupo de líneas separado por un espacio tiene un nombre específico. Y cuando dos líneas terminan con el mismo sonido, hay otro elemento especial.',q:'¿Cómo se llama cada línea de un poema?',answer:'verso',opts:['verso','estrofa','rima','prosa']},
+  {info:'Existen dos tipos principales de rima. En la primera coinciden todas las letras finales a partir de la vocal acentuada. En la segunda solo coinciden las vocales. Por ejemplo, "amor / dolor" es de tipo asonante.',q:'En el par "luna / cuna", ¿qué tipo de rima es?',answer:'consonante',opts:['consonante','asonante','libre','blanca']},
+  {info:'El poema épico más importante de la literatura argentina se publicó en dos partes: en 1872 y en 1879. Cuenta la historia de un gaucho perseguido que huye a tierra adentro. Es considerado el libro nacional de los argentinos.',q:'¿Quién escribió el "Martín Fierro"?',answer:'José Hernández',opts:['José Hernández','Domingo F. Sarmiento','Esteban Echeverría','Leopoldo Lugones']},
+  {info:'<b>María Elena Walsh</b> (1930-2011) fue poeta, escritora y cantante. Creó el personaje de una tortuga que vivía en Pehuajó y quería conocer el mundo. También inventó el <b>Reino del Revés</b>, donde todo funciona al contrario.',q:'¿Cómo se llama la tortuga que inventó María Elena Walsh?',answer:'Manuelita',opts:['Manuelita','Esmeralda','Florinda','Valentina']},
+  {info:'En gramática, toda oración se divide en dos partes fundamentales. Una dice <b>de quién</b> se habla. La otra dice <b>qué hace o cómo es</b> esa persona o cosa. Sin las dos partes juntas, la oración queda incompleta.',q:'¿Cuál es el sujeto en "Los niños juegan en el parque"?',answer:'Los niños',opts:['Los niños','juegan','en el parque','el parque']},
+  {info:'<b>Leopoldo Lugones</b> (1874-1938) fue un poeta modernista cordobés. Le fascinaba la luna como imagen poética y le dedicó todo un libro de poemas publicado en 1909, lleno de metáforas y ritmos modernistas.',q:'¿De qué provincia argentina era Leopoldo Lugones?',answer:'Córdoba',opts:['Córdoba','Buenos Aires','Santa Fe','Mendoza']},
+  {info:'Una figura literaria muy usada en poesía consiste en decir que algo <b>ES</b> otra cosa, sin usar la palabra "como". Por ejemplo: "La vida es un sueño" o "Tus manos son de seda". Se diferencia del símil en que no compara sino que identifica.',q:'¿Cómo se llama la figura que dice "Sus ojos son dos luceros"?',answer:'metáfora',opts:['metáfora','símil','hipérbole','personificación']},
+  {info:'El cuento literario tiene tres partes que se suceden. En la primera aparecen los personajes y el escenario. En la segunda surge un conflicto o problema. En la tercera el problema se resuelve de alguna manera.',q:'¿Cómo se llama la parte del cuento donde aparece el problema?',answer:'nudo',opts:['nudo','inicio','desenlace','prólogo']},
+  {info:'<b>Roberto Arlt</b> (1900-1942) fue un escritor que retrató la vida de los sectores populares de Buenos Aires con un estilo crudo y urbano. Su obra más famosa cuenta la historia de Erdosain, un personaje atormentado y marginal.',q:'¿Cuál es la novela más famosa de Roberto Arlt?',answer:'"Los siete locos"',opts:['"Los siete locos"','"El juguete rabioso"','"El jorobadito"','"Aguafuertes porteñas"']},
+  {info:'Las palabras se clasifican según dónde cae la sílaba más fuerte. Si cae en la última sílaba, la palabra es <b>aguda</b>. Si cae en la anteúltima, es <b>grave</b>. Si cae en la anterior a esa, tiene otro nombre especial.',q:'"PÁJARO" es una palabra:',answer:'esdrújula',opts:['esdrújula','aguda','grave','sobresdrújula']},
+  {info:'<b>Silvina Ocampo</b> (1903-1993) escribió cuentos fantásticos y perturbadores. Fue esposa del escritor <b>Adolfo Bioy Casares</b> y los dos formaron una pareja literaria muy conocida. Juntos escribieron obras en colaboración.',q:'¿Con qué escritor estaba casada Silvina Ocampo?',answer:'Adolfo Bioy Casares',opts:['Adolfo Bioy Casares','Jorge Luis Borges','Julio Cortázar','Roberto Arlt']},
+  {info:'En toda historia con conflicto hay un personaje central que enfrenta el problema: es el <b>protagonista</b>. Pero también suele haber otro personaje que le pone obstáculos o se opone a sus objetivos, creando la tensión del relato.',q:'El personaje que se opone al protagonista se llama:',answer:'antagonista',opts:['antagonista','narrador','personaje secundario','héroe']},
+];
+
+var pGs={score:0,lives:3,cur:0,answered:false,combo:1,correct:0,timerID:null,timeLeft:30,noTimer:false};
+var pOrder=[];var pLastOrder=[];
+function pShuffle(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function pOpts(q){return pShuffle(q.opts).map(function(v){return{key:v,html:v};});}
+function togglePoesiaTimer(){var btn=document.getElementById('p-notimer-btn');if(!btn)return;pGs.noTimer=!pGs.noTimer;if(pGs.noTimer){clearInterval(pGs.timerID);pGs.timerID=null;document.getElementById('p-timer').style.width='100%';document.getElementById('p-timer').style.background='#666';btn.textContent='⏹ Sin timer';btn.classList.add('off');}else{btn.textContent='⏱ Timer';btn.classList.remove('off');startPTimer();}}
+function startPoesiaGame(){if(pGs.timerID)clearInterval(pGs.timerID);pGs={score:0,lives:3,cur:0,answered:false,combo:1,correct:0,timerID:null,timeLeft:30,noTimer:false};var btn=document.getElementById('p-notimer-btn');if(btn){btn.textContent='⏱ Timer';btn.classList.remove('off');}var allIdx=PQ.map(function(_,i){return i;});/* Rotación: priorizar las NO usadas la ronda anterior, rellenar con las usadas mezcladas */var notUsed=pShuffle(allIdx.filter(function(i){return pLastOrder.indexOf(i)<0;}));var used=pShuffle(allIdx.filter(function(i){return pLastOrder.indexOf(i)>=0;}));var pool=notUsed.concat(used);pOrder=pool.slice(0,10);pLastOrder=pOrder.slice();go('s-poesia-game');renderPQ();sndClick();playMusic();}
+function renderPQ(){var q=PQ[pOrder[pGs.cur]];document.getElementById('p-hud-n').textContent='🌸 Pregunta '+(pGs.cur+1)+'/10';document.getElementById('p-hud-score').textContent=pGs.score+' pts';document.getElementById('p-hud-combo').textContent='✨ ×'+pGs.combo;document.getElementById('p-hud-combo').classList.toggle('hot',pGs.combo>1);var lv=document.getElementById('p-hud-lives');lv.innerHTML='';for(var i=0;i<3;i++)lv.innerHTML+='<span style="opacity:'+(i<pGs.lives?1:.2)+';transition:opacity .3s">❤️</span>';document.getElementById('pq-info').innerHTML=q.info;document.getElementById('pq-text').textContent=q.q;var og=document.getElementById('p-opts');og.innerHTML='';document.getElementById('p-fb').textContent='';pGs.answered=false;var maxLen=Math.max(...q.opts.map(o=>o.length));if(maxLen>12)og.classList.add('one-col');else og.classList.remove('one-col');pOpts(q).forEach(function(opt){var b=document.createElement('button');b.className='opt';b.innerHTML=opt.html;b.onclick=function(){checkPQ(opt.key,b,q);};og.appendChild(b);});startPTimer();}
+function startPTimer(){if(pGs.timerID)clearInterval(pGs.timerID);if(pGs.noTimer){document.getElementById('p-timer').style.width='100%';document.getElementById('p-timer').style.background='#666';return;}pGs.timeLeft=30;updPTimer();pGs.timerID=setInterval(function(){pGs.timeLeft--;updPTimer();if(pGs.timeLeft<=0){clearInterval(pGs.timerID);if(!pGs.answered)pTimeout();}},1000);}
+function updPTimer(){var pct=pGs.timeLeft/30*100;var fill=document.getElementById('p-timer');if(!fill)return;fill.style.width=pct+'%';fill.style.background=pct>50?'#c77dff':pct>25?'#ff9500':'#ff4444';fill.style.boxShadow='0 0 6px '+(pct>50?'#c77dff':pct>25?'#ff9500':'#ff4444');}
+function pTimeout(){pGs.answered=true;pGs.combo=1;pGs.lives--;document.getElementById('p-fb').textContent='⏰ ¡Tiempo! Era: '+PQ[pOrder[pGs.cur]].answer;document.getElementById('p-fb').className='fb no';document.querySelectorAll('#p-opts .opt').forEach(function(b){if(b.innerHTML===PQ[pOrder[pGs.cur]].answer)b.classList.add('show');});updPLives();sndTimeout();setTimeout(function(){pGs.cur++;if(pGs.lives<=0||pGs.cur>=10)showPResult();else renderPQ();},1400);}
+function checkPQ(key,btn,q){if(pGs.answered)return;pGs.answered=true;clearInterval(pGs.timerID);var ok=key===q.answer;var fb=document.getElementById('p-fb');if(ok){btn.classList.add('hit');pGs.correct++;pGs.combo=Math.min(pGs.combo+1,8);var pts=10*pGs.combo;pGs.score+=pts;totalXP+=pts;fb.textContent='🌸 ¡Correcto! +'+pts+' pts';fb.className='fb ok';if(pGs.combo>=3)sndCombo(pGs.combo);else sndCorrect();checkXPBadges();}else{btn.classList.add('miss');pGs.lives--;pGs.combo=1;updPLives();document.querySelectorAll('#p-opts .opt').forEach(function(b){if(b.innerHTML===q.answer)b.classList.add('show');});fb.textContent='❌ La respuesta es: '+q.answer;fb.className='fb no';sndWrong();}document.getElementById('p-hud-combo').textContent='✨ ×'+pGs.combo;document.getElementById('p-hud-combo').classList.toggle('hot',pGs.combo>1);setTimeout(function(){pGs.cur++;if(pGs.lives<=0||pGs.cur>=10)showPResult();else renderPQ();},1400);}
+function updPLives(){document.getElementById('p-hud-lives').querySelectorAll('span').forEach(function(s,i){s.style.opacity=i<pGs.lives?1:.2;});}
+function showPResult(){if(pGs.timerID)clearInterval(pGs.timerID);stopMusic();var pct=Math.round(pGs.correct/10*100);document.getElementById('pr-emoji').textContent=pct>=90?'🏆':pct>=70?'🌸':pct>=50?'📖':'💪';document.getElementById('pr-title').textContent=pct>=90?'¡Gran Poeta!':pct>=70?'¡Excelente lector!':pct>=50?'¡Buen intento!':'¡A seguir leyendo!';document.getElementById('pr-score').textContent=pGs.correct+'/10';document.getElementById('pr-sub').textContent=pGs.score+' puntos · '+pct+'% correcto';updateXPBar();if(pct>=90)unlockBadge('poesia_perfect');if(pct>=70)confetti();go('s-poesia-result');}
+function abortPoesia(){if(pGs.timerID)clearInterval(pGs.timerID);stopMusic();go('s-home');}
+
+/* ═══════════════════════════
+   SOUND ENGINE
+═══════════════════════════ */
+let _actx=null,_actxReady=false,musicPlaying=false,musicTimeout=null,soundEnabled=true;
+function getCtx(){try{if(!_actx){var AC=window.AudioContext||window.webkitAudioContext;if(!AC)return null;_actx=new AC();}if(_actx.state==='suspended'||_actx.state==='interrupted')_actx.resume();return _actx;}catch(e){return null;}}
+function unlockAudio(){if(_actxReady)return;var ctx=getCtx();if(!ctx)return;try{var buf=ctx.createBuffer(1,1,ctx.sampleRate);var src=ctx.createBufferSource();src.buffer=buf;src.connect(ctx.destination);src.start(0);src.onended=function(){_actxReady=true;};}catch(e){}if(ctx.state==='suspended')ctx.resume().then(function(){_actxReady=true;});else _actxReady=true;}
+function tone(freq,startOffset,dur,vol,type){try{var ctx=getCtx();if(!ctx||!_actxReady)return;var t=ctx.currentTime+(startOffset||0);var osc=ctx.createOscillator(),gain=ctx.createGain();osc.connect(gain);gain.connect(ctx.destination);osc.type=type||'sine';osc.frequency.value=freq;gain.gain.setValueAtTime(0.001,t);gain.gain.linearRampToValueAtTime(vol||0.15,t+0.015);gain.gain.exponentialRampToValueAtTime(0.001,t+dur);osc.start(t);osc.stop(t+dur+0.02);}catch(e){}}
+function sndCorrect(){if(!soundEnabled)return;tone(523,0,.12,.18,'sine');tone(659,.10,.12,.18,'sine');tone(784,.20,.20,.20,'sine');}
+function sndWrong(){if(!soundEnabled)return;tone(330,0,.10,.18,'sawtooth');tone(220,.12,.20,.16,'sawtooth');}
+function sndCombo(level){if(!soundEnabled)return;var f=[523,587,659,698,784,880,988,1047];var n=Math.min(level,f.length);for(var i=0;i<n;i++)tone(f[i],i*.07,.14,.14,'sine');}
+function sndUnlock(){if(!soundEnabled)return;var f=[392,523,659,784,1047];f.forEach(function(fr,i){tone(fr,i*.10,.25,.16,'triangle');});}
+function sndPerfect(){if(!soundEnabled)return;[523,659,784,1047,1319].forEach(function(fr,i){tone(fr,i*.09,.28,.15,'sine');});setTimeout(function(){tone(1047,0,.5,.12,'sine');tone(1319,.1,.6,.12,'sine');},550);}
+function sndTimeout(){if(!soundEnabled)return;tone(400,0,.09,.16,'square');tone(300,.11,.09,.15,'square');tone(200,.22,.22,.15,'square');}
+function sndClick(){if(!soundEnabled)return;tone(900,0,.05,.07,'sine');}
+var BPM=88,B=60/BPM;
+/* Melodía tipo vals/lírica — escala de Sol mayor, ritmo ternario suave */
+var MELODY_NOTES=[
+  [392,B],[392,B/2],[440,B/2],
+  [494,B],[494,B/2],[523,B/2],
+  [587,B*1.5],[523,B/2],
+  [494,B*2],
+  [440,B],[440,B/2],[494,B/2],
+  [523,B],[523,B/2],[587,B/2],
+  [659,B*1.5],[587,B/2],
+  [523,B*2],
+  [587,B],[523,B/2],[494,B/2],
+  [440,B],[392,B/2],[440,B/2],
+  [494,B*1.5],[440,B/2],
+  [392,B*2],
+  [330,B],[392,B/2],[440,B/2],
+  [494,B],[440,B/2],[392,B/2],
+  [349,B*1.5],[330,B/2],
+  [392,B*2],
+];
+var BASS_NOTES=[
+  [196,B*3],[196,B*3],
+  [247,B*3],[247,B*3],
+  [220,B*3],[220,B*3],
+  [262,B*3],[262,B*3],
+  [196,B*3],[196,B*3],
+  [220,B*3],[220,B*3],
+  [165,B*3],[165,B*3],
+  [196,B*3],[196,B*3],
+];
+/* Acordes suaves de relleno */
+var CHORD_NOTES=[
+  [[294,B*3],[370,B*3]],
+  [[294,B*3],[370,B*3]],
+  [[330,B*3],[415,B*3]],
+  [[330,B*3],[415,B*3]],
+  [[294,B*3],[370,B*3]],
+  [[294,B*3],[370,B*3]],
+  [[247,B*3],[311,B*3]],
+  [[247,B*3],[311,B*3]],
+];
+function scheduleLoop(){if(!musicPlaying||!soundEnabled)return;try{var ctx=getCtx();if(!ctx||!_actxReady){musicPlaying=false;return;}var t=ctx.currentTime+0.05,mt=0,bt=0,ct=0;
+/* Melodía con oscilador tipo flauta (sine suave) */
+MELODY_NOTES.forEach(function(n){if(n[0]>0){var o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.type='sine';o.frequency.value=n[0];g.gain.setValueAtTime(0.001,t+mt);g.gain.linearRampToValueAtTime(0.08,t+mt+0.04);g.gain.setValueAtTime(0.08,t+mt+n[1]*.6);g.gain.exponentialRampToValueAtTime(0.001,t+mt+n[1]*.95);o.start(t+mt);o.stop(t+mt+n[1]);}mt+=n[1];});
+/* Bajo tipo pizzicato */
+BASS_NOTES.forEach(function(n){if(n[0]>0){var o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.type='triangle';o.frequency.value=n[0];g.gain.setValueAtTime(0.001,t+bt);g.gain.linearRampToValueAtTime(0.09,t+bt+0.01);g.gain.exponentialRampToValueAtTime(0.001,t+bt+0.25);o.start(t+bt);o.stop(t+bt+n[1]);}bt+=n[1];});
+/* Acordes de arpa tipo vals */
+var ci=0;CHORD_NOTES.forEach(function(chord){chord.forEach(function(cn,delay){if(cn[0]>0){var o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.type='sine';o.frequency.value=cn[0];var st=t+ct+delay*0.06;g.gain.setValueAtTime(0.001,st);g.gain.linearRampToValueAtTime(0.035,st+0.02);g.gain.exponentialRampToValueAtTime(0.001,st+cn[1]*.8);o.start(st);o.stop(st+cn[1]);}});ct+=chord[0][1];ci++;});
+var loopDur=MELODY_NOTES.reduce(function(s,n){return s+n[1];},0);musicTimeout=setTimeout(scheduleLoop,(loopDur-.1)*1000);}catch(e){musicPlaying=false;}}
+function playMusic(){if(!soundEnabled||musicPlaying)return;musicPlaying=true;scheduleLoop();}
+function stopMusic(){musicPlaying=false;if(musicTimeout)clearTimeout(musicTimeout);musicTimeout=null;}
+function toggleSound(){soundEnabled=!soundEnabled;var btn=document.getElementById('sound-btn');if(!soundEnabled){stopMusic();if(btn)btn.textContent='🔇';}else{if(btn)btn.textContent='🔊';unlockAudio();var onHome=document.getElementById('s-home').classList.contains('on');var onGame=document.getElementById('s-game').classList.contains('on');if(onHome||onGame)setTimeout(playMusic,100);}sndClick();}
+setInterval(function(){if(document.getElementById('s-home').classList.contains('on'))setSay('home-speech','idle');},3500);
+function firstInteraction(){unlockAudio();setTimeout(playMusic,150);document.removeEventListener('click',firstInteraction);document.removeEventListener('touchend',firstInteraction);}
+document.addEventListener('click',firstInteraction);document.addEventListener('touchend',firstInteraction);
+document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible'&&_actx)_actx.resume().catch(function(){});});
+document.querySelectorAll('button').forEach(function(b){b.addEventListener('touchstart',unlockAudio,{passive:true});});
+
+loadP();
+</script>
+</body>
+</html>
