@@ -602,19 +602,19 @@ button{-webkit-appearance:none;appearance:none;}
    GRADOS Y TEMAS DE LENGUA
 ═══════════════════════════ */
 const GRADES=[
-  {id:1,label:"1° grado",emoji:"🐣",bar:"#e879f9",topics:["vocales","silabas","lectura"]},
-  {id:2,label:"2° grado",emoji:"🐥",bar:"#54d18c",topics:["silabas","lectura","sustantivos","ortografia"]},
-  {id:3,label:"3° grado",emoji:"🦊",bar:"#f7b731",topics:["sustantivos","verbos","ortografia","oraciones"]},
-  {id:4,label:"4° grado",emoji:"🦁",bar:"#ff9f43",topics:["sustantivos","verbos","adjetivos","ortografia","oraciones"]},
-  {id:5,label:"5° grado",emoji:"🐯",bar:"#7c83fd",topics:["verbos","adjetivos","acentuacion","oraciones","signos"]},
-  {id:6,label:"6° grado",emoji:"🦅",bar:"#c77dff",topics:["acentuacion","signos","oraciones","textos"]},
-  {id:7,label:"7° grado",emoji:"🚀",bar:"#ff6b6b",topics:["acentuacion","signos","textos","sinonimos","figuras"]},
+  {id:1,label:"1° grado",emoji:"🐣",bar:"#e879f9",topics:["vocales","sílabas","lectura"]},
+  {id:2,label:"2° grado",emoji:"🐥",bar:"#54d18c",topics:["sílabas","lectura","sustantivos","ortografía"]},
+  {id:3,label:"3° grado",emoji:"🦊",bar:"#f7b731",topics:["sustantivos","verbos","ortografía","oraciones"]},
+  {id:4,label:"4° grado",emoji:"🦁",bar:"#ff9f43",topics:["sustantivos","verbos","adjetivos","ortografía","oraciones"]},
+  {id:5,label:"5° grado",emoji:"🐯",bar:"#7c83fd",topics:["verbos","adjetivos","acentuación","oraciones","signos"]},
+  {id:6,label:"6° grado",emoji:"🦅",bar:"#c77dff",topics:["acentuación","signos","oraciones","textos"]},
+  {id:7,label:"7° grado",emoji:"🚀",bar:"#ff6b6b",topics:["acentuación","signos","textos","sinónimos","figuras"]},
 ];
 
 const TOPICS={
   vocales:{name:"Vocales",icon:"🔤",bg:"#2d1b69",ic:"#7c83fd",
     hints:["Las vocales son: A, E, I, O, U","Toda sílaba tiene al menos una vocal","¿Escuchás el sonido de la vocal?"]},
-  silabas:{name:"Sílabas",icon:"🔡",bg:"#1a3a2a",ic:"#54d18c",
+  sílabas:{name:"Sílabas",icon:"🔡",bg:"#1a3a2a",ic:"#54d18c",
     hints:["Golpeá la mesa con cada sílaba","CA-SA tiene 2 sílabas","Cada golpe es una sílaba"]},
   lectura:{name:"Lectura y comprensión",icon:"📖",bg:"#1a2e0f",ic:"#a3e635",
     hints:["Leé el texto completo antes de responder","Buscá la idea principal","Fijate qué dice el texto, no lo que vos pensás"]},
@@ -624,17 +624,17 @@ const TOPICS={
     hints:["El verbo es la acción de la oración","¿Qué hace el sujeto?","Cambia con el tiempo: corro, corrí, correré"]},
   adjetivos:{name:"Adjetivos",icon:"🎨",bg:"#2d1a3a",ic:"#c77dff",
     hints:["El adjetivo describe al sustantivo","¿Cómo es? ¿De qué color? ¿Qué tamaño?","Grande, rojo, feliz son adjetivos"]},
-  ortografia:{name:"Ortografía",icon:"✍️",bg:"#1a3a2a",ic:"#54d18c",
+  ortografía:{name:"Ortografía",icon:"✍️",bg:"#1a3a2a",ic:"#54d18c",
     hints:["B suena igual que V pero se escriben diferente","La H es muda, no suena","La C antes de E o I suena como S"]},
   oraciones:{name:"Oraciones",icon:"💬",bg:"#0f1f30",ic:"#7c83fd",
     hints:["Toda oración tiene sujeto y predicado","El sujeto dice de quién se habla","El predicado dice qué hace el sujeto"]},
-  acentuacion:{name:"Acentuación",icon:"´",bg:"#3a2e0f",ic:"#f7b731",
+  acentuación:{name:"Acentuación",icon:"´",bg:"#3a2e0f",ic:"#f7b731",
     hints:["Agudas: acento en la última sílaba","Graves: acento en la anteúltima","Esdrújulas: acento en la antepenúltima"]},
   signos:{name:"Signos de puntuación",icon:"❓",bg:"#2d1a3a",ic:"#c77dff",
     hints:["El punto cierra una idea completa","La coma hace una pausa breve","Los signos de ¡! expresan emoción"]},
   textos:{name:"Tipos de texto",icon:"📖",bg:"#0f2018",ic:"#54d18c",
     hints:["Un cuento tiene personajes y un problema","Una noticia informa sobre algo real","Un poema tiene versos y rima"]},
-  sinonimos:{name:"Sinónimos y antónimos",icon:"🔄",bg:"#3a1a1a",ic:"#ff6b6b",
+  sinónimos:{name:"Sinónimos y antónimos",icon:"🔄",bg:"#3a1a1a",ic:"#ff6b6b",
     hints:["Sinónimos = palabras con significado similar","Antónimos = palabras opuestas","Grande / chico son antónimos"]},
   figuras:{name:"Figuras literarias",icon:"🌟",bg:"#1a0f25",ic:"#e879f9",
     hints:["La metáfora compara sin usar 'como'","El símil compara usando 'como'","La personificación da vida a cosas"]},
@@ -650,7 +650,7 @@ const BADGES=[
   {id:"xp1000",         emoji:"🥇", label:"Oro",                desc:"1000 XP acumulados"},
   {id:"perfect_round",  emoji:"🌟", label:"Ronda Perfecta",     desc:"6/6 sin errores"},
   {id:"diff5",          emoji:"🏆", label:"Nivel Experto",      desc:"Llegar a dificultad máxima"},
-  {id:"ortografia5",    emoji:"✍️", label:"Corrector",          desc:"5 ortografías correctas"},
+  {id:"ortografía5",    emoji:"✍️", label:"Corrector",          desc:"5 ortografías correctas"},
   {id:"all_topics",     emoji:"💎", label:"Enciclopedia",       desc:"Jugar todos los temas de un grado"},
   {id:"poesia_perfect", emoji:"🌸", label:"Gran Poeta",         desc:"10/10 en Modo Poetas"},
 ];
@@ -738,7 +738,7 @@ function makeQ(g, topic, lv, idx, easy, diff){
     let item=bank[idx%bank.length];
     q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
 
-  } else if(topic==='silabas'){
+  } else if(topic==='sílabas'){
     const palabras=[
       {w:'CA-SA',n:2},{w:'PA-LO-MA',n:3},{w:'SOL',n:1},{w:'ME-SA',n:2},
       {w:'TE-LÉ-FO-NO',n:4},{w:'A-VE',n:2},{w:'PE-LO-TA',n:3},{w:'TRE-N',n:1},
@@ -862,7 +862,7 @@ function makeQ(g, topic, lv, idx, easy, diff){
     let item=bank[idx%bank.length];
     q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
 
-  } else if(topic==='ortografia'){
+  } else if(topic==='ortografía'){
     const banks=[
       [
         {q:'¿Cómo se escribe? Un animal que ladra:', a:'perro', o:['perro','pherro','pero','perro']},
@@ -916,7 +916,7 @@ function makeQ(g, topic, lv, idx, easy, diff){
     let item=bank[idx%bank.length];
     q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
 
-  } else if(topic==='acentuacion'){
+  } else if(topic==='acentuación'){
     const banks=[
       [
         {q:'"CAMIÓN" es una palabra:', a:'aguda', o:['aguda','grave','esdrújula','sobreesdrújula']},
@@ -990,7 +990,7 @@ function makeQ(g, topic, lv, idx, easy, diff){
     let item=bank[idx%bank.length];
     q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
 
-  } else if(topic==='sinonimos'){
+  } else if(topic==='sinónimos'){
     const banks=[
       [
         {q:'¿Cuál es un sinónimo de "grande"?', a:'enorme', o:['enorme','chico','rápido','lento']},
@@ -1189,7 +1189,7 @@ function checkAns(key,btn,q){
     if(gs.correct===1&&gs.cur===0)unlockBadge('first_correct');
     if(gs.maxCombo>=5)unlockBadge('combo5');
     if(gs.maxCombo>=10)unlockBadge('combo10');
-    if(currentTopic==='ortografia'){ortografiaOkTotal++;if(ortografiaOkTotal>=5)unlockBadge('ortografia5');}
+    if(currentTopic==='ortografía'){ortografiaOkTotal++;if(ortografiaOkTotal>=5)unlockBadge('ortografía5');}
     checkXPBadges();adaptDifficulty(true);
   } else {
     btn.classList.add('miss');gs.lives--;gs.combo=1;gsApaErrors++;
@@ -1431,7 +1431,7 @@ var APA_DATA={
     s2:[{n:'1',t:'Escribí la palabra'},{n:'2',t:'Subrayá o marcá cada A, E, I, O, U'},{n:'3',t:'Contá cuántas marcaste'}],
     e2:[{a:false,t:'¿Cuántas vocales tiene "ESCUELA"?'},{a:true,t:'E-S-C-U-E-L-A → marco E, U, E, A'},{a:true,t:'Son 4 vocales ✅'}],
     f2:'A E I O U → siempre son 5\nSon las únicas vocales del español\n¡Sin vocales no hay sílabas!'},
-  silabas:{title:'Las sílabas',
+  sílabas:{title:'Las sílabas',
     b1:'Las sílabas son los golpes de voz que tiene una palabra. ¡Si golpeás la mesa al hablar, cada golpe es una sílaba! 😊',
     s1:[{n:'1',t:'Decí la palabra en voz alta'},{n:'2',t:'Golpeá la mesa con cada sílaba'},{n:'3',t:'Contá los golpes — ese es el número de sílabas'}],
     e1:[{a:false,t:'¿Cuántas sílabas tiene "MARIPOSA"?'},{a:true,t:'MA-RI-PO-SA → 4 golpes'},{a:true,t:'Tiene 4 sílabas ✅'}],
@@ -1467,7 +1467,7 @@ var APA_DATA={
     s2:[{n:'1',t:'Positivo: simplemente describe (alto)'},{n:'2',t:'Comparativo: compara (más alto que Pedro)'},{n:'3',t:'Superlativo: el máximo grado (altísimo, el más alto)'}],
     e2:[{a:false,t:'Transformá "bueno" a superlativo:'},{a:true,t:'→ "bueno" → "óptimo" (superlativo irregular)'},{a:true,t:'→ también: "muy bueno" o "bonísimo" ✅'}],
     f2:'Adjetivo = describe al sustantivo\n¿Cómo ES? → busco el adjetivo\nConcuerda: niño alto / niña alta'},
-  ortografia:{title:'Ortografía básica',
+  ortografía:{title:'Ortografía básica',
     b1:'La ortografía es escribir las palabras correctamente. ¡Hay reglas que nos ayudan a recordar! 😊',
     s1:[{n:'1',t:'B y V suenan igual pero se escriben distinto → boca (B), vaca (V)'},{n:'2',t:'La H es muda → no suena: huevo, hola'},{n:'3',t:'La C antes de E o I suena como S: cebra, cine'}],
     e1:[{a:false,t:'¿"vaca" se escribe con V o B?'},{a:true,t:'→ Se escribe con V → "vaca"'},{a:true,t:'→ Truco: "la vaca vive en el valle" ✅'}],
@@ -1485,7 +1485,7 @@ var APA_DATA={
     s2:[{n:'1',t:'Afirmativa: El cielo es azul.'},{n:'2',t:'Negativa: No quiero ir.'},{n:'3',t:'Interrogativa: ¿Dónde estás? — Exclamativa: ¡Qué lindo!'}],
     e2:[{a:false,t:'¿Qué tipo de oración es "¡Qué calor!"?'},{a:true,t:'→ Expresa emoción, lleva signos ¡!'},{a:true,t:'→ Es una oración EXCLAMATIVA ✅'}],
     f2:'? = interrogativa (pregunta)\n! = exclamativa (emoción)\nNO + verbo = negativa\nSin modificadores = afirmativa'},
-  acentuacion:{title:'La acentuación',
+  acentuación:{title:'La acentuación',
     b1:'Las palabras se clasifican según dónde cae el acento (la sílaba que suena más fuerte). ¡Hay reglas para saber cuándo poner tilde! 😊',
     s1:[{n:'1',t:'Agudas: acento en la ÚLTIMA sílaba → llevan tilde si terminan en vocal, N o S'},{n:'2',t:'Graves: acento en la ANTEÚLTIMA → llevan tilde si terminan en consonante (excepto N, S)'},{n:'3',t:'Esdrújulas: acento en la ANTEPENÚLTIMA → SIEMPRE llevan tilde'}],
     e1:[{a:false,t:'¿"CAMIÓN" lleva tilde?'},{a:true,t:'→ ca-MIÓN → el acento está en la última → es AGUDA'},{a:true,t:'→ Termina en N → ¡lleva tilde! ✅'}],
@@ -1512,7 +1512,7 @@ var APA_DATA={
     s2:[{n:'1',t:'Inicio: se presentan los personajes y el lugar'},{n:'2',t:'Nudo: aparece el problema o conflicto'},{n:'3',t:'Desenlace: se resuelve el problema'}],
     e2:[{a:false,t:'¿Qué parte es "y colorín colorado..."?'},{a:true,t:'→ Es el final de la historia'},{a:true,t:'→ Es el DESENLACE del cuento ✅'}],
     f2:'Cuento: inicio → nudo → desenlace\nPoema: tiene versos (líneas) y estrofas (grupos)\nNoticia: título + copete + cuerpo\nFábula: historia + moraleja al final'},
-  sinonimos:{title:'Sinónimos y antónimos',
+  sinónimos:{title:'Sinónimos y antónimos',
     b1:'Los sinónimos son palabras con significado parecido. Los antónimos son palabras con significado opuesto. ¡Son muy útiles para escribir mejor! 😊',
     s1:[{n:'1',t:'Sinónimos: palabras distintas, significado similar → grande / enorme / gigante'},{n:'2',t:'Antónimos: palabras opuestas → grande ≠ pequeño'},{n:'3',t:'¡Usarlos enriquece la escritura!'}],
     e1:[{a:false,t:'¿Cuál es un sinónimo de "feliz"?'},{a:true,t:'→ Palabras con significado similar a feliz:'},{a:true,t:'→ contento, alegre, dichoso ✅'}],
@@ -1599,55 +1599,112 @@ function sndUnlock(){if(!soundEnabled)return;var f=[392,523,659,784,1047];f.forE
 function sndPerfect(){if(!soundEnabled)return;[523,659,784,1047,1319].forEach(function(fr,i){tone(fr,i*.09,.28,.15,'sine');});setTimeout(function(){tone(1047,0,.5,.12,'sine');tone(1319,.1,.6,.12,'sine');},550);}
 function sndTimeout(){if(!soundEnabled)return;tone(400,0,.09,.16,'square');tone(300,.11,.09,.15,'square');tone(200,.22,.22,.15,'square');}
 function sndClick(){if(!soundEnabled)return;tone(900,0,.05,.07,'sine');}
-var BPM=88,B=60/BPM;
-/* Melodía tipo vals/lírica — escala de Sol mayor, ritmo ternario suave */
+/* ═══════════════════════════════════════════════
+   MÚSICA ORIGINAL — estilo vals infantil argentino
+   Inspirada en el género de María Elena Walsh:
+   ritmo ternario (3/4), caja de música, Do mayor
+   Melodía propia, no reproduce ninguna canción.
+═══════════════════════════════════════════════ */
+var BPM=76, B=60/BPM, T=B/3;
+/* Melodía principal — caja de música, escala Do mayor */
 var MELODY_NOTES=[
-  [392,B],[392,B/2],[440,B/2],
-  [494,B],[494,B/2],[523,B/2],
-  [587,B*1.5],[523,B/2],
-  [494,B*2],
-  [440,B],[440,B/2],[494,B/2],
-  [523,B],[523,B/2],[587,B/2],
-  [659,B*1.5],[587,B/2],
-  [523,B*2],
-  [587,B],[523,B/2],[494,B/2],
-  [440,B],[392,B/2],[440,B/2],
-  [494,B*1.5],[440,B/2],
-  [392,B*2],
-  [330,B],[392,B/2],[440,B/2],
-  [494,B],[440,B/2],[392,B/2],
-  [349,B*1.5],[330,B/2],
-  [392,B*2],
+  /* Frase A — saltarina y juguetona */
+  [523,B],[659,B],[784,B],
+  [880,B*1.5],[784,T],
+  [659,B],[523,B],[0,B],
+  [587,B],[698,B],[784,B],
+  [880,B*2],[0,B],
+
+  /* Frase B — más suave, baja */
+  [659,B],[587,B],[523,B],
+  [494,B*1.5],[440,T],
+  [523,B],[587,B],[0,B],
+  [440,B],[494,B],[523,B],
+  [587,B*2],[0,B],
+
+  /* Frase C — sube con entusiasmo */
+  [523,B],[659,B],[784,B],
+  [1047,B*1.5],[880,T],
+  [784,B],[698,B],[659,B],
+  [587,B*2],[0,B],
+
+  /* Frase D — cierre suave */
+  [784,B],[698,B],[659,B],
+  [587,B*1.5],[523,T],
+  [494,B],[440,B],[0,B],
+  [392,B],[440,B],[494,B],
+  [523,B*2],[0,B],
 ];
+/* Bajo tipo pizzicato de contrabajo — un golpe por tiempo */
 var BASS_NOTES=[
-  [196,B*3],[196,B*3],
-  [247,B*3],[247,B*3],
-  [220,B*3],[220,B*3],
-  [262,B*3],[262,B*3],
-  [196,B*3],[196,B*3],
-  [220,B*3],[220,B*3],
-  [165,B*3],[165,B*3],
-  [196,B*3],[196,B*3],
+  [131,B],[0,B*2], [131,B],[0,B*2], [131,B],[0,B*2], [131,B],[0,B*2], [131,B],[0,B*2],
+  [175,B],[0,B*2], [175,B],[0,B*2], [175,B],[0,B*2], [175,B],[0,B*2], [175,B],[0,B*2],
+  [131,B],[0,B*2], [131,B],[0,B*2], [131,B],[0,B*2], [131,B],[0,B*2], [131,B],[0,B*2],
+  [196,B],[0,B*2], [196,B],[0,B*2], [196,B],[0,B*2], [196,B],[0,B*2], [196,B],[0,B*2],
 ];
-/* Acordes suaves de relleno */
+/* Acordes de bandoneón/acordeón en tiempo 2 y 3 */
 var CHORD_NOTES=[
-  [[294,B*3],[370,B*3]],
-  [[294,B*3],[370,B*3]],
-  [[330,B*3],[415,B*3]],
-  [[330,B*3],[415,B*3]],
-  [[294,B*3],[370,B*3]],
-  [[294,B*3],[370,B*3]],
-  [[247,B*3],[311,B*3]],
-  [[247,B*3],[311,B*3]],
+  [[330,B],[392,B]], [[330,B],[392,B]], [[330,B],[392,B]], [[330,B],[392,B]], [[330,B],[392,B]],
+  [[349,B],[440,B]], [[349,B],[440,B]], [[349,B],[440,B]], [[349,B],[440,B]], [[349,B],[440,B]],
+  [[330,B],[392,B]], [[330,B],[392,B]], [[330,B],[392,B]], [[330,B],[392,B]], [[330,B],[392,B]],
+  [[294,B],[370,B]], [[294,B],[370,B]], [[294,B],[370,B]], [[294,B],[370,B]], [[294,B],[370,B]],
 ];
-function scheduleLoop(){if(!musicPlaying||!soundEnabled)return;try{var ctx=getCtx();if(!ctx||!_actxReady){musicPlaying=false;return;}var t=ctx.currentTime+0.05,mt=0,bt=0,ct=0;
-/* Melodía con oscilador tipo flauta (sine suave) */
-MELODY_NOTES.forEach(function(n){if(n[0]>0){var o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.type='sine';o.frequency.value=n[0];g.gain.setValueAtTime(0.001,t+mt);g.gain.linearRampToValueAtTime(0.08,t+mt+0.04);g.gain.setValueAtTime(0.08,t+mt+n[1]*.6);g.gain.exponentialRampToValueAtTime(0.001,t+mt+n[1]*.95);o.start(t+mt);o.stop(t+mt+n[1]);}mt+=n[1];});
-/* Bajo tipo pizzicato */
-BASS_NOTES.forEach(function(n){if(n[0]>0){var o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.type='triangle';o.frequency.value=n[0];g.gain.setValueAtTime(0.001,t+bt);g.gain.linearRampToValueAtTime(0.09,t+bt+0.01);g.gain.exponentialRampToValueAtTime(0.001,t+bt+0.25);o.start(t+bt);o.stop(t+bt+n[1]);}bt+=n[1];});
-/* Acordes de arpa tipo vals */
-var ci=0;CHORD_NOTES.forEach(function(chord){chord.forEach(function(cn,delay){if(cn[0]>0){var o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.type='sine';o.frequency.value=cn[0];var st=t+ct+delay*0.06;g.gain.setValueAtTime(0.001,st);g.gain.linearRampToValueAtTime(0.035,st+0.02);g.gain.exponentialRampToValueAtTime(0.001,st+cn[1]*.8);o.start(st);o.stop(st+cn[1]);}});ct+=chord[0][1];ci++;});
-var loopDur=MELODY_NOTES.reduce(function(s,n){return s+n[1];},0);musicTimeout=setTimeout(scheduleLoop,(loopDur-.1)*1000);}catch(e){musicPlaying=false;}}
+function scheduleLoop(){
+  if(!musicPlaying||!soundEnabled)return;
+  try{
+    var ctx=getCtx();if(!ctx||!_actxReady){musicPlaying=false;return;}
+    var t=ctx.currentTime+0.05, mt=0, bt=0, ct=0;
+
+    /* Melodía — caja de música (sine con envelope rápido) */
+    MELODY_NOTES.forEach(function(n){
+      if(n[0]>0){
+        var o=ctx.createOscillator(),g=ctx.createGain();
+        o.connect(g);g.connect(ctx.destination);
+        o.type='sine';o.frequency.value=n[0];
+        g.gain.setValueAtTime(0.001,t+mt);
+        g.gain.linearRampToValueAtTime(0.11,t+mt+0.01);
+        g.gain.exponentialRampToValueAtTime(0.001,t+mt+n[1]*.7);
+        o.start(t+mt);o.stop(t+mt+n[1]);
+      }
+      mt+=n[1];
+    });
+
+    /* Bajo — pizzicato (triangle, decay muy rápido) */
+    BASS_NOTES.forEach(function(n){
+      if(n[0]>0){
+        var o=ctx.createOscillator(),g=ctx.createGain();
+        o.connect(g);g.connect(ctx.destination);
+        o.type='triangle';o.frequency.value=n[0];
+        g.gain.setValueAtTime(0.001,t+bt);
+        g.gain.linearRampToValueAtTime(0.10,t+bt+0.008);
+        g.gain.exponentialRampToValueAtTime(0.001,t+bt+0.18);
+        o.start(t+bt);o.stop(t+bt+n[1]);
+      }
+      bt+=n[1];
+    });
+
+    /* Acordes — bandoneón suave (sawtooth muy atenuado) */
+    CHORD_NOTES.forEach(function(chord){
+      chord.forEach(function(cn){
+        if(cn[0]>0){
+          var o=ctx.createOscillator(),g=ctx.createGain();
+          o.connect(g);g.connect(ctx.destination);
+          o.type='sawtooth';o.frequency.value=cn[0];
+          /* Offset de medio tiempo para que caiga en el 2do y 3er golpe */
+          var st=t+ct+B;
+          g.gain.setValueAtTime(0.001,st);
+          g.gain.linearRampToValueAtTime(0.022,st+0.03);
+          g.gain.exponentialRampToValueAtTime(0.001,st+cn[1]*.85);
+          o.start(st);o.stop(st+cn[1]);
+        }
+      });
+      ct+=chord[0][1]*3; /* avanza 3 tiempos (un compás de 3/4) */
+    });
+
+    var loopDur=MELODY_NOTES.reduce(function(s,n){return s+n[1];},0);
+    musicTimeout=setTimeout(scheduleLoop,(loopDur-.1)*1000);
+  }catch(e){musicPlaying=false;}
+}
 function playMusic(){if(!soundEnabled||musicPlaying)return;musicPlaying=true;scheduleLoop();}
 function stopMusic(){musicPlaying=false;if(musicTimeout)clearTimeout(musicTimeout);musicTimeout=null;}
 function toggleSound(){soundEnabled=!soundEnabled;var btn=document.getElementById('sound-btn');if(!soundEnabled){stopMusic();if(btn)btn.textContent='🔇';}else{if(btn)btn.textContent='🔊';unlockAudio();var onHome=document.getElementById('s-home').classList.contains('on');var onGame=document.getElementById('s-game').classList.contains('on');if(onHome||onGame)setTimeout(playMusic,100);}sndClick();}
