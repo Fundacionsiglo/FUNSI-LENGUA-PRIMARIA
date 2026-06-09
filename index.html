@@ -1600,54 +1600,58 @@ function sndPerfect(){if(!soundEnabled)return;[523,659,784,1047,1319].forEach(fu
 function sndTimeout(){if(!soundEnabled)return;tone(400,0,.09,.16,'square');tone(300,.11,.09,.15,'square');tone(200,.22,.22,.15,'square');}
 function sndClick(){if(!soundEnabled)return;tone(900,0,.05,.07,'sine');}
 /* ═══════════════════════════════════════════════
-   MÚSICA ORIGINAL — estilo vals infantil argentino
-   Inspirada en el género de María Elena Walsh:
-   ritmo ternario (3/4), caja de música, Do mayor
-   Melodía propia, no reproduce ninguna canción.
+   MÚSICA ORIGINAL — canción infantil alegre
+   Estilo: juego de patio, saltarina, Do mayor
+   BPM rápido, notas cortas, muy animada
 ═══════════════════════════════════════════════ */
-var BPM=76, B=60/BPM, T=B/3;
-/* Melodía principal — caja de música, escala Do mayor */
+var BPM=148, B=60/BPM, T=B/2;
+/* Melodía principal — saltarina y alegre */
 var MELODY_NOTES=[
-  /* Frase A — saltarina y juguetona */
-  [523,B],[659,B],[784,B],
-  [880,B*1.5],[784,T],
-  [659,B],[523,B],[0,B],
-  [587,B],[698,B],[784,B],
-  [880,B*2],[0,B],
+  /* Frase A — sube rápido con rebote */
+  [523,T],[659,T],[784,T],[880,T],
+  [784,T],[659,T],[784,B],
+  [523,T],[659,T],[784,T],[880,T],
+  [1047,B],[880,T],[0,T],
 
-  /* Frase B — más suave, baja */
-  [659,B],[587,B],[523,B],
-  [494,B*1.5],[440,T],
-  [523,B],[587,B],[0,B],
-  [440,B],[494,B],[523,B],
-  [587,B*2],[0,B],
+  /* Frase B — juguetona con saltitos */
+  [880,T],[784,T],[659,T],[784,T],
+  [698,T],[587,T],[659,B],
+  [659,T],[587,T],[523,T],[587,T],
+  [698,B],[523,T],[0,T],
 
-  /* Frase C — sube con entusiasmo */
-  [523,B],[659,B],[784,B],
-  [1047,B*1.5],[880,T],
-  [784,B],[698,B],[659,B],
-  [587,B*2],[0,B],
+  /* Frase C — más aguda, emocionante */
+  [784,T],[880,T],[1047,T],[880,T],
+  [784,T],[698,T],[784,B],
+  [1047,T],[880,T],[784,T],[698,T],
+  [659,B],[523,T],[0,T],
 
-  /* Frase D — cierre suave */
-  [784,B],[698,B],[659,B],
-  [587,B*1.5],[523,T],
-  [494,B],[440,B],[0,B],
-  [392,B],[440,B],[494,B],
-  [523,B*2],[0,B],
+  /* Frase D — cierre con energía */
+  [523,T],[659,T],[523,T],[659,T],
+  [784,T],[659,T],[784,B],
+  [880,T],[784,T],[698,T],[659,T],
+  [523,B*1.5],[0,T],[0,B],
 ];
-/* Bajo tipo pizzicato de contrabajo — un golpe por tiempo */
+/* Bajo — bombo alegre en cada tiempo */
 var BASS_NOTES=[
-  [131,B],[0,B*2], [131,B],[0,B*2], [131,B],[0,B*2], [131,B],[0,B*2], [131,B],[0,B*2],
-  [175,B],[0,B*2], [175,B],[0,B*2], [175,B],[0,B*2], [175,B],[0,B*2], [175,B],[0,B*2],
-  [131,B],[0,B*2], [131,B],[0,B*2], [131,B],[0,B*2], [131,B],[0,B*2], [131,B],[0,B*2],
-  [196,B],[0,B*2], [196,B],[0,B*2], [196,B],[0,B*2], [196,B],[0,B*2], [196,B],[0,B*2],
+  [131,T],[0,T],[131,T],[0,T], [131,T],[0,T],[131,T],[0,T],
+  [131,T],[0,T],[131,T],[0,T], [131,T],[0,T],[131,T],[0,T],
+  [175,T],[0,T],[175,T],[0,T], [175,T],[0,T],[175,T],[0,T],
+  [175,T],[0,T],[175,T],[0,T], [175,T],[0,T],[175,T],[0,T],
+  [131,T],[0,T],[131,T],[0,T], [131,T],[0,T],[131,T],[0,T],
+  [165,T],[0,T],[165,T],[0,T], [165,T],[0,T],[165,T],[0,T],
+  [131,T],[0,T],[131,T],[0,T], [131,T],[0,T],[131,T],[0,T],
+  [131,T],[0,T],[131,T],[0,T], [131,T],[0,T],[131,T],[0,T],
 ];
-/* Acordes de bandoneón/acordeón en tiempo 2 y 3 */
+/* Acordes rítmicos — chuck en contratiempo */
 var CHORD_NOTES=[
-  [[330,B],[392,B]], [[330,B],[392,B]], [[330,B],[392,B]], [[330,B],[392,B]], [[330,B],[392,B]],
-  [[349,B],[440,B]], [[349,B],[440,B]], [[349,B],[440,B]], [[349,B],[440,B]], [[349,B],[440,B]],
-  [[330,B],[392,B]], [[330,B],[392,B]], [[330,B],[392,B]], [[330,B],[392,B]], [[330,B],[392,B]],
-  [[294,B],[370,B]], [[294,B],[370,B]], [[294,B],[370,B]], [[294,B],[370,B]], [[294,B],[370,B]],
+  [[330,T],[392,T]], [[330,T],[392,T]], [[330,T],[392,T]], [[330,T],[392,T]],
+  [[330,T],[392,T]], [[330,T],[392,T]], [[330,T],[392,T]], [[330,T],[392,T]],
+  [[349,T],[440,T]], [[349,T],[440,T]], [[349,T],[440,T]], [[349,T],[440,T]],
+  [[349,T],[440,T]], [[349,T],[440,T]], [[349,T],[440,T]], [[349,T],[440,T]],
+  [[330,T],[392,T]], [[330,T],[392,T]], [[330,T],[392,T]], [[330,T],[392,T]],
+  [[311,T],[392,T]], [[311,T],[392,T]], [[311,T],[392,T]], [[311,T],[392,T]],
+  [[294,T],[349,T]], [[294,T],[349,T]], [[294,T],[349,T]], [[294,T],[349,T]],
+  [[294,T],[349,T]], [[294,T],[349,T]], [[294,T],[349,T]], [[294,T],[349,T]],
 ];
 function scheduleLoop(){
   if(!musicPlaying||!soundEnabled)return;
@@ -1655,50 +1659,49 @@ function scheduleLoop(){
     var ctx=getCtx();if(!ctx||!_actxReady){musicPlaying=false;return;}
     var t=ctx.currentTime+0.05, mt=0, bt=0, ct=0;
 
-    /* Melodía — caja de música (sine con envelope rápido) */
+    /* Melodía — xilofón alegre (sine con ataque muy rápido) */
     MELODY_NOTES.forEach(function(n){
       if(n[0]>0){
         var o=ctx.createOscillator(),g=ctx.createGain();
         o.connect(g);g.connect(ctx.destination);
         o.type='sine';o.frequency.value=n[0];
         g.gain.setValueAtTime(0.001,t+mt);
-        g.gain.linearRampToValueAtTime(0.11,t+mt+0.01);
-        g.gain.exponentialRampToValueAtTime(0.001,t+mt+n[1]*.7);
+        g.gain.linearRampToValueAtTime(0.13,t+mt+0.008);
+        g.gain.exponentialRampToValueAtTime(0.001,t+mt+n[1]*.75);
         o.start(t+mt);o.stop(t+mt+n[1]);
       }
       mt+=n[1];
     });
 
-    /* Bajo — pizzicato (triangle, decay muy rápido) */
+    /* Bajo — golpe corto percusivo */
     BASS_NOTES.forEach(function(n){
       if(n[0]>0){
         var o=ctx.createOscillator(),g=ctx.createGain();
         o.connect(g);g.connect(ctx.destination);
         o.type='triangle';o.frequency.value=n[0];
         g.gain.setValueAtTime(0.001,t+bt);
-        g.gain.linearRampToValueAtTime(0.10,t+bt+0.008);
-        g.gain.exponentialRampToValueAtTime(0.001,t+bt+0.18);
+        g.gain.linearRampToValueAtTime(0.12,t+bt+0.005);
+        g.gain.exponentialRampToValueAtTime(0.001,t+bt+0.12);
         o.start(t+bt);o.stop(t+bt+n[1]);
       }
       bt+=n[1];
     });
 
-    /* Acordes — bandoneón suave (sawtooth muy atenuado) */
+    /* Acordes — chuck rítmico en contratiempo */
     CHORD_NOTES.forEach(function(chord){
       chord.forEach(function(cn){
         if(cn[0]>0){
           var o=ctx.createOscillator(),g=ctx.createGain();
           o.connect(g);g.connect(ctx.destination);
-          o.type='sawtooth';o.frequency.value=cn[0];
-          /* Offset de medio tiempo para que caiga en el 2do y 3er golpe */
-          var st=t+ct+B;
+          o.type='square';o.frequency.value=cn[0];
+          var st=t+ct+T; /* cae en el contratiempo */
           g.gain.setValueAtTime(0.001,st);
-          g.gain.linearRampToValueAtTime(0.022,st+0.03);
-          g.gain.exponentialRampToValueAtTime(0.001,st+cn[1]*.85);
+          g.gain.linearRampToValueAtTime(0.018,st+0.005);
+          g.gain.exponentialRampToValueAtTime(0.001,st+cn[1]*.5);
           o.start(st);o.stop(st+cn[1]);
         }
       });
-      ct+=chord[0][1]*3; /* avanza 3 tiempos (un compás de 3/4) */
+      ct+=T*2;
     });
 
     var loopDur=MELODY_NOTES.reduce(function(s,n){return s+n[1];},0);
