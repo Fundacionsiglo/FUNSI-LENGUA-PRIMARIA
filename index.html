@@ -786,36 +786,24 @@ function makeQ(g, topic, lv, idx, easy, diff){
     const banks=[
       // diff 1-2: significado de palabras en textos muy simples
       [
-        {q:'Lee: "El cielo estaba nublado y hacía frío. Era un día gris y triste."
-¿Qué significa "nublado" en este texto?', a:'con muchas nubes', o:['con muchas nubes','con mucho sol','con lluvia fuerte','con viento']},
-        {q:'Lee: "Martina estaba muy contenta porque sacó buenas notas."
-¿Qué quiere decir "contenta"?', a:'alegre', o:['alegre','triste','enojada','asustada']},
-        {q:'Lee: "El perro estaba agotado después de correr tanto."
-¿Qué significa "agotado"?', a:'muy cansado', o:['muy cansado','muy contento','muy hambriento','muy dormido']},
-        {q:'Lee: "La abuela tejía en silencio junto a la ventana."
-¿Qué hacía la abuela?', a:'tejía', o:['tejía','dormía','leía','cocinaba']},
-        {q:'Lee: "Pedro ahorró sus monedas durante meses para comprarse la pelota."
-¿Qué significa "ahorró"?', a:'guardó el dinero sin gastarlo', o:['guardó el dinero sin gastarlo','perdió las monedas','gastó todo','prestó dinero']},
-        {q:'Lee: "El cielo se iluminó con un relámpago enorme."
-¿Qué es un "relámpago"?', a:'un destello de luz en el cielo', o:['un destello de luz en el cielo','un trueno fuerte','una nube oscura','una lluvia intensa']},
+        {q:'Lee: "El cielo estaba nublado y hacía frío. Era un día gris y triste."\n¿Qué significa "nublado" en este texto?', a:'con muchas nubes', o:['con muchas nubes','con mucho sol','con lluvia fuerte','con viento']},
+        {q:'Lee: "Martina estaba muy contenta porque sacó buenas notas."\n¿Qué quiere decir "contenta"?', a:'alegre', o:['alegre','triste','enojada','asustada']},
+        {q:'Lee: "El perro estaba agotado después de correr tanto."\n¿Qué significa "agotado"?', a:'muy cansado', o:['muy cansado','muy contento','muy hambriento','muy dormido']},
+        {q:'Lee: "La abuela tejía en silencio junto a la ventana."\n¿Qué hacía la abuela?', a:'tejía', o:['tejía','dormía','leía','cocinaba']},
+        {q:'Lee: "Pedro ahorró sus monedas durante meses para comprarse la pelota."\n¿Qué significa "ahorró"?', a:'guardó el dinero sin gastarlo', o:['guardó el dinero sin gastarlo','perdió las monedas','gastó todo','prestó dinero']},
+        {q:'Lee: "El cielo se iluminó con un relámpago enorme."\n¿Qué es un "relámpago"?', a:'un destello de luz en el cielo', o:['un destello de luz en el cielo','un trueno fuerte','una nube oscura','una lluvia intensa']},
       ],
       // diff 3-4: palabras con más contexto necesario
       [
-        {q:'Lee: "El explorador avanzó con cautela por la selva oscura, mirando a todos lados."
-¿Qué significa "con cautela"?', a:'con mucho cuidado', o:['con mucho cuidado','muy rápido','sin mirar','con alegría']},
-        {q:'Lee: "La noticia se difundió por todo el pueblo en pocas horas."
-¿Qué significa "se difundió"?', a:'se esparció, se supo en todos lados', o:['se esparció, se supo en todos lados','desapareció','se inventó','se olvidó']},
-        {q:'Lee: "Era una persona generosa: siempre compartía lo que tenía con los demás."
-¿Qué significa "generosa"?', a:'que comparte y da a los demás', o:['que comparte y da a los demás','que guarda todo para ella','que es muy inteligente','que trabaja mucho']},
-        {q:'Lee: "El texto era tan extenso que tardamos dos horas en leerlo."
-¿Qué significa "extenso"?', a:'muy largo', o:['muy largo','muy difícil','muy aburrido','muy interesante']},
+        {q:'Lee: "El explorador avanzó con cautela por la selva oscura, mirando a todos lados."\n¿Qué significa "con cautela"?', a:'con mucho cuidado', o:['con mucho cuidado','muy rápido','sin mirar','con alegría']},
+        {q:'Lee: "La noticia se difundió por todo el pueblo en pocas horas."\n¿Qué significa "se difundió"?', a:'se esparció, se supo en todos lados', o:['se esparció, se supo en todos lados','desapareció','se inventó','se olvidó']},
+        {q:'Lee: "Era una persona generosa: siempre compartía lo que tenía con los demás."\n¿Qué significa "generosa"?', a:'que comparte y da a los demás', o:['que comparte y da a los demás','que guarda todo para ella','que es muy inteligente','que trabaja mucho']},
+        {q:'Lee: "El texto era tan extenso que tardamos dos horas en leerlo."\n¿Qué significa "extenso"?', a:'muy largo', o:['muy largo','muy difícil','muy aburrido','muy interesante']},
       ],
       // diff 5-6
       [
-        {q:'Lee: "La propuesta fue rechazada por la mayoría de los presentes."
-¿Qué significa "rechazada"?', a:'no fue aceptada', o:['no fue aceptada','fue aprobada','fue ignorada','fue mejorada']},
-        {q:'Lee: "El científico realizó un meticuloso análisis de cada muestra."
-¿Qué significa "meticuloso"?', a:'muy detallado y cuidadoso', o:['muy detallado y cuidadoso','muy rápido','muy costoso','muy simple']},
+        {q:'Lee: "La propuesta fue rechazada por la mayoría de los presentes."\n¿Qué significa "rechazada"?', a:'no fue aceptada', o:['no fue aceptada','fue aprobada','fue ignorada','fue mejorada']},
+        {q:'Lee: "El científico realizó un meticuloso análisis de cada muestra."\n¿Qué significa "meticuloso"?', a:'muy detallado y cuidadoso', o:['muy detallado y cuidadoso','muy rápido','muy costoso','muy simple']},
       ]
     ];
     let bank=ediff<=2?banks[0]:ediff<=4?banks[1]:banks[2];
@@ -882,12 +870,10 @@ function makeQ(g, topic, lv, idx, easy, diff){
         {q:'¿Cómo se separan las sílabas de "CIUDAD"?', a:'CIU-DAD', o:['CIU-DAD','CI-U-DAD','C-IU-DAD','CIU-DA-D']},
       ],
       3:[ // EXPLICAR — sílaba tónica, clasificación de palabras según acento, en texto
-        {q:'Lee: "El médico revisó al paciente con mucho cuidado."
-¿Cuál es la palabra esdrújula?', a:'médico', o:['médico','revisó','paciente','cuidado']},
+        {q:'Lee: "El médico revisó al paciente con mucho cuidado."\n¿Cuál es la palabra esdrújula?', a:'médico', o:['médico','revisó','paciente','cuidado']},
         {q:'"CAMIÓN" lleva tilde porque es aguda terminada en N. ¿Qué otra palabra aplica la misma regla?', a:'CANCIÓN', o:['CANCIÓN','ÁRBOL','MÚSICA','MESA']},
         {q:'Clasificá: "PÁJARO" es...', a:'esdrújula: acento en la antepenúltima sílaba', o:['esdrújula: acento en la antepenúltima sílaba','aguda: acento en la última','grave: acento en la anteúltima','sobreesdrújula']},
-        {q:'Lee: "Las mariposas vuelan ágilmente entre las flores."
-¿Cuántas palabras esdrújulas hay?', a:'1 (ágilmente)', o:['1 (ágilmente)','2','0','3']},
+        {q:'Lee: "Las mariposas vuelan ágilmente entre las flores."\n¿Cuántas palabras esdrújulas hay?', a:'1 (ágilmente)', o:['1 (ágilmente)','2','0','3']},
         {q:'"MESA" es grave y no lleva tilde porque termina en...', a:'vocal (A)', o:['vocal (A)','consonante','N','S']},
         {q:'¿Cuál de estas palabras tiene la sílaba tónica en la ÚLTIMA posición?', a:'CAFÉ', o:['CAFÉ','ÁRBOL','PÁJARO','MESA']},
       ],
@@ -905,60 +891,38 @@ function makeQ(g, topic, lv, idx, easy, diff){
     //          5-7° evalúa, infiere, interpreta textos más complejos
     const byGrade={
       2:[
-        {q:'Lee: "La nena tiene un perro blanco. Se llama Nieve."
-¿Cómo se llama el perro?', a:'Nieve', o:['Nieve','Blanco','Nena','Perro']},
-        {q:'Lee: "Pedro come una manzana roja todos los días."
-¿Qué come Pedro?', a:'una manzana roja', o:['una manzana roja','una naranja','una pera verde','un banana']},
-        {q:'Lee: "Llovió mucho y la calle se llenó de charcos."
-¿Por qué hay charcos?', a:'porque llovió mucho', o:['porque llovió mucho','porque había sol','porque sopló el viento','porque nevó']},
-        {q:'Lee: "Martina leyó tres libros en las vacaciones."
-¿Cuántos libros leyó?', a:'tres', o:['tres','dos','cuatro','uno']},
-        {q:'Lee: "El gato duerme en el sillón azul todo el día."
-¿Dónde duerme el gato?', a:'en el sillón azul', o:['en el sillón azul','en la cama','en el piso','en el jardín']},
-        {q:'Lee: "Compraron pan, leche y huevos en el almacén."
-¿Qué compraron?', a:'pan, leche y huevos', o:['pan, leche y huevos','pan y leche','solo huevos','leche y queso']},
+        {q:'Lee: "La nena tiene un perro blanco. Se llama Nieve."\n¿Cómo se llama el perro?', a:'Nieve', o:['Nieve','Blanco','Nena','Perro']},
+        {q:'Lee: "Pedro come una manzana roja todos los días."\n¿Qué come Pedro?', a:'una manzana roja', o:['una manzana roja','una naranja','una pera verde','un banana']},
+        {q:'Lee: "Llovió mucho y la calle se llenó de charcos."\n¿Por qué hay charcos?', a:'porque llovió mucho', o:['porque llovió mucho','porque había sol','porque sopló el viento','porque nevó']},
+        {q:'Lee: "Martina leyó tres libros en las vacaciones."\n¿Cuántos libros leyó?', a:'tres', o:['tres','dos','cuatro','uno']},
+        {q:'Lee: "El gato duerme en el sillón azul todo el día."\n¿Dónde duerme el gato?', a:'en el sillón azul', o:['en el sillón azul','en la cama','en el piso','en el jardín']},
+        {q:'Lee: "Compraron pan, leche y huevos en el almacén."\n¿Qué compraron?', a:'pan, leche y huevos', o:['pan, leche y huevos','pan y leche','solo huevos','leche y queso']},
       ],
       3:[
-        {q:'Lee: "Juan no quería ir a la escuela. Se quedó mirando por la ventana toda la mañana."
-¿Cómo se sentía Juan?', a:'triste o preocupado', o:['triste o preocupado','muy contento','aburrido de ver tele','con hambre']},
-        {q:'Lee: "La maestra explicó tres veces la misma operación. Algunos chicos todavía no entendían."
-¿Qué se puede inferir?', a:'la operación era difícil', o:['la operación era difícil','la maestra era mala','los chicos no prestaban atención','era muy tarde']},
-        {q:'Lee: "Aunque tenía miedo, la nena subió al escenario y cantó."
-¿Qué muestra eso de la nena?', a:'que fue valiente', o:['que fue valiente','que le encantaba cantar','que no tenía nervios','que era profesional']},
-        {q:'Lee: "El abuelo plantó semillas. Las regó cada día. Un mes después brotaron flores."
-¿Por qué brotaron las flores?', a:'porque las regó todos los días', o:['porque las regó todos los días','porque llovió mucho','porque hacía calor','porque eran especiales']},
-        {q:'Lee: "Todos aplaudieron cuando terminó de hablar. Ella sonrió aliviada."
-¿Por qué sonrió aliviada?', a:'porque le fue bien y la aplaudieron', o:['porque le fue bien y la aplaudieron','porque le dolían los pies','porque quería irse','porque era tarde']},
+        {q:'Lee: "Juan no quería ir a la escuela. Se quedó mirando por la ventana toda la mañana."\n¿Cómo se sentía Juan?', a:'triste o preocupado', o:['triste o preocupado','muy contento','aburrido de ver tele','con hambre']},
+        {q:'Lee: "La maestra explicó tres veces la misma operación. Algunos chicos todavía no entendían."\n¿Qué se puede inferir?', a:'la operación era difícil', o:['la operación era difícil','la maestra era mala','los chicos no prestaban atención','era muy tarde']},
+        {q:'Lee: "Aunque tenía miedo, la nena subió al escenario y cantó."\n¿Qué muestra eso de la nena?', a:'que fue valiente', o:['que fue valiente','que le encantaba cantar','que no tenía nervios','que era profesional']},
+        {q:'Lee: "El abuelo plantó semillas. Las regó cada día. Un mes después brotaron flores."\n¿Por qué brotaron las flores?', a:'porque las regó todos los días', o:['porque las regó todos los días','porque llovió mucho','porque hacía calor','porque eran especiales']},
+        {q:'Lee: "Todos aplaudieron cuando terminó de hablar. Ella sonrió aliviada."\n¿Por qué sonrió aliviada?', a:'porque le fue bien y la aplaudieron', o:['porque le fue bien y la aplaudieron','porque le dolían los pies','porque quería irse','porque era tarde']},
       ],
       4:[
-        {q:'Lee: "Los ríos arrastran sedimentos desde las montañas hasta el mar. Con el tiempo, esos sedimentos forman deltas y playas."
-¿Cuál es la idea principal?', a:'los ríos transportan materiales que forman nuevas formaciones geográficas', o:['los ríos transportan materiales que forman nuevas formaciones geográficas','los ríos nacen en las montañas','las playas son bonitas','el mar recibe agua dulce']},
-        {q:'Lee: "La fotosíntesis permite a las plantas producir su propio alimento. Sin luz solar, este proceso es imposible."
-¿Qué conclusión podés sacar?', a:'sin luz, las plantas no pueden alimentarse', o:['sin luz, las plantas no pueden alimentarse','las plantas no necesitan agua','la fotosíntesis ocurre de noche','las plantas comen tierra']},
-        {q:'Lee: "Aunque el libro era muy largo, Valentina lo terminó en dos días porque no podía parar de leerlo."
-¿Qué idea secundaria refuerza la idea principal?', a:'que el libro era muy interesante', o:['que el libro era muy interesante','que Valentina leía rápido','que el libro era difícil','que Valentina no tenía nada que hacer']},
-        {q:'Lee: "La deforestación destruye hábitats y reduce la biodiversidad. Además, contribuye al cambio climático al eliminar árboles que absorben CO₂."
-¿Cuántos argumentos en contra de la deforestación hay?', a:'dos', o:['dos','uno','tres','cuatro']},
+        {q:'Lee: "Los ríos arrastran sedimentos desde las montañas hasta el mar. Con el tiempo, esos sedimentos forman deltas y playas."\n¿Cuál es la idea principal?', a:'los ríos transportan materiales que forman nuevas formaciones geográficas', o:['los ríos transportan materiales que forman nuevas formaciones geográficas','los ríos nacen en las montañas','las playas son bonitas','el mar recibe agua dulce']},
+        {q:'Lee: "La fotosíntesis permite a las plantas producir su propio alimento. Sin luz solar, este proceso es imposible."\n¿Qué conclusión podés sacar?', a:'sin luz, las plantas no pueden alimentarse', o:['sin luz, las plantas no pueden alimentarse','las plantas no necesitan agua','la fotosíntesis ocurre de noche','las plantas comen tierra']},
+        {q:'Lee: "Aunque el libro era muy largo, Valentina lo terminó en dos días porque no podía parar de leerlo."\n¿Qué idea secundaria refuerza la idea principal?', a:'que el libro era muy interesante', o:['que el libro era muy interesante','que Valentina leía rápido','que el libro era difícil','que Valentina no tenía nada que hacer']},
+        {q:'Lee: "La deforestación destruye hábitats y reduce la biodiversidad. Además, contribuye al cambio climático al eliminar árboles que absorben CO₂."\n¿Cuántos argumentos en contra de la deforestación hay?', a:'dos', o:['dos','uno','tres','cuatro']},
       ],
       5:[
-        {q:'Lee: "El narrador describe la ciudad como un laberinto del que nadie escapa. Las calles se tuercen, los edificios se repiten, y los personajes siempre vuelven al mismo lugar."
-¿Qué recurso usa el autor?', a:'metáfora para expresar encierro o desorientación', o:['metáfora para expresar encierro o desorientación','descripción objetiva de la ciudad','comparación entre edificios','narración en primera persona']},
-        {q:'Lee: "Decir que los migrantes son una amenaza es una generalización injusta que ignora la diversidad de experiencias individuales."
-¿Qué hace el texto?', a:'refuta un prejuicio con un argumento', o:['refuta un prejuicio con un argumento','describe una situación','narra una historia','explica un proceso']},
-        {q:'Lee dos títulos: "Los beneficios de la tecnología en la educación" y "Pantallas en el aula: ¿aliadas o enemigas?"
-¿Qué diferencia hay entre ambos?', a:'el primero tiene postura positiva, el segundo plantea una pregunta abierta', o:['el primero tiene postura positiva, el segundo plantea una pregunta abierta','son idénticos en intención','el segundo es más formal','el primero es una pregunta']},
+        {q:'Lee: "El narrador describe la ciudad como un laberinto del que nadie escapa. Las calles se tuercen, los edificios se repiten, y los personajes siempre vuelven al mismo lugar."\n¿Qué recurso usa el autor?', a:'metáfora para expresar encierro o desorientación', o:['metáfora para expresar encierro o desorientación','descripción objetiva de la ciudad','comparación entre edificios','narración en primera persona']},
+        {q:'Lee: "Decir que los migrantes son una amenaza es una generalización injusta que ignora la diversidad de experiencias individuales."\n¿Qué hace el texto?', a:'refuta un prejuicio con un argumento', o:['refuta un prejuicio con un argumento','describe una situación','narra una historia','explica un proceso']},
+        {q:'Lee dos títulos: "Los beneficios de la tecnología en la educación" y "Pantallas en el aula: ¿aliadas o enemigas?"\n¿Qué diferencia hay entre ambos?', a:'el primero tiene postura positiva, el segundo plantea una pregunta abierta', o:['el primero tiene postura positiva, el segundo plantea una pregunta abierta','son idénticos en intención','el segundo es más formal','el primero es una pregunta']},
       ],
       6:[
-        {q:'Lee: "Algunos científicos sostienen que el libre mercado resuelve los problemas ambientales a través de la innovación. Otros argumentan que sin regulación estatal, las empresas priorizan la ganancia sobre el ambiente."
-¿Cuál es la estructura del texto?', a:'presenta dos posiciones opuestas sobre un mismo tema', o:['presenta dos posiciones opuestas sobre un mismo tema','narra un hecho histórico','explica un proceso científico','describe un experimento']},
-        {q:'Lee: "El silencio de la novela de Saramago no es ausencia de ruido sino ausencia de respuestas."
-¿Qué tipo de interpretación requiere esta oración?', a:'inferencia sobre el uso metafórico de "silencio"', o:['inferencia sobre el uso metafórico de "silencio"','comprensión literal del vocabulario','identificación del personaje principal','análisis de la estructura narrativa']},
+        {q:'Lee: "Algunos científicos sostienen que el libre mercado resuelve los problemas ambientales a través de la innovación. Otros argumentan que sin regulación estatal, las empresas priorizan la ganancia sobre el ambiente."\n¿Cuál es la estructura del texto?', a:'presenta dos posiciones opuestas sobre un mismo tema', o:['presenta dos posiciones opuestas sobre un mismo tema','narra un hecho histórico','explica un proceso científico','describe un experimento']},
+        {q:'Lee: "El silencio de la novela de Saramago no es ausencia de ruido sino ausencia de respuestas."\n¿Qué tipo de interpretación requiere esta oración?', a:'inferencia sobre el uso metafórico de "silencio"', o:['inferencia sobre el uso metafórico de "silencio"','comprensión literal del vocabulario','identificación del personaje principal','análisis de la estructura narrativa']},
       ],
       7:[
-        {q:'Lee: "La historia la escriben los vencedores, decía el abuelo. Por eso, leer solo un libro nunca alcanza."
-¿Qué postura ideológica transmite el abuelo?', a:'que toda historia es subjetiva y hay que contrastar fuentes', o:['que toda historia es subjetiva y hay que contrastar fuentes','que los libros son inútiles','que los vencedores son buenos','que hay que escribir la propia historia']},
-        {q:'Lee: "En su discurso, el político usó tres veces la palabra 'familia' y ninguna vez la palabra 'derechos'."
-¿Qué se puede inferir del discurso?', a:'que el discurso prioriza ciertos valores sobre otros de forma intencional', o:['que el discurso prioriza ciertos valores sobre otros de forma intencional','que el político tiene familia','que el discurso fue improviosado','que derechos y familia son lo mismo']},
+        {q:'Lee: "La historia la escriben los vencedores, decía el abuelo. Por eso, leer solo un libro nunca alcanza."\n¿Qué postura ideológica transmite el abuelo?', a:'que toda historia es subjetiva y hay que contrastar fuentes', o:['que toda historia es subjetiva y hay que contrastar fuentes','que los libros son inútiles','que los vencedores son buenos','que hay que escribir la propia historia']},
+        {q:'Lee: "En su discurso, el político usó tres veces la palabra 'familia' y ninguna vez la palabra 'derechos'."\n¿Qué se puede inferir del discurso?', a:'que el discurso prioriza ciertos valores sobre otros de forma intencional', o:['que el discurso prioriza ciertos valores sobre otros de forma intencional','que el político tiene familia','que el discurso fue improviosado','que derechos y familia son lo mismo']},
       ],
     };
     let gradeKey = Math.min(7, Math.max(2, g));
@@ -976,47 +940,34 @@ function makeQ(g, topic, lv, idx, easy, diff){
     // 6-7°: ANALIZAR función sintáctica del sustantivo en texto complejo
     const byGrade={
       3:[
-        {q:'Lee: "La maestra explica una lección difícil."
-¿Cuál es el sustantivo que nombra a una persona?', a:'maestra', o:['maestra','explica','difícil','una']},
-        {q:'Lee: "El perro de Ana ladra en el jardín."
-¿Cuántos sustantivos hay?', a:'3 (perro, Ana, jardín)', o:['3 (perro, Ana, jardín)','2','4','1']},
+        {q:'Lee: "La maestra explica una lección difícil."\n¿Cuál es el sustantivo que nombra a una persona?', a:'maestra', o:['maestra','explica','difícil','una']},
+        {q:'Lee: "El perro de Ana ladra en el jardín."\n¿Cuántos sustantivos hay?', a:'3 (perro, Ana, jardín)', o:['3 (perro, Ana, jardín)','2','4','1']},
         {q:'¿Cuál de estas palabras es un sustantivo?', a:'escuela', o:['escuela','correr','verde','rápido']},
-        {q:'Lee: "Los chicos juegan a la pelota en el patio."
-¿Cuál es el sustantivo propio?', a:'ninguno (no hay nombres propios)', o:['ninguno (no hay nombres propios)','chicos','pelota','patio']},
+        {q:'Lee: "Los chicos juegan a la pelota en el patio."\n¿Cuál es el sustantivo propio?', a:'ninguno (no hay nombres propios)', o:['ninguno (no hay nombres propios)','chicos','pelota','patio']},
         {q:'¿Cuál es el sustantivo en "El cielo azul brilla hoy"?', a:'cielo', o:['cielo','azul','brilla','hoy']},
         {q:'"Valentina y Lucas son amigos." — ¿Cuáles son los sustantivos propios?', a:'Valentina y Lucas', o:['Valentina y Lucas','amigos','son','Valentina']},
       ],
       4:[
-        {q:'Lee: "La valentía del bombero salvó a tres familias."
-"Valentía" es un sustantivo...', a:'abstracto (no se puede tocar)', o:['abstracto (no se puede tocar)','concreto','propio','colectivo']},
-        {q:'Lee: "Una bandada de pájaros cruzó el cielo rosado."
-"Bandada" es un sustantivo...', a:'colectivo (nombra un grupo)', o:['colectivo (nombra un grupo)','abstracto','propio','contable']},
+        {q:'Lee: "La valentía del bombero salvó a tres familias."\n"Valentía" es un sustantivo...', a:'abstracto (no se puede tocar)', o:['abstracto (no se puede tocar)','concreto','propio','colectivo']},
+        {q:'Lee: "Una bandada de pájaros cruzó el cielo rosado."\n"Bandada" es un sustantivo...', a:'colectivo (nombra un grupo)', o:['colectivo (nombra un grupo)','abstracto','propio','contable']},
         {q:'"Buenos Aires" en "Viajamos a Buenos Aires" es un sustantivo...', a:'propio (nombre único de lugar)', o:['propio (nombre único de lugar)','común','abstracto','colectivo']},
-        {q:'Lee: "La felicidad de los chicos se notaba en sus caras."
-¿Cuál es el sustantivo abstracto?', a:'felicidad', o:['felicidad','chicos','caras','La']},
+        {q:'Lee: "La felicidad de los chicos se notaba en sus caras."\n¿Cuál es el sustantivo abstracto?', a:'felicidad', o:['felicidad','chicos','caras','La']},
         {q:'Formá el plural correcto de "el lápiz":',  a:'los lápices', o:['los lápices','los lápizes','los lápizs','los lápis']},
         {q:'"La mano" es femenino aunque termina en -o. ¿Cuál es otro caso similar?', a:'el día', o:['el día','la mesa','el libro','la silla']},
       ],
       5:[
-        {q:'Lee: "El equipo de investigadores publicó sus resultados tras años de trabajo."
-¿Qué tipo de sustantivo es "equipo"?', a:'colectivo, porque nombra un conjunto de personas', o:['colectivo, porque nombra un conjunto de personas','propio','abstracto','contable singular']},
-        {q:'Lee: "La libertad es el valor más preciado de una sociedad democrática."
-¿Cuántos sustantivos abstractos hay?', a:'2 (libertad, valor)', o:['2 (libertad, valor)','1','3','4']},
+        {q:'Lee: "El equipo de investigadores publicó sus resultados tras años de trabajo."\n¿Qué tipo de sustantivo es "equipo"?', a:'colectivo, porque nombra un conjunto de personas', o:['colectivo, porque nombra un conjunto de personas','propio','abstracto','contable singular']},
+        {q:'Lee: "La libertad es el valor más preciado de una sociedad democrática."\n¿Cuántos sustantivos abstractos hay?', a:'2 (libertad, valor)', o:['2 (libertad, valor)','1','3','4']},
         {q:'"El sol" y "la sol" — ¿cuál es correcto y por qué?', a:'"el sol" — es masculino', o:['"el sol" — es masculino','"la sol" — termina en consonante','"ambos" — depende del contexto','ninguno es correcto']},
-        {q:'Lee: "Los médicos, las enfermeras y el personal administrativo trabajan en el hospital."
-¿Cuántos sustantivos hay en total?', a:'5', o:['5','4','6','3']},
+        {q:'Lee: "Los médicos, las enfermeras y el personal administrativo trabajan en el hospital."\n¿Cuántos sustantivos hay en total?', a:'5', o:['5','4','6','3']},
       ],
       6:[
-        {q:'Lee: "La corrupción erosiona la confianza de los ciudadanos en sus instituciones."
-¿Cuál es el sujeto de la oración y de qué tipo de sustantivo se trata?', a:'"La corrupción" — sustantivo abstracto', o:['"La corrupción" — sustantivo abstracto','"los ciudadanos" — sustantivo colectivo','"sus instituciones" — sustantivo propio','"la confianza" — sustantivo concreto']},
-        {q:'Lee: "El hambre y la sed son las necesidades más básicas del ser humano."
-¿Cuál es el género de "hambre" y "sed"?', a:'femenino (el hambre es femenino aunque lleva artículo masculino)', o:['femenino (el hambre es femenino aunque lleva artículo masculino)','ambos masculinos','ambos femeninos','depende del contexto']},
+        {q:'Lee: "La corrupción erosiona la confianza de los ciudadanos en sus instituciones."\n¿Cuál es el sujeto de la oración y de qué tipo de sustantivo se trata?', a:'"La corrupción" — sustantivo abstracto', o:['"La corrupción" — sustantivo abstracto','"los ciudadanos" — sustantivo colectivo','"sus instituciones" — sustantivo propio','"la confianza" — sustantivo concreto']},
+        {q:'Lee: "El hambre y la sed son las necesidades más básicas del ser humano."\n¿Cuál es el género de "hambre" y "sed"?', a:'femenino (el hambre es femenino aunque lleva artículo masculino)', o:['femenino (el hambre es femenino aunque lleva artículo masculino)','ambos masculinos','ambos femeninos','depende del contexto']},
       ],
       7:[
-        {q:'Lee: "El periodismo de investigación es fundamental para la democracia, aunque enfrenta grandes presiones económicas y políticas."
-¿Cuál es el sustantivo núcleo del sujeto?', a:'periodismo', o:['periodismo','investigación','democracia','presiones']},
-        {q:'Analizá: "La velocidad con que se difunden las noticias falsas preocupa a los especialistas."
-¿Cuál es el sustantivo abstracto que funciona como sujeto?', a:'velocidad', o:['velocidad','noticias','especialistas','difunden']},
+        {q:'Lee: "El periodismo de investigación es fundamental para la democracia, aunque enfrenta grandes presiones económicas y políticas."\n¿Cuál es el sustantivo núcleo del sujeto?', a:'periodismo', o:['periodismo','investigación','democracia','presiones']},
+        {q:'Analizá: "La velocidad con que se difunden las noticias falsas preocupa a los especialistas."\n¿Cuál es el sustantivo abstracto que funciona como sujeto?', a:'velocidad', o:['velocidad','noticias','especialistas','difunden']},
       ],
     };
     let gradeKey = Math.min(7, Math.max(3, g));
@@ -1033,20 +984,15 @@ function makeQ(g, topic, lv, idx, easy, diff){
     // 6-7°: ANALIZAR función y matiz del verbo en texto complejo
     const byGrade={
       3:[
-        {q:'Lee: "Los chicos corren en el patio."
-¿Cuál es el verbo?', a:'corren', o:['corren','chicos','patio','Los']},
-        {q:'Lee: "Mi mamá prepara una torta de chocolate."
-¿Cuál es el verbo?', a:'prepara', o:['prepara','mamá','torta','chocolate']},
+        {q:'Lee: "Los chicos corren en el patio."\n¿Cuál es el verbo?', a:'corren', o:['corren','chicos','patio','Los']},
+        {q:'Lee: "Mi mamá prepara una torta de chocolate."\n¿Cuál es el verbo?', a:'prepara', o:['prepara','mamá','torta','chocolate']},
         {q:'¿Cuál de estas palabras es un verbo?', a:'cantar', o:['cantar','mesa','azul','perro']},
-        {q:'Lee: "El gato duerme en el sillón todo el día."
-¿Qué hace el gato?', a:'duerme', o:['duerme','come','juega','corre']},
+        {q:'Lee: "El gato duerme en el sillón todo el día."\n¿Qué hace el gato?', a:'duerme', o:['duerme','come','juega','corre']},
         {q:'"Sofía dibujó un árbol enorme." — ¿El verbo está en tiempo...?', a:'pasado', o:['pasado','presente','futuro','ninguno']},
-        {q:'Lee: "Mañana iremos al zoológico."
-¿El verbo está en tiempo...?', a:'futuro', o:['futuro','pasado','presente','ninguno']},
+        {q:'Lee: "Mañana iremos al zoológico."\n¿El verbo está en tiempo...?', a:'futuro', o:['futuro','pasado','presente','ninguno']},
       ],
       4:[
-        {q:'Lee: "Cuando llegué a casa, mi hermana ya había comido."
-¿Cuántos verbos hay?', a:'3 (llegué, había, comido)', o:['3 (llegué, había, comido)','2','4','1']},
+        {q:'Lee: "Cuando llegué a casa, mi hermana ya había comido."\n¿Cuántos verbos hay?', a:'3 (llegué, había, comido)', o:['3 (llegué, había, comido)','2','4','1']},
         {q:'"Ellos CANTARÁN en el festival." — ¿A qué conjugación pertenece CANTAR?', a:'1ª (-AR)', o:['1ª (-AR)','2ª (-ER)','3ª (-IR)','irregular']},
         {q:'Lee: "Si estudiás, aprobás." — ¿Qué modo verbal expresa una condición?', a:'indicativo con valor condicional', o:['indicativo con valor condicional','imperativo','subjuntivo','infinitivo']},
         {q:'"¡Vengan todos!" — ¿Qué modo verbal es?', a:'imperativo (da una orden)', o:['imperativo (da una orden)','indicativo','subjuntivo','condicional']},
@@ -1054,25 +1000,19 @@ function makeQ(g, topic, lv, idx, easy, diff){
         {q:'¿Cuál es el infinitivo del verbo en "ella ESCRIBE"?', a:'escribir', o:['escribir','escriben','escribía','escribe']},
       ],
       5:[
-        {q:'Lee: "Aunque llovía, los chicos salieron a jugar igual."
-¿Cuál es el tiempo verbal de "llovía"?', a:'pretérito imperfecto (acción continua en el pasado)', o:['pretérito imperfecto (acción continua en el pasado)','pretérito perfecto simple','presente','futuro']},
-        {q:'Lee: "Si hubiera estudiado más, habría aprobado."
-¿Qué modo expresa el primer verbo?', a:'subjuntivo (expresa condición irreal)', o:['subjuntivo (expresa condición irreal)','indicativo','imperativo','infinitivo']},
+        {q:'Lee: "Aunque llovía, los chicos salieron a jugar igual."\n¿Cuál es el tiempo verbal de "llovía"?', a:'pretérito imperfecto (acción continua en el pasado)', o:['pretérito imperfecto (acción continua en el pasado)','pretérito perfecto simple','presente','futuro']},
+        {q:'Lee: "Si hubiera estudiado más, habría aprobado."\n¿Qué modo expresa el primer verbo?', a:'subjuntivo (expresa condición irreal)', o:['subjuntivo (expresa condición irreal)','indicativo','imperativo','infinitivo']},
         {q:'"Ellos habrán terminado para el viernes." — ¿Qué tiempo es?', a:'futuro perfecto', o:['futuro perfecto','presente perfecto','futuro simple','pretérito pluscuamperfecto']},
         {q:'Lee: "El viento dobló los árboles y apagó las luces." — ¿Cuántos verbos conjugados hay?', a:'2 (dobló, apagó)', o:['2 (dobló, apagó)','3','1','4']},
       ],
       6:[
-        {q:'Lee: "Se calcula que la temperatura subirá dos grados en los próximos años."
-"Se calcula" es una construcción...', a:'impersonal con "se"', o:['impersonal con "se"','reflexiva','recíproca','pasiva con "se"']},
-        {q:'Lee: "La novela fue escrita por Borges en 1944."
-¿Qué voz tiene el verbo "fue escrita"?', a:'voz pasiva', o:['voz pasiva','voz activa','voz media','reflexiva']},
+        {q:'Lee: "Se calcula que la temperatura subirá dos grados en los próximos años."\n"Se calcula" es una construcción...', a:'impersonal con "se"', o:['impersonal con "se"','reflexiva','recíproca','pasiva con "se"']},
+        {q:'Lee: "La novela fue escrita por Borges en 1944."\n¿Qué voz tiene el verbo "fue escrita"?', a:'voz pasiva', o:['voz pasiva','voz activa','voz media','reflexiva']},
         {q:'"Correr es saludable." — El verbo en infinitivo funciona como...', a:'sustantivo (sujeto de la oración)', o:['sustantivo (sujeto de la oración)','adjetivo','adverbio','verbo conjugado']},
       ],
       7:[
-        {q:'Lee: "Nada hacía pensar que aquello pudiera terminar tan pronto."
-¿Qué modo tiene "pudiera" y qué valor expresa?', a:'subjuntivo — expresa posibilidad o hipótesis', o:['subjuntivo — expresa posibilidad o hipótesis','indicativo — certeza','imperativo — orden','condicional — condición']},
-        {q:'Analizá: "Habiéndose ido todos, el silencio se volvió ensordecedor."
-¿Qué forma verbal es "habiéndose ido"?', a:'gerundio compuesto (acción anterior a la principal)', o:['gerundio compuesto (acción anterior a la principal)','participio','infinitivo compuesto','gerundio simple']},
+        {q:'Lee: "Nada hacía pensar que aquello pudiera terminar tan pronto."\n¿Qué modo tiene "pudiera" y qué valor expresa?', a:'subjuntivo — expresa posibilidad o hipótesis', o:['subjuntivo — expresa posibilidad o hipótesis','indicativo — certeza','imperativo — orden','condicional — condición']},
+        {q:'Analizá: "Habiéndose ido todos, el silencio se volvió ensordecedor."\n¿Qué forma verbal es "habiéndose ido"?', a:'gerundio compuesto (acción anterior a la principal)', o:['gerundio compuesto (acción anterior a la principal)','participio','infinitivo compuesto','gerundio simple']},
       ],
     };
     let gradeKey = Math.min(7, Math.max(3, g));
@@ -1139,8 +1079,7 @@ function makeQ(g, topic, lv, idx, easy, diff){
       5:[
         {q:'Lee: "El equipo hi_o un gran esfuerzo para ganar." ¿Z o C?', a:'C (hizo) — el pretérito de verbos en -CER/-CIR usa C', o:['C (hizo) — el pretérito de verbos en -CER/-CIR usa C','Z (hizo)','S (hiso)','depende']},
         {q:'¿Cuál es la diferencia entre "echo" y "hecho"?', a:'"echo" es verbo echar; "hecho" es participio de hacer', o:['"echo" es verbo echar; "hecho" es participio de hacer','son sinónimos','solo difiere la H muda','depende del contexto']},
-        {q:'Lee el texto: "Ayer fue___os al mercado y com___amos verduras."
-¿Qué letras faltan?', a:'fuimos, compramos (ambas con M)', o:['fuimos, compramos (ambas con M)','fuimos, conpramos','fuinos, compramos','fuinos, conpramos']},
+        {q:'Lee el texto: "Ayer fue___os al mercado y com___amos verduras."\n¿Qué letras faltan?', a:'fuimos, compramos (ambas con M)', o:['fuimos, compramos (ambas con M)','fuimos, conpramos','fuinos, compramos','fuinos, conpramos']},
       ],
       6:[
         {q:'"E___traño" (raro). ¿X o S?', a:'X (extraño) — el prefijo EX- siempre lleva X', o:['X (extraño) — el prefijo EX- siempre lleva X','S (estraño)','ambas','depende']},
@@ -1725,45 +1664,29 @@ var APA_DATA={
     b1:'Las palabras están hechas de sonidos. ¡Podemos jugar con esos sonidos! 😊',
     s1:[{n:'1',t:'Escuchá la palabra en voz alta, sin apuro'},{n:'2',t:'Fijate con qué sonido empieza o termina'},{n:'3',t:'Golpeá la mesa para contar las sílabas'}],
     e1:[{a:false,t:'¿Qué palabra empieza como "PELOTA"?'},{a:true,t:'→ PELOTA empieza con /P/'},{a:true,t:'→ Busco otra palabra con /P/: PATO ✅'}],
-    f1:'Sonido inicial: ¿con qué sonido EMPIEZA?
-Sonido final: ¿con qué sonido TERMINA?
-Rima: dos palabras terminan igual (sol - col)
-Sílabas: golpeá la mesa al hablar',
+    f1:'Sonido inicial: ¿con qué sonido EMPIEZA?\nSonido final: ¿con qué sonido TERMINA?\nRima: dos palabras terminan igual (sol - col)\nSílabas: golpeá la mesa al hablar',
     b2:'¡Podés cambiar sonidos para formar palabras nuevas! 😊',
     s2:[{n:'1',t:'Sacá una sílaba: CA-MISA sin CA = MISA'},{n:'2',t:'Cambiá un sonido: PATO con G = GATO'},{n:'3',t:'¡Jugá con los sonidos como si fueran piezas!'}],
     e2:[{a:false,t:'PATO → cambiá la P por G'},{a:true,t:'→ /p/ + ATO = PATO'},{a:true,t:'→ /g/ + ATO = GATO ✅'}],
-    f2:'Las palabras son como rompecabezas de sonidos
-Podés sacar, agregar o cambiar sonidos
-Sílaba = un golpe de voz'},
+    f2:'Las palabras son como rompecabezas de sonidos\nPodés sacar, agregar o cambiar sonidos\nSílaba = un golpe de voz'},
   palabras1:{title:'Palabras y oraciones',
     b1:'Una oración es un grupo de palabras que tiene sentido completo. Siempre empieza con mayúscula y termina con punto. 😊',
     s1:[{n:'1',t:'Una PALABRA sola no es una oración'},{n:'2',t:'Una ORACIÓN tiene sentido completo'},{n:'3',t:'Las oraciones empiezan con mayúscula y terminan con punto'}],
     e1:[{a:false,t:'¿"perro corre" es una oración?'},{a:true,t:'→ No empieza con mayúscula ni termina con punto'},{a:true,t:'→ "El perro corre." SÍ es una oración ✅'}],
-    f1:'Oración: empieza con MAYÚSCULA y termina con PUNTO
-Tiene que tener SENTIDO COMPLETO
-Ejemplo: "La nena come." ✅
-No es oración: "nena come" ❌',
+    f1:'Oración: empieza con MAYÚSCULA y termina con PUNTO\nTiene que tener SENTIDO COMPLETO\nEjemplo: "La nena come." ✅\nNo es oración: "nena come" ❌',
     b2:'¡Podés encontrar quién hace la acción y qué hace! 😊',
     s2:[{n:'1',t:'¿QUIÉN hace algo? → esa es la persona o animal'},{n:'2',t:'¿QUÉ hace? → esa es la acción'},{n:'3',t:'Ejemplo: "El gato duerme" → gato DUERME'}],
     e2:[{a:false,t:'"Ana canta una canción bonita."'},{a:true,t:'→ ¿Quién? Ana'},{a:true,t:'→ ¿Qué hace? canta ✅'}],
-    f2:'QUIÉN + QUÉ HACE = oración
-"Ana" + "canta" = "Ana canta" ✅
-Siempre tiene que tener sentido'},
+    f2:'QUIÉN + QUÉ HACE = oración\n"Ana" + "canta" = "Ana canta" ✅\nSiempre tiene que tener sentido'},
   vocabulario:{title:'Vocabulario en contexto',
     b1:'Cuando encontrás una palabra que no conocés, el texto mismo te da pistas para entender qué significa. 😊',
     s1:[{n:'1',t:'Leé la oración completa donde está la palabra'},{n:'2',t:'Fijate qué está pasando en el texto'},{n:'3',t:'Elegí el significado que mejor encaja con esa situación'}],
     e1:[{a:false,t:'"Estaba agotado después de correr tanto."'},{a:true,t:'→ Corrió mucho → debe estar muy cansado'},{a:true,t:'→ "agotado" significa muy cansado ✅'}],
-    f1:'Palabra desconocida → leé la oración completa
-Buscá pistas: ¿qué está pasando?
-Elegí el significado que tiene más sentido
-¡El texto siempre te ayuda!',
+    f1:'Palabra desconocida → leé la oración completa\nBuscá pistas: ¿qué está pasando?\nElegí el significado que tiene más sentido\n¡El texto siempre te ayuda!',
     b2:'¡A veces el texto define la palabra sin que te des cuenta! 😊',
     s2:[{n:'1',t:'Buscá si hay dos puntos (:) o "es decir" después de la palabra'},{n:'2',t:'Fijate si hay ejemplos cerca de la palabra'},{n:'3',t:'Pensá en palabras parecidas que ya conocés'}],
     e2:[{a:false,t:'"Era generosa: siempre compartía todo."'},{a:true,t:'→ Los dos puntos explican qué es generosa'},{a:true,t:'→ Generosa = que comparte ✅'}],
-    f2:'Pistas en el texto:
-: (dos puntos) → define la palabra
-"es decir" → explica con otras palabras
-Ejemplos cerca → ayudan a entender'},
+    f2:'Pistas en el texto:\n: (dos puntos) → define la palabra\n"es decir" → explica con otras palabras\nEjemplos cerca → ayudan a entender'},
     vocales:{title:'Las vocales',
     b1:'Las vocales son las 5 letras más importantes del español: A, E, I, O, U. ¡Toda sílaba tiene al menos una vocal! 😊',
     s1:[{n:'1',t:'Aprendé las 5 vocales: A, E, I, O, U'},{n:'2',t:'Toda sílaba tiene al menos una vocal'},{n:'3',t:'Para contar las vocales de una palabra, buscá las A, E, I, O, U'}],
@@ -1945,7 +1868,7 @@ function sndClick(){if(!soundEnabled)return;tone(900,0,.05,.07,'sine');}
    MÚSICA ORIGINAL — arcade infantil alegre
    180 BPM, notas muy cortas, súper movida
 ═══════════════════════════════════════════════ */
-var BPM=182, B=60/BPM, T=B/2, S=B/4;
+var BPM=124, B=60/BPM, T=B/2, S=B/4;
 var MELODY_NOTES=[
   /* Frase A — arranque explosivo */
   [784,S],[880,S],[1047,S],[880,S],[784,S],[659,S],[784,B],
