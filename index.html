@@ -602,10 +602,10 @@ button{-webkit-appearance:none;appearance:none;}
    GRADOS Y TEMAS DE LENGUA
 ═══════════════════════════ */
 const GRADES=[
-  {id:1,label:"1° grado",emoji:"🐣",bar:"#e879f9",topics:["vocales","sílabas","conciencia","palabras1"]},
+  {id:1,label:"1° grado",emoji:"🐣",bar:"#e879f9",topics:["conciencia","vocales","sílabas","palabras1"]},
   {id:2,label:"2° grado",emoji:"🐥",bar:"#54d18c",topics:["sílabas","lectura","vocabulario","ortografía"]},
-  {id:3,label:"3° grado",emoji:"🦊",bar:"#f7b731",topics:["sustantivos","verbos","ortografía","oraciones"]},
-  {id:4,label:"4° grado",emoji:"🦁",bar:"#ff9f43",topics:["sustantivos","verbos","adjetivos","ortografía","oraciones"]},
+  {id:3,label:"3° grado",emoji:"🦊",bar:"#f7b731",topics:["lectura","ortografía","sustantivos","oraciones"]},
+  {id:4,label:"4° grado",emoji:"🦁",bar:"#ff9f43",topics:["sustantivos","verbos","adjetivos","ortografía"]},
   {id:5,label:"5° grado",emoji:"🐯",bar:"#7c83fd",topics:["verbos","adjetivos","acentuación","oraciones","signos"]},
   {id:6,label:"6° grado",emoji:"🦅",bar:"#c77dff",topics:["acentuación","signos","oraciones","textos"]},
   {id:7,label:"7° grado",emoji:"🚀",bar:"#ff6b6b",topics:["acentuación","signos","textos","sinónimos","figuras"]},
@@ -826,17 +826,17 @@ function makeQ(g, topic, lv, idx, easy, diff){
         {q:'¿Cuántas vocales hay en "ELEFANTE"?', a:'4', o:['4','3','5','2']},
         {q:'¿Cuál NO es una vocal?', a:'P', o:['P','A','O','U']},
       ],
-      // diff 3-4
+      // diff 3-4: más vocales, palabras un poco más largas
       [
-        {q:'¿Cuántas vocales tiene "UNIVERSO"?', a:'4', o:['4','3','5','6']},
-        {q:'¿Cuántas sílabas tiene "ÁRBOL"?', a:'2', o:['2','3','1','4']},
-        {q:'¿Qué vocal tiene acento en "ÁRBOL"?', a:'A', o:['A','O','E','U']},
+        {q:'¿Cuántas vocales tiene "ELEFANTE"?', a:'4', o:['4','3','5','2']},
         {q:'¿Cuántas vocales tiene "ESCUELA"?', a:'4', o:['4','3','5','6']},
+        {q:'¿Cuál de estas letras NO es una vocal?', a:'M', o:['M','A','E','O']},
+        {q:'¿Cuántas vocales tiene "MARIPOSA"?', a:'4', o:['4','3','5','2']},
       ],
-      // diff 5-6
+      // diff 5-6: conteo en palabras más largas
       [
-        {q:'¿Cuántas vocales tiene "EXTRAORDINARIO"?', a:'6', o:['6','5','7','4']},
-        {q:'¿Cuántas vocales tiene "CIUDAD"?', a:'3', o:['3','2','4','1']},
+        {q:'¿Cuántas vocales tiene "COMPUTADORA"?', a:'5', o:['5','4','6','3']},
+        {q:'¿Cuántas vocales tiene "ARGENTINA"?', a:'5', o:['5','4','6','3']},
       ]
     ];
     let bank=ediff<=2?banks[0]:ediff<=4?banks[1]:banks[2];
