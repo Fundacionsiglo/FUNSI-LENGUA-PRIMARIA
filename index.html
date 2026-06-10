@@ -822,7 +822,7 @@ function makeQ(g, topic, lv, idx, easy, diff){
         {q:'¿Cuántas vocales tiene la palabra "CASA"?', a:'2', o:['2','3','4','1']},
         {q:'¿Cuál de estas letras es una vocal?', a:'E', o:['E','R','T','S']},
         {q:'¿Cuántas vocales tiene "AMIGO"?', a:'3', o:['3','2','4','5']},
-        {q:'¿Cuál de estas palabras tiene 3 vocales?', a:'AVIÓN', o:['AVIÓN','CASA','SOL','MESA']},
+        {q:'¿Cuántas vocales tiene la palabra "AMIGO"?', a:'3', o:['3','2','4','1']},
         {q:'¿Cuántas vocales hay en "ELEFANTE"?', a:'4', o:['4','3','5','2']},
         {q:'¿Cuál NO es una vocal?', a:'P', o:['P','A','O','U']},
       ],
@@ -836,7 +836,7 @@ function makeQ(g, topic, lv, idx, easy, diff){
       // diff 5-6
       [
         {q:'¿Cuántas vocales tiene "EXTRAORDINARIO"?', a:'6', o:['6','5','7','4']},
-        {q:'¿Qué diptongo tiene "CIUDAD"?', a:'iu', o:['iu','iu','ci','da']},
+        {q:'¿Cuántas vocales tiene "CIUDAD"?', a:'3', o:['3','2','4','1']},
       ]
     ];
     let bank=ediff<=2?banks[0]:ediff<=4?banks[1]:banks[2];
@@ -1872,7 +1872,7 @@ function sndClick(){if(!soundEnabled)return;tone(900,0,.05,.07,'sine');}
    MÚSICA ORIGINAL — arcade infantil alegre
    180 BPM, notas muy cortas, súper movida
 ═══════════════════════════════════════════════ */
-var BPM=124, B=60/BPM, T=B/2, S=B/4;
+var BPM=108, B=60/BPM, T=B/2, S=B/4;
 var MELODY_NOTES=[
   /* Frase A — arranque explosivo */
   [784,S],[880,S],[1047,S],[880,S],[784,S],[659,S],[784,B],
