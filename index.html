@@ -817,26 +817,30 @@ function makeQ(g, topic, lv, idx, easy, diff){
 
   } else   if(topic==='vocales'){
     const banks=[
-      // diff 1-2
+      // diff 1-2: identificar vocales, contar en palabras cortas
       [
-        {q:'¿Cuántas vocales tiene la palabra "CASA"?', a:'2', o:['2','3','4','1']},
-        {q:'¿Cuál de estas letras es una vocal?', a:'E', o:['E','R','T','S']},
-        {q:'¿Cuántas vocales tiene "AMIGO"?', a:'3', o:['3','2','4','5']},
-        {q:'¿Cuántas vocales tiene la palabra "AMIGO"?', a:'3', o:['3','2','4','1']},
-        {q:'¿Cuántas vocales hay en "ELEFANTE"?', a:'4', o:['4','3','5','2']},
-        {q:'¿Cuál NO es una vocal?', a:'P', o:['P','A','O','U']},
+        {q:'¿Cuál de estas letras es una vocal?', a:'A', o:['A','B','C','D']},
+        {q:'¿Cuántas vocales tiene "CASA"?', a:'2', o:['2','1','3','4']},
+        {q:'¿Cuál de estas letras NO es una vocal?', a:'T', o:['T','E','I','O']},
+        {q:'¿Cuántas vocales tiene "AMIGO"?', a:'3', o:['3','2','4','1']},
+        {q:'¿Cuál es una vocal?', a:'U', o:['U','M','P','L']},
+        {q:'¿Cuántas vocales tiene "SOL"?', a:'1', o:['1','2','3','0']},
       ],
-      // diff 3-4: más vocales, palabras un poco más largas
+      // diff 3-4: contar en palabras más largas, distintas respuestas
       [
+        {q:'¿Cuántas vocales tiene "PELOTA"?', a:'3', o:['3','2','4','1']},
         {q:'¿Cuántas vocales tiene "ELEFANTE"?', a:'4', o:['4','3','5','2']},
-        {q:'¿Cuántas vocales tiene "ESCUELA"?', a:'4', o:['4','3','5','6']},
-        {q:'¿Cuál de estas letras NO es una vocal?', a:'M', o:['M','A','E','O']},
-        {q:'¿Cuántas vocales tiene "MARIPOSA"?', a:'4', o:['4','3','5','2']},
+        {q:'¿Cuántas vocales tiene "OTOÑO"?', a:'3', o:['3','2','4','1']},
+        {q:'¿Cuántas vocales tiene "ESCUELA"?', a:'4', o:['4','3','5','2']},
+        {q:'¿Cuántas vocales tiene "LIBRO"?', a:'2', o:['2','1','3','4']},
+        {q:'¿Cuántas vocales tiene "PÁJARO"?', a:'3', o:['3','2','4','1']},
       ],
-      // diff 5-6: conteo en palabras más largas
+      // diff 5-6: palabras largas, distintas respuestas
       [
         {q:'¿Cuántas vocales tiene "COMPUTADORA"?', a:'5', o:['5','4','6','3']},
+        {q:'¿Cuántas vocales tiene "MARIPOSA"?', a:'4', o:['4','3','5','6']},
         {q:'¿Cuántas vocales tiene "ARGENTINA"?', a:'5', o:['5','4','6','3']},
+        {q:'¿Cuántas vocales tiene "CHOCOLATE"?', a:'4', o:['4','3','5','6']},
       ]
     ];
     let bank=ediff<=2?banks[0]:ediff<=4?banks[1]:banks[2];
@@ -1097,29 +1101,52 @@ function makeQ(g, topic, lv, idx, easy, diff){
     q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
 
   } else if(topic==='oraciones'){
-    const banks=[
-      [
+    // ESPIRAL POR GRADO:
+    // 3°: reconocer sujeto/predicado, tipos de oración básicos
+    // 4°: núcleos, oración unimembre/bimembre
+    // 5°: oración compuesta, cantidad de verbos
+    // 6-7°: subordinadas, oraciones causales/condicionales
+    const byGrade={
+      3:[
         {q:'¿Cuál es el sujeto en "La maestra explica la lección"?', a:'La maestra', o:['La maestra','explica','la lección','la']},
-        {q:'¿Cuál es el predicado en "El perro duerme en la alfombra"?', a:'duerme en la alfombra', o:['duerme en la alfombra','el perro','la alfombra','en']},
-        {q:'¿Qué tipo de oración es "¿Dónde está mi mochila?"', a:'interrogativa', o:['interrogativa','exclamativa','afirmativa','negativa']},
+        {q:'¿Qué tipo de oración es "¿Dónde vivís?"', a:'interrogativa', o:['interrogativa','exclamativa','afirmativa','negativa']},
         {q:'¿Qué tipo de oración es "¡Qué lindo día!"?', a:'exclamativa', o:['exclamativa','interrogativa','negativa','afirmativa']},
-        {q:'"No quiero comer verduras" es una oración:', a:'negativa', o:['negativa','afirmativa','interrogativa','exclamativa']},
-        {q:'¿Cuál es el núcleo del sujeto en "Los alumnos estudian"?', a:'alumnos', o:['alumnos','los','estudian','estudio']},
+        {q:'"No quiero ir a dormir" es una oración:', a:'negativa', o:['negativa','afirmativa','interrogativa','exclamativa']},
+        {q:'¿Cuál es el predicado en "Los chicos juegan en el patio"?', a:'juegan en el patio', o:['juegan en el patio','los chicos','en el patio','juegan']},
+        {q:'¿Cuál de estas tiene sentido como oración?', a:'Los chicos corren.', o:['Los chicos corren.','chicos los corren','Los corren chicos','corren Los']},
       ],
-      [
-        {q:'¿Cuál es el núcleo del predicado en "Juan corre rápido"?', a:'corre', o:['corre','Juan','rápido','corre rápido']},
-        {q:'"Aunque llovió, salimos a jugar" — la oración es:', a:'compuesta', o:['compuesta','simple','bimembre','impersonal']},
-        {q:'¿Cuántos verbos tiene "Llegué, vi y vencí"?', a:'3', o:['3','1','2','4']},
-        {q:'"Llueve mucho hoy" — esta oración es:', a:'unimembre', o:['unimembre','bimembre','compuesta','negativa']},
+      4:[
+        {q:'¿Cuál es el núcleo del sujeto en "Los alumnos estudian"?', a:'alumnos', o:['alumnos','los','estudian','clase']},
+        {q:'¿Cuál es el núcleo del predicado en "Juan corre rápido"?', a:'corre', o:['corre','Juan','rápido','rápidamente']},
+        {q:'"Llueve mucho hoy" — esta oración es:', a:'unimembre (no se puede separar en sujeto y predicado)', o:['unimembre (no se puede separar en sujeto y predicado)','bimembre','compuesta','interrogativa']},
+        {q:'"La nena y su perro corren en el parque" — ¿cuántos núcleos tiene el sujeto?', a:'2 (nena y perro)', o:['2 (nena y perro)','1','3','4']},
+        {q:'¿Cuál es el modificador directo en "La casa azul"?', a:'azul', o:['azul','casa','la','La casa']},
+        {q:'"Los pájaros cantan y las flores florecen" — ¿cuántos predicados hay?', a:'2 (cantan / florecen)', o:['2 (cantan / florecen)','1','3','4']},
       ],
-      [
-        {q:'"El libro que leí era interesante" — la proposición subordinada es:', a:'que leí', o:['que leí','el libro','era interesante','el libro era']},
-        {q:'¿Qué tipo de oración es "Llegaron tarde porque perdieron el tren"?', a:'causal', o:['causal','condicional','concesiva','consecutiva']},
-        {q:'"Si estudiás, aprobás" — la oración es:', a:'condicional', o:['condicional','causal','consecutiva','adversativa']},
-      ]
-    ];
-    let bank=ediff<=2?banks[0]:ediff<=4?banks[1]:banks[2];
-    let item=bank[idx%bank.length];
+      5:[
+        {q:'"Aunque llovió, salimos a jugar" — la oración es:', a:'compuesta (tiene dos verbos conjugados)', o:['compuesta (tiene dos verbos conjugados)','simple','unimembre','bimembre']},
+        {q:'¿Cuántos verbos conjugados tiene "Llegué, vi y vencí"?', a:'3', o:['3','1','2','4']},
+        {q:'"Me gusta el chocolate, pero no como mucho" — el nexo "pero" indica:', a:'contraste o adversativa', o:['contraste o adversativa','causa','consecuencia','condición']},
+        {q:'¿Qué tipo de oración compuesta es "Vine porque quería verte"?', a:'causal', o:['causal','consecutiva','condicional','adversativa']},
+        {q:'"Estudié mucho, entonces aprobé" — la segunda oración expresa:', a:'consecuencia', o:['consecuencia','causa','condición','contraste']},
+        {q:'"Si tuviese dinero, viajaría" — ¿qué expresa esta oración?', a:'condición hipotética', o:['condición hipotética','causa real','consecuencia directa','contraste']},
+      ],
+      6:[
+        {q:'"El libro que leí era interesante" — la proposición "que leí" es:', a:'subordinada adjetiva', o:['subordinada adjetiva','principal','coordinada','adversativa']},
+        {q:'"Aunque estudié, no aprobé" — esta oración es:', a:'concesiva', o:['concesiva','causal','condicional','consecutiva']},
+        {q:'"Trabajo para vivir" — la proposición subordinada expresa:', a:'finalidad', o:['finalidad','causa','consecuencia','condición']},
+        {q:'¿Cuántas proposiciones tiene "La maestra explicó que el examen sería difícil"?', a:'2', o:['2','1','3','4']},
+      ],
+      7:[
+        {q:'"No bien llegó, comenzó a trabajar" — la relación entre las proposiciones es:', a:'temporal', o:['temporal','causal','condicional','concesiva']},
+        {q:'"El que mucho abarca, poco aprieta" — la proposición "el que mucho abarca" es:', a:'subordinada sustantiva con función de sujeto', o:['subordinada sustantiva con función de sujeto','principal','coordinada','adverbial']},
+        {q:'Analizá: "Dicen que va a llover" — ¿cuál es el sujeto de "dicen"?', a:'sujeto tácito (ellos)', o:['sujeto tácito (ellos)','que va a llover','va a llover','no tiene sujeto']},
+      ],
+    };
+    let gradeKey=Math.min(7,Math.max(3,g));
+    while(!byGrade[gradeKey]&&gradeKey>3)gradeKey--;
+    let pool=byGrade[gradeKey];
+    let item=pool[idx%pool.length];
     q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
 
   } else if(topic==='acentuación'){
@@ -1199,23 +1226,26 @@ function makeQ(g, topic, lv, idx, easy, diff){
   } else if(topic==='sinónimos'){
     const banks=[
       [
-        {q:'¿Cuál es un sinónimo de "grande"?', a:'enorme', o:['enorme','chico','rápido','lento']},
-        {q:'¿Cuál es un antónimo de "feliz"?', a:'triste', o:['triste','contento','alegre','sonriente']},
-        {q:'¿Cuál es un sinónimo de "bonito"?', a:'lindo', o:['lindo','feo','horrible','oscuro']},
-        {q:'¿Cuál es un antónimo de "frío"?', a:'caliente', o:['caliente','tibio','fresco','frío']},
-        {q:'¿Cuál es un sinónimo de "hablar"?', a:'conversar', o:['conversar','callar','gritar siempre','nunca']},
-        {q:'¿Cuál es un antónimo de "rápido"?', a:'lento', o:['lento','veloz','ágil','pronto']},
+        {q:'"Grande" y "enorme" significan casi lo mismo. Estas palabras son:', a:'sinónimos', o:['sinónimos','antónimos','iguales','opuestas']},
+        {q:'¿Qué palabra significa lo contrario de "feliz"?', a:'triste', o:['triste','contento','alegre','sonriente']},
+        {q:'¿Con cuál de estas palabras podés reemplazar "bonito" sin cambiar el sentido?', a:'lindo', o:['lindo','feo','horrible','oscuro']},
+        {q:'"Frío" y "caliente" son palabras con significado opuesto. Se llaman:', a:'antónimos', o:['antónimos','sinónimos','homófonos','parónimos']},
+        {q:'¿Qué palabra tiene un significado similar a "hablar"?', a:'conversar', o:['conversar','callar','escuchar','leer']},
+        {q:'¿Qué palabra es lo opuesto de "rápido"?', a:'lento', o:['lento','veloz','ágil','pronto']},
       ],
       [
-        {q:'¿Cuál es un sinónimo de "valiente"?', a:'audaz', o:['audaz','cobarde','miedoso','tímido']},
-        {q:'¿Cuál es un antónimo de "construir"?', a:'demoler', o:['demoler','edificar','levantar','armar']},
-        {q:'"Delgado" y "flaco" son:', a:'sinónimos', o:['sinónimos','antónimos','homófonos','parónimos']},
-        {q:'"Amor" y "odio" son:', a:'antónimos', o:['antónimos','sinónimos','parónimos','homófonos']},
+        {q:'Si decís "audaz" en vez de "valiente", el significado:', a:'es casi igual — son sinónimos', o:['es casi igual — son sinónimos','cambia completamente','se vuelve opuesto','no tiene sentido']},
+        {q:'"Construir" y "demoler" son:', a:'antónimos', o:['antónimos','sinónimos','homófonos','parónimos']},
+        {q:'¿Qué palabra podría reemplazar a "veloz" en "El guepardo es veloz"?', a:'rápido', o:['rápido','lento','grande','fuerte']},
+        {q:'¿Qué palabra es sinónima de "comenzar"?', a:'iniciar', o:['iniciar','terminar','pausar','detener']},
+        {q:'"Victoria" y "derrota" son:', a:'antónimos', o:['antónimos','sinónimos','parónimos','homófonos']},
+        {q:'¿Qué palabra es lo contrario de "oscuro"?', a:'claro', o:['claro','negro','gris','opaco']},
       ],
       [
-        {q:'"Sabiduría" y "ignorancia" son:', a:'antónimos', o:['antónimos','sinónimos','homónimos','parónimos']},
-        {q:'"Bello, hermoso, precioso" son:', a:'sinónimos', o:['sinónimos','antónimos','parónimos','homófonos']},
-        {q:'¿Cuál es un sinónimo de "efímero"?', a:'pasajero', o:['pasajero','eterno','permanente','duradero']},
+        {q:'"Sabiduría" e "ignorancia" son antónimos porque:', a:'tienen significados opuestos', o:['tienen significados opuestos','suenan igual','se escriben parecido','son del mismo campo']},
+        {q:'¿Cuál de estas palabras es sinónima de "efímero"?', a:'pasajero', o:['pasajero','eterno','permanente','duradero']},
+        {q:'"Bello", "hermoso" y "precioso" pertenecen al mismo:', a:'campo semántico (belleza) y son sinónimos', o:['campo semántico (belleza) y son sinónimos','campo de los antónimos','grupo de homófonos','familia de palabras distintas']},
+        {q:'¿Qué relación hay entre "amar" y "odiar"?', a:'son antónimos', o:['son antónimos','son sinónimos','son parónimos','son homófonos']},
       ]
     ];
     let bank=ediff<=2?banks[0]:ediff<=4?banks[1]:banks[2];
