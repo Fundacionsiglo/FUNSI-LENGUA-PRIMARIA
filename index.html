@@ -607,12 +607,12 @@ const GRADES=[
   {id:3,label:"3° grado",emoji:"🦊",bar:"#f7b731",topics:["lectura","ortografía","sustantivos","oraciones"]},
   {id:4,label:"4° grado",emoji:"🦁",bar:"#ff9f43",topics:["sustantivos","verbos","adjetivos","ortografía"]},
   {id:5,label:"5° grado",emoji:"🐯",bar:"#7c83fd",topics:["verbos","adjetivos","acentuación","oraciones","signos"]},
-  {id:6,label:"6° grado",emoji:"🦅",bar:"#c77dff",topics:["acentuación","signos","oraciones","textos"]},
+  {id:6,label:"6° grado",emoji:"🦅",bar:"#c77dff",topics:["acentuación","signos","oraciones","textos","sinónimos"]},
   {id:7,label:"7° grado",emoji:"🚀",bar:"#ff6b6b",topics:["acentuación","signos","textos","sinónimos","figuras"]},
 ];
 
 const TOPICS={
-  conciencia:{name:"Conciencia fonológica",icon:"🎵",bg:"#2d1b69",ic:"#a78bfa",
+  conciencia:{name:"Los sonidos",icon:"🎵",bg:"#2d1b69",ic:"#a78bfa",
     hints:["Escuchá bien el sonido de cada letra","¿Con qué letra empieza esa palabra?","Las palabras están hechas de sonidos"]},
   palabras1:{name:"Palabras y oraciones",icon:"🔤",bg:"#3a2e0f",ic:"#f7b731",
     hints:["Las oraciones son grupos de palabras con sentido","¿La imagen y la palabra se parecen?","Leé despacito, de a una palabra"]},
@@ -721,14 +721,20 @@ function makeQ(g, topic, lv, idx, easy, diff){
     // CONCIENCIA FONOLÓGICA — 1° grado
     // Rimas, sonidos iniciales/finales, segmentación silábica oral
     const banks=[
-      // diff 1-2: sonidos iniciales y rimas simples
+      // diff 1-2: sonidos iniciales, finales y rimas simples
       [
-        {q:'¿Qué palabra empieza con el mismo sonido que "PELOTA"?', a:'PATO', o:['PATO','MESA','LIBRO','SILLA']},
-        {q:'¿Qué palabra rima con "SOL"?', a:'COL', o:['COL','MESA','PATO','LIBRO']},
-        {q:'¿Con qué letra empieza "MANZANA"?', a:'M', o:['M','P','L','S']},
-        {q:'¿Qué palabra empieza con el mismo sonido que "GATO"?', a:'GLOBO', o:['GLOBO','PERRO','MESA','SILLA']},
-        {q:'¿Qué palabra rima con "LUNA"?', a:'UNA', o:['UNA','PATO','LIBRO','CASA']},
-        {q:'¿Con qué letra termina "PAN"?', a:'N', o:['N','A','P','M']},
+        {q:'¿QUÉ PALABRA EMPIEZA CON EL MISMO SONIDO QUE "PELOTA"?', a:'PATO', o:['PATO','MESA','LIBRO','SILLA']},
+        {q:'¿QUÉ PALABRA RIMA CON "SOL"?', a:'COL', o:['COL','MESA','PATO','LIBRO']},
+        {q:'¿CON QUÉ LETRA EMPIEZA "MANZANA"?', a:'M', o:['M','P','L','S']},
+        {q:'¿QUÉ PALABRA EMPIEZA CON EL MISMO SONIDO QUE "GATO"?', a:'GLOBO', o:['GLOBO','PERRO','MESA','SILLA']},
+        {q:'¿QUÉ PALABRA RIMA CON "LUNA"?', a:'UNA', o:['UNA','PATO','LIBRO','CASA']},
+        {q:'¿CON QUÉ LETRA TERMINA "PAN"?', a:'N', o:['N','A','P','M']},
+        {q:'¿QUÉ PALABRA EMPIEZA CON EL MISMO SONIDO QUE "MAMÁ"?', a:'MESA', o:['MESA','PATO','SOL','LUNA']},
+        {q:'¿QUÉ PALABRA RIMA CON "PATO"?', a:'GATO', o:['GATO','MESA','LIBRO','SILLA']},
+        {q:'¿CON QUÉ LETRA EMPIEZA "PERRO"?', a:'P', o:['P','M','S','G']},
+        {q:'¿QUÉ PALABRA EMPIEZA CON EL MISMO SONIDO QUE "SILLA"?', a:'SOL', o:['SOL','PATO','MESA','LUNA']},
+        {q:'¿QUÉ PALABRA RIMA CON "NOCHE"?', a:'LECHE', o:['LECHE','PATO','SOL','GATO']},
+        {q:'¿CON QUÉ LETRA TERMINA "CAMIÓN"?', a:'N', o:['N','M','A','C']},
       ],
       // diff 3-4: segmentación y manipulación de sonidos
       [
@@ -756,12 +762,18 @@ function makeQ(g, topic, lv, idx, easy, diff){
     const banks=[
       // diff 1-2: reconocimiento de palabras y oraciones muy simples
       [
-        {q:'¿Cuál de estas es una palabra que nombra un animal?', a:'GATO', o:['GATO','CORRE','ROJO','TIENE']},
+        {q:'¿Cuál de estas palabras nombra un animal?', a:'GATO', o:['GATO','CORRE','ROJO','TIENE']},
         {q:'¿Cuál de estas es una oración completa?', a:'El perro ladra.', o:['El perro ladra.','perro ladra','El perro','ladra perro el']},
-        {q:'"La nena come" — ¿quién come?', a:'La nena', o:['La nena','come','la','nena come']},
+        {q:'"LA NENA COME" — ¿QUIÉN COME?', a:'LA NENA', o:['LA NENA','COME','LA','NENA COME']},
         {q:'¿Cuál de estas palabras nombra algo que tomás?', a:'LECHE', o:['LECHE','CORRE','VERDE','ALTO']},
-        {q:'"El gato duerme" — ¿qué hace el gato?', a:'duerme', o:['duerme','come','juega','corre']},
+        {q:'"EL GATO DUERME" — ¿QUÉ HACE EL GATO?', a:'DUERME', o:['DUERME','COME','JUEGA','CORRE']},
         {q:'¿Cuál de estas es una oración?', a:'Mamá cocina rico.', o:['Mamá cocina rico.','cocina Mamá','rico cocina','Mamá rico']},
+        {q:'¿Cuál de estas palabras nombra un lugar?', a:'ESCUELA', o:['ESCUELA','CORRE','AZUL','LINDO']},
+        {q:'¿Cuál de estas palabras nombra una cosa?', a:'PELOTA', o:['PELOTA','SALTA','ALTO','RÁPIDO']},
+        {q:'"EL NENE SALTA" — ¿QUÉ HACE EL NENE?', a:'SALTA', o:['SALTA','COME','DUERME','CORRE']},
+        {q:'¿Cuál de estas es una oración con sentido?', a:'La luna brilla.', o:['La luna brilla.','brilla luna','Luna la brilla','brilla La']},
+        {q:'¿Cuál de estas palabras nombra algo que comés?', a:'MANZANA', o:['MANZANA','CORRE','AZUL','GRANDE']},
+        {q:'"MAMÁ TRABAJA" — ¿QUIÉN TRABAJA?', a:'MAMÁ', o:['MAMÁ','TRABAJA','LA','MAMÁ TRABAJA']},
       ],
       // diff 3-4: oraciones simples con más palabras
       [
@@ -839,7 +851,7 @@ function makeQ(g, topic, lv, idx, easy, diff){
       [
         {q:'¿Cuántas vocales tiene "COMPUTADORA"?', a:'5', o:['5','4','6','3']},
         {q:'¿Cuántas vocales tiene "MARIPOSA"?', a:'4', o:['4','3','5','6']},
-        {q:'¿Cuántas vocales tiene "ARGENTINA"?', a:'5', o:['5','4','6','3']},
+        {q:'¿Cuántas vocales tiene "ARGENTINA"?', a:'4', o:['4','3','5','2']},
         {q:'¿Cuántas vocales tiene "CHOCOLATE"?', a:'4', o:['4','3','5','6']},
       ]
     ];
@@ -854,24 +866,30 @@ function makeQ(g, topic, lv, idx, easy, diff){
     // 3° en adelante: aplicar en texto, sílaba tónica, tipos de palabras
     const byGrade={
       1:[ // IDENTIFICAR — palabras de uso cotidiano, cortas
-        {q:'¿Cuántas sílabas tiene "CASA"?', a:'2 (CA-SA)', o:['2 (CA-SA)','1','3','4']},
-        {q:'¿Cuántas sílabas tiene "SOL"?', a:'1 (SOL)', o:['1 (SOL)','2','3','4']},
+        {q:'¿Cuántas sílabas tiene "CASA"?', a:'2', o:['2','1','3','4']},
+        {q:'¿Cuántas sílabas tiene "SOL"?', a:'1', o:['1','2','3','4']},
         {q:'¿Cómo se separa "PELOTA"?', a:'PE-LO-TA', o:['PE-LO-TA','PEL-OTA','PE-LOTA','PELO-TA']},
-        {q:'¿Cuántas sílabas tiene "MAMÁ"?', a:'2 (MA-MÁ)', o:['2 (MA-MÁ)','1','3','4']},
+        {q:'¿Cuántas sílabas tiene "MAMÁ"?', a:'2', o:['2','1','3','4']},
         {q:'¿Cómo se separa "AVE"?', a:'A-VE', o:['A-VE','AV-E','AVE','A-VEE']},
-        {q:'¿Cuántas sílabas tiene "PALOMA"?', a:'3 (PA-LO-MA)', o:['3 (PA-LO-MA)','2','4','1']},
+        {q:'¿Cuántas sílabas tiene "PALOMA"?', a:'3', o:['3','2','4','1']},
         {q:'¿Cómo se separa "MESA"?', a:'ME-SA', o:['ME-SA','MES-A','M-ESA','MESA']},
-        {q:'¿Cuántas sílabas tiene "TREN"?', a:'1 (TREN)', o:['1 (TREN)','2','3','4']},
+        {q:'¿Cuántas sílabas tiene "TREN"?', a:'1', o:['1','2','3','4']},
       ],
       2:[ // CLASIFICAR — monosílabas, bisílabas, trisílabas + palabras más complejas
-        {q:'"MARIPOSA" es una palabra...', a:'polisílaba (4 sílabas)', o:['polisílaba (4 sílabas)','trisílaba (3)','bisílaba (2)','monosílaba (1)']},
+        {q:'"MARIPOSA" es una palabra...', a:'polisílaba', o:['polisílaba','trisílaba','bisílaba','monosílaba']},
         {q:'¿Cuál de estas es una palabra bisílaba?', a:'LIBRO', o:['LIBRO','SOL','MARIPOSA','COMPUTADORA']},
         {q:'¿Cómo se separa "ESCUELA"?', a:'ES-CUE-LA', o:['ES-CUE-LA','ESC-UE-LA','E-SCUE-LA','ES-CU-E-LA']},
-        {q:'¿Cuál es la sílaba que suena más fuerte en "CAMIÓN"?', a:'MIÓN', o:['MIÓN','CA','ningunas','todas igual']},
+        {q:'¿Cuál es la sílaba que suena más fuerte en "CAMIÓN"?', a:'MIÓN', o:['MIÓN','CA','ninguna','todas igual']},
         {q:'¿Cómo se separa "COMPUTADORA"?', a:'COM-PU-TA-DO-RA', o:['COM-PU-TA-DO-RA','COMPU-TADORA','COM-PUTADORA','COMPU-TA-DO-RA']},
         {q:'"ÁRBOL" es bisílaba. ¿La sílaba tónica (con tilde) es...?', a:'ÁR', o:['ÁR','BOL','ÁRBOL','ninguna']},
         {q:'¿Cuál de estas palabras tiene 5 sílabas?', a:'COMPUTADORA', o:['COMPUTADORA','MARIPOSA','PELOTA','ÁRBOL']},
         {q:'¿Cómo se separan las sílabas de "CIUDAD"?', a:'CIU-DAD', o:['CIU-DAD','CI-U-DAD','C-IU-DAD','CIU-DA-D']},
+        {q:'¿Cuántas sílabas tiene "MARIPOSA"?', a:'4', o:['4','3','5','2']},
+        {q:'¿Cuál de estas es una palabra monosílaba?', a:'SOL', o:['SOL','MESA','PATO','LIBRO']},
+        {q:'¿Cuántas sílabas tiene "JARDÍN"?', a:'2', o:['2','3','1','4']},
+        {q:'¿Cuál de estas es una palabra trisílaba?', a:'MUÑECA', o:['MUÑECA','SOL','LIBRO','COMPUTADORA']},
+        {q:'¿Cómo se separa "PELOTA"?', a:'PE-LO-TA', o:['PE-LO-TA','PEL-OTA','PE-LOTA','PELO-TA']},
+        {q:'¿Cuántas sílabas tiene "CHOCOLATE"?', a:'3', o:['3','2','4','5']},
       ],
       3:[ // EXPLICAR — sílaba tónica, clasificación de palabras según acento, en texto
         {q:'Lee: "El médico revisó al paciente con mucho cuidado."\n¿Cuál es la palabra esdrújula?', a:'médico', o:['médico','revisó','paciente','cuidado']},
@@ -885,7 +903,12 @@ function makeQ(g, topic, lv, idx, easy, diff){
     // Para grados 4-7 usamos el banco de 3° pero con diff más alta
     let gradeKey = g<=1?1:g<=2?2:3;
     let pool = byGrade[gradeKey];
-    let item = pool[idx % pool.length];
+    // Selección por nivel: cada nivel usa un segmento diferente del pool
+    // Si el pool tiene suficientes preguntas, nivel 1 usa las primeras, nivel 2 las siguientes, etc.
+    let _segSize = Math.min(pool.length, 6); // tamaño del segmento = QPL
+    let _startIdx = gs ? ((gs.lv - 1) * _segSize + _qOffset) % pool.length : (_qOffset % pool.length);
+    let _poolIdx = (_startIdx + idx) % pool.length;
+    let item = pool[_poolIdx];
     q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
 
   } else if(topic==='lectura'){
@@ -903,11 +926,19 @@ function makeQ(g, topic, lv, idx, easy, diff){
         {q:'Lee: "Compraron pan, leche y huevos en el almacén."\n¿Qué compraron?', a:'pan, leche y huevos', o:['pan, leche y huevos','pan y leche','solo huevos','leche y queso']},
       ],
       3:[
-        {q:'Lee: "Juan no quería ir a la escuela. Se quedó mirando por la ventana toda la mañana."\n¿Cómo se sentía Juan?', a:'triste o preocupado', o:['triste o preocupado','muy contento','aburrido de ver tele','con hambre']},
-        {q:'Lee: "La maestra explicó tres veces la misma operación. Algunos chicos todavía no entendían."\n¿Qué se puede inferir?', a:'la operación era difícil', o:['la operación era difícil','la maestra era mala','los chicos no prestaban atención','era muy tarde']},
-        {q:'Lee: "Aunque tenía miedo, la nena subió al escenario y cantó."\n¿Qué muestra eso de la nena?', a:'que fue valiente', o:['que fue valiente','que le encantaba cantar','que no tenía nervios','que era profesional']},
-        {q:'Lee: "El abuelo plantó semillas. Las regó cada día. Un mes después brotaron flores."\n¿Por qué brotaron las flores?', a:'porque las regó todos los días', o:['porque las regó todos los días','porque llovió mucho','porque hacía calor','porque eran especiales']},
-        {q:'Lee: "Todos aplaudieron cuando terminó de hablar. Ella sonrió aliviada."\n¿Por qué sonrió aliviada?', a:'porque le fue bien y la aplaudieron', o:['porque le fue bien y la aplaudieron','porque le dolían los pies','porque quería irse','porque era tarde']},
+        // Inferencia: el texto debe JUSTIFICAR la respuesta — distractores plausibles pero descartables
+        {q:'Lee: "Carla se fue de la fiesta sin despedirse de nadie. Al día siguiente no atendió el teléfono."\n¿Qué podés inferir del texto?', a:'Carla estaba enojada o molesta con alguien', o:['Carla estaba enojada o molesta con alguien','Carla estaba muy cansada','Carla tenía sueño','Carla perdió el teléfono']},
+        {q:'Lee: "El abuelo plantó semillas. Las regó cada día. Un mes después brotaron flores."\n¿Por qué brotaron las flores, según el texto?', a:'porque las cuidó todos los días', o:['porque las cuidó todos los días','porque llovió mucho','porque era primavera','no se puede saber por el texto']},
+        {q:'Lee: "La biblioteca estaba en silencio. Solo se escuchaba el pasar de las páginas. Un cartel decía: \"Silencio, por favor\"."\n¿Qué regla hay en ese lugar?', a:'hay que guardar silencio', o:['hay que guardar silencio','está prohibido leer','se puede hablar bajito','es un lugar de música']},
+        {q:'Lee: "Sofía revisó su mochila tres veces antes de salir. Miró el reloj continuamente."\n¿Cómo se sentía Sofía, según el texto?', a:'nerviosa o apurada', o:['nerviosa o apurada','aburrida','muy contenta','con sueño']},
+        {q:'Lee: "Nadie vino a su cumpleaños. La torta quedó sin cortar sobre la mesa."\n¿Qué se puede inferir sobre cómo se sintió?', a:'triste o decepcionada', o:['triste o decepcionada','sorprendida de felicidad','indiferente','muy enojada con todos']},
+        {q:'Lee: "Lucas corrió los últimos cien metros con todas sus fuerzas. Cruzó la meta primero."\n¿Qué logró Lucas?', a:'ganar la carrera', o:['ganar la carrera','llegar último','lesionarse','abandonar la carrera']},
+        {q:'Lee: "El cielo se puso gris. El viento empezó a soplar fuerte. Las personas cerraron sus paraguas."\n¿Qué está a punto de pasar, según el texto?', a:'va a llover', o:['va a llover','va a hacer mucho calor','va a haber un terremoto','va a salir el sol']},
+        {q:'Lee: "Martín llegó tarde, con la ropa sucia y una sonrisa enorme. Dijo: \"¡Ganamos!\"."\n¿Qué podés inferir?', a:'venía de un partido y su equipo ganó', o:['venía de un partido y su equipo ganó','se cayó en el camino','había trabajado mucho','venía de una fiesta']},
+        {q:'Lee: "La planta del balcón se secó. Sus hojas eran amarillas y el suelo estaba reseco."\n¿Qué le faltó a la planta, según el texto?', a:'agua', o:['agua','luz solar','tierra','espacio']},
+        {q:'Lee: "El restaurante estaba lleno. Había que esperar una hora para conseguir mesa."\n¿Qué se puede inferir?', a:'el restaurante era popular o famoso', o:['el restaurante era popular o famoso','la comida era cara','estaban de rebajas','era un día festivo obligatorio']},
+        {q:'Lee: "Cuando abrió el regalo, sus ojos se agrandaron y tapó su boca con las manos."\n¿Cómo reaccionó la persona?', a:'con sorpresa', o:['con sorpresa','con tristeza','con enojo','con indiferencia']},
+        {q:'Lee: "El nene miraba la vitrina de la juguetería sin moverse. Apretaba la nariz contra el vidrio."\n¿Qué quería el nene?', a:'algún juguete de la vitrina', o:['algún juguete de la vitrina','ver su reflejo','limpiar el vidrio','entrar a calentarse']},
       ],
       4:[
         {q:'Lee: "Los ríos arrastran sedimentos desde las montañas hasta el mar. Con el tiempo, esos sedimentos forman deltas y playas."\n¿Cuál es la idea principal?', a:'los ríos transportan materiales que forman nuevas formaciones geográficas', o:['los ríos transportan materiales que forman nuevas formaciones geográficas','los ríos nacen en las montañas','las playas son bonitas','el mar recibe agua dulce']},
@@ -933,7 +964,12 @@ function makeQ(g, topic, lv, idx, easy, diff){
     // Si el grado no tiene banco propio, usar el más cercano
     while(!byGrade[gradeKey] && gradeKey > 2) gradeKey--;
     let pool = byGrade[gradeKey];
-    let item = pool[idx % pool.length];
+    // Selección por nivel: cada nivel usa un segmento diferente del pool
+    // Si el pool tiene suficientes preguntas, nivel 1 usa las primeras, nivel 2 las siguientes, etc.
+    let _segSize = Math.min(pool.length, 6); // tamaño del segmento = QPL
+    let _startIdx = gs ? ((gs.lv - 1) * _segSize + _qOffset) % pool.length : (_qOffset % pool.length);
+    let _poolIdx = (_startIdx + idx) % pool.length;
+    let item = pool[_poolIdx];
     q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
 
   } else if(topic==='sustantivos'){
@@ -944,12 +980,19 @@ function makeQ(g, topic, lv, idx, easy, diff){
     // 6-7°: ANALIZAR función sintáctica del sustantivo en texto complejo
     const byGrade={
       3:[
-        {q:'Lee: "La maestra explica una lección difícil."\n¿Cuál es el sustantivo que nombra a una persona?', a:'maestra', o:['maestra','explica','difícil','una']},
-        {q:'Lee: "El perro de Ana ladra en el jardín."\n¿Cuántos sustantivos hay?', a:'3 (perro, Ana, jardín)', o:['3 (perro, Ana, jardín)','2','4','1']},
-        {q:'¿Cuál de estas palabras es un sustantivo?', a:'escuela', o:['escuela','correr','verde','rápido']},
-        {q:'Lee: "Los chicos juegan a la pelota en el patio."\n¿Cuál es el sustantivo propio?', a:'ninguno (no hay nombres propios)', o:['ninguno (no hay nombres propios)','chicos','pelota','patio']},
-        {q:'¿Cuál es el sustantivo en "El cielo azul brilla hoy"?', a:'cielo', o:['cielo','azul','brilla','hoy']},
-        {q:'"Valentina y Lucas son amigos." — ¿Cuáles son los sustantivos propios?', a:'Valentina y Lucas', o:['Valentina y Lucas','amigos','son','Valentina']},
+        // Vocabulario variado, sin paréntesis que induzcan respuesta
+        {q:'Lee: "El veterinario revisó al cachorro con cuidado."\n¿Cuál es el sustantivo que nombra a una persona?', a:'veterinario', o:['veterinario','revisó','cachorro','cuidado']},
+        {q:'Lee: "El cocinero preparó una sopa deliciosa."\n¿Cuántos sustantivos hay en la oración?', a:'2', o:['2','3','1','4']},
+        {q:'¿Cuál de estas palabras es un sustantivo?', a:'puente', o:['puente','saltar','verde','rápidamente']},
+        {q:'Lee: "El río Limay corre entre las montañas de Neuquén."\n¿Cuántos sustantivos propios hay?', a:'2', o:['2','1','3','4']},
+        {q:'¿Cuál es el sustantivo en "El viento frío dobló los árboles"?', a:'viento', o:['viento','frío','dobló','los']},
+        {q:'Lee: "Ramiro y su hermana viajan a Bariloche en tren."\n¿Cuáles son los sustantivos propios?', a:'Ramiro y Bariloche', o:['Ramiro y Bariloche','hermana y tren','Ramiro y hermana','viajan y tren']},
+        {q:'¿Cuál de estas NO es un sustantivo?', a:'correr', o:['correr','ciudad','amistad','carpeta']},
+        {q:'Lee: "La científica observó las estrellas con su telescopio."\n¿Cuántos sustantivos hay?', a:'3', o:['3','2','4','1']},
+        {q:'¿Cuál es el sustantivo en "El veloz tren llegó a la estación"?', a:'tren', o:['tren','veloz','llegó','la']},
+        {q:'Lee: "El equipo de fútbol festejó la victoria."\n¿Cuántos sustantivos hay?', a:'3', o:['3','2','4','1']},
+        {q:'¿Con qué artículo va "árbol"?', a:'el', o:['el','la','los','las']},
+        {q:'¿Cuál de estas palabras es un sustantivo abstracto?', a:'libertad', o:['libertad','mesa','río','Lucas']},
       ],
       4:[
         {q:'Lee: "La valentía del bombero salvó a tres familias."\n"Valentía" es un sustantivo...', a:'abstracto (no se puede tocar)', o:['abstracto (no se puede tocar)','concreto','propio','colectivo']},
@@ -977,7 +1020,12 @@ function makeQ(g, topic, lv, idx, easy, diff){
     let gradeKey = Math.min(7, Math.max(3, g));
     while(!byGrade[gradeKey] && gradeKey > 3) gradeKey--;
     let pool = byGrade[gradeKey];
-    let item = pool[idx % pool.length];
+    // Selección por nivel: cada nivel usa un segmento diferente del pool
+    // Si el pool tiene suficientes preguntas, nivel 1 usa las primeras, nivel 2 las siguientes, etc.
+    let _segSize = Math.min(pool.length, 6); // tamaño del segmento = QPL
+    let _startIdx = gs ? ((gs.lv - 1) * _segSize + _qOffset) % pool.length : (_qOffset % pool.length);
+    let _poolIdx = (_startIdx + idx) % pool.length;
+    let item = pool[_poolIdx];
     q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
 
   } else if(topic==='verbos'){
@@ -1022,31 +1070,55 @@ function makeQ(g, topic, lv, idx, easy, diff){
     let gradeKey = Math.min(7, Math.max(3, g));
     while(!byGrade[gradeKey] && gradeKey > 3) gradeKey--;
     let pool = byGrade[gradeKey];
-    let item = pool[idx % pool.length];
+    // Selección por nivel: cada nivel usa un segmento diferente del pool
+    // Si el pool tiene suficientes preguntas, nivel 1 usa las primeras, nivel 2 las siguientes, etc.
+    let _segSize = Math.min(pool.length, 6); // tamaño del segmento = QPL
+    let _startIdx = gs ? ((gs.lv - 1) * _segSize + _qOffset) % pool.length : (_qOffset % pool.length);
+    let _poolIdx = (_startIdx + idx) % pool.length;
+    let item = pool[_poolIdx];
     q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
 
   } else if(topic==='adjetivos'){
-    const banks=[
-      [
-        {q:'¿Cuál es el adjetivo en "La casa grande"?', a:'grande', o:['grande','casa','la','y']},
-        {q:'¿Cuál de estas palabras es un adjetivo?', a:'rojo', o:['rojo','correr','mesa','Juan']},
-        {q:'¿Qué adjetivo describe el color de algo?', a:'azul', o:['azul','alto','gordo','feo']},
-        {q:'¿Cuál es el adjetivo opuesto de "grande"?', a:'pequeño', o:['pequeño','alto','gordo','nuevo']},
-        {q:'¿Cuál es el adjetivo en "El niño inteligente resolvió el problema"?', a:'inteligente', o:['inteligente','niño','problema','resolvió']},
-        {q:'¿Cuál es el grado superlativo de "bueno"?', a:'óptimo', o:['óptimo','mejor','bonísimo','muy bueno']},
+    // ESPIRAL POR GRADO:
+    // 4°: identificar adjetivos en texto, grados simples (positivo/superlativo)
+    // 5°: grados comparativos, tipos de adjetivo (posesivo/demostrativo/numeral)
+    const byGrade={
+      4:[
+        {q:'Lee: "El científico realizó un experimento largo y costoso."\n¿Cuáles son los adjetivos?', a:'largo y costoso', o:['largo y costoso','científico','realizó','experimento']},
+        {q:'¿Cuál de estas palabras es un adjetivo?', a:'veloz', o:['veloz','correr','ciudad','amistad']},
+        {q:'¿Cuál es el adjetivo en "El volcán activo entró en erupción"?', a:'activo', o:['activo','volcán','erupción','entró']},
+        {q:'¿Cuál es el grado superlativo de "bueno"?', a:'óptimo', o:['óptimo','mejor','muy bueno','superior']},
+        {q:'Lee: "La película fue emocionante y divertida."\n¿Cuántos adjetivos hay?', a:'2', o:['2','1','3','4']},
+        {q:'¿Cuál es el adjetivo opuesto de "valiente"?', a:'cobarde', o:['cobarde','fuerte','rápido','alto']},
+        {q:'¿Cuál de estas palabras NO es un adjetivo?', a:'correr', o:['correr','triste','enorme','antiguo']},
+        {q:'Lee: "El río Paraná es caudaloso y extenso."\n¿Cuántos adjetivos hay?', a:'2', o:['2','3','1','4']},
+        {q:'¿Cuál es el superlativo de "malo"?', a:'pésimo', o:['pésimo','peor','muy malo','malísimo']},
+        {q:'¿Cuál es el adjetivo en "Una noche oscura y tormentosa"?', a:'oscura y tormentosa', o:['oscura y tormentosa','noche','una','tormentosa']},
+        {q:'Lee: "El cielo estaba despejado y luminoso."\n¿Los adjetivos concuerdan con qué sustantivo?', a:'cielo', o:['cielo','noche','agua','tierra']},
+        {q:'¿Cuál es el femenino de "veloz"?', a:'veloz (no cambia)', o:['veloz (no cambia)','veloza','veloza','veloci']},
       ],
-      [
-        {q:'"Un libro interesantísimo" — el sufijo -ísimo indica:', a:'grado superlativo', o:['grado superlativo','grado comparativo','grado positivo','plural']},
-        {q:'¿Cuál es el comparativo de superioridad de "alto"?', a:'más alto que', o:['más alto que','tan alto como','menos alto que','altísimo']},
-        {q:'"Ese chico es tan inteligente como su hermana" — es un comparativo de:', a:'igualdad', o:['igualdad','superioridad','inferioridad','superlativo']},
-      ],
-      [
-        {q:'¿Qué tipo de adjetivo es "primero" en "el primer día"?', a:'numeral ordinal', o:['numeral ordinal','calificativo','posesivo','demostrativo']},
+      5:[
+        {q:'"Un libro interesantísimo" — el sufijo -ísimo indica:', a:'grado superlativo absoluto', o:['grado superlativo absoluto','grado comparativo','grado positivo','grado relativo']},
+        {q:'"La ciudad es más grande que el pueblo" — ¿qué tipo de comparativo es?', a:'de superioridad', o:['de superioridad','de igualdad','de inferioridad','superlativo']},
         {q:'"Mi libro, tu carpeta, su mochila" — estos adjetivos son:', a:'posesivos', o:['posesivos','demostrativos','indefinidos','numerales']},
-      ]
-    ];
-    let bank=ediff<=2?banks[0]:ediff<=4?banks[1]:banks[2];
-    let item=bank[idx%bank.length];
+        {q:'"Este libro, ese cuaderno, aquel lápiz" — estos adjetivos son:', a:'demostrativos', o:['demostrativos','posesivos','numerales','calificativos']},
+        {q:'¿Cuál es el comparativo de inferioridad de "alto"?', a:'menos alto que', o:['menos alto que','más alto que','tan alto como','altísimo']},
+        {q:'"Ese chico es tan estudioso como su hermana" — es un comparativo de:', a:'igualdad', o:['igualdad','superioridad','inferioridad','superlativo']},
+        {q:'¿Qué tipo de adjetivo es "primero" en "el primer puesto"?', a:'numeral ordinal', o:['numeral ordinal','calificativo','posesivo','demostrativo']},
+        {q:'Lee: "Algunos estudiantes llegaron tarde."\n"Algunos" es un adjetivo:', a:'indefinido', o:['indefinido','posesivo','demostrativo','numeral']},
+        {q:'¿Cuál es el superlativo relativo de "alto"?', a:'el más alto', o:['el más alto','altísimo','más alto','muy alto']},
+        {q:'"Tres chicos" — el adjetivo "tres" es:', a:'numeral cardinal', o:['numeral cardinal','numeral ordinal','posesivo','indefinido']},
+        {q:'¿Cuándo concuerda el adjetivo con el sustantivo?', a:'siempre: en género y número', o:['siempre: en género y número','solo en número','solo en género','nunca es necesario']},
+        {q:'Lee: "Ningún alumno faltó a la clase."\n"Ningún" es un adjetivo:', a:'indefinido', o:['indefinido','numeral','posesivo','demostrativo']},
+      ],
+    };
+    let gradeKey=Math.min(5,Math.max(4,g));
+    if(!byGrade[gradeKey]) gradeKey=4;
+    let pool=byGrade[gradeKey];
+    let _segSizeAdj=Math.min(pool.length,6);
+    let _startIdxAdj=gs?((gs.lv-1)*_segSizeAdj+_qOffset)%pool.length:(_qOffset%pool.length);
+    let _poolIdxAdj=(_startIdxAdj+idx)%pool.length;
+    let item=pool[_poolIdxAdj];
     q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
 
   } else if(topic==='ortografía'){
@@ -1063,22 +1135,40 @@ function makeQ(g, topic, lv, idx, easy, diff){
         {q:'¿Cuál es la escritura correcta?', a:'caballo', o:['caballo','kavallo','caballlo','cabayo']},
         {q:'¿Cómo se escribe el número que sigue al 14?', a:'quince', o:['quince','quinse','kuince','quinze']},
         {q:'¿Cuál es la correcta para el color del cielo?', a:'azul', o:['azul','asul','azull','acul']},
+        {q:'¿Cómo se escribe el animal que maúlla?', a:'gato', o:['gato','jato','gatto','gato']},
+        {q:'¿Cómo se escribe el fruto rojo con pepitas?', a:'frutilla', o:['frutilla','frutiya','frutia','frutilla']},
+        {q:'¿Cómo se escribe el lugar donde dormís?', a:'cama', o:['cama','kama','camma','qama']},
+        {q:'¿Cuál es la correcta?', a:'zapato', o:['zapato','sapato','zapatto','capato']},
       ],
       3:[
-        {q:'"La ___aca da leche." ¿V o B?', a:'V (vaca)', o:['V (vaca)','B (baca)','cualquiera','depende']},
-        {q:'"El ___arco navega." ¿B o V?', a:'B (barco)', o:['B (barco)','V (varco)','cualquiera','depende']},
-        {q:'"Hay que tener ___uena actitud." ¿B o V?', a:'B (buena)', o:['B (buena)','V (vuena)','cualquiera','depende']},
-        {q:'"El cam___o tiene jorobas." ¿P o B antes de consonante?', a:'B (camello — no aplica), la regla es: MB — "cam___o"=B', o:['B (camello — no aplica), la regla es: MB — "cam___o"=B','P','V','cualquiera']},
-        {q:'¿"ham___re" se escribe con B o V?', a:'B (hambre) — regla MB', o:['B (hambre) — regla MB','V (hamvre)','cualquiera','P']},
-        {q:'¿"___uevo" lleva H o no?', a:'H (huevo) — la H es siempre muda', o:['H (huevo) — la H es siempre muda','sin H (uevo)','depende','las dos']},
+        // Distractores plausibles, sin respuesta inducida
+        {q:'¿Cómo se escribe el animal que da leche?', a:'vaca', o:['vaca','baca','vaka','baka']},
+        {q:'¿Cómo se escribe la embarcación que navega?', a:'barco', o:['barco','varco','barkco','varko']},
+        {q:'¿Cuál de estas está bien escrita?', a:'bueno', o:['bueno','vueno','bweno','güeno']},
+        {q:'¿Cómo se escribe la palabra que significa "deseo" o "gana"?', a:'hambre', o:['hambre','ambre','hamvré','amvré']},
+        {q:'¿Cuál está bien escrita? (animal que rebuzna)', a:'burro', o:['burro','vurro','buro','vuro']},
+        {q:'¿Cómo se escribe el alimento que pone la gallina?', a:'huevo', o:['huevo','uevo','güevo','huebo']},
+        {q:'¿Cuál de estas está bien escrita?', a:'caballo', o:['caballo','cavallo','kabayo','cavayo']},
+        {q:'¿Cómo se escribe el lugar donde vivís?', a:'casa', o:['casa','kasa','caza','cassa']},
+        {q:'¿Cuál está bien escrita? (sinónimo de "bonito")', a:'bello', o:['bello','vello','velo','belo']},
+        {q:'¿Cómo se escribe el árbol que da naranjas?', a:'naranjo', o:['naranjo','narango','naranxo','narancho']},
+        {q:'¿Cuál está bien escrita? (lo que hacés cuando dormís)', a:'sueño', o:['sueño','sueño','suenio','suennio']},
+        {q:'¿Cómo se escribe el medio de transporte con dos ruedas?', a:'bicicleta', o:['bicicleta','vicicleta','bisicleta','visicleta']},
       ],
       4:[
-        {q:'¿Por qué "HERVIR" lleva H?', a:'es una palabra que históricamente llevó H y se conservó', o:['es una palabra que históricamente llevó H y se conservó','porque empieza con E','porque es un verbo','por la regla del diptongo']},
-        {q:'"Ca___ó" (acción de caer). ¿Y o LL?', a:'Y (cayó) — los verbos irregulares con raíz en i usan Y', o:['Y (cayó) — los verbos irregulares con raíz en i usan Y','LL (calló)','depende','cualquiera']},
-        {q:'¿Cuál es la regla para "CAMPO" y no "CANPO"?', a:'antes de B y P siempre va M, nunca N', o:['antes de B y P siempre va M, nunca N','antes de consonante va N','es una excepción','la regla del MB']},
-        {q:'"El ___inete del médico." ¿G o J?', a:'G (gabinete) — GA, GO, GU se escriben con G', o:['G (gabinete) — GA, GO, GU se escriben con G','J (jabinete)','cualquiera','depende']},
-        {q:'"La ___irafa tiene el cuello largo." ¿G o J?', a:'J (jirafa) — GE, GI suenan igual que JE, JI: acá es J', o:['J (jirafa) — GE, GI suenan igual que JE, JI: acá es J','G (girafa)','cualquiera','depende del acento']},
-        {q:'¿Por qué "CARRO" lleva doble R y "PERO" no?', a:'la RR solo va entre vocales y suena fuerte; al inicio suena fuerte pero se escribe R simple', o:['la RR solo va entre vocales y suena fuerte; al inicio suena fuerte pero se escribe R simple','es aleatoria','depende del origen','todas las R fuertes llevan RR']},
+        // Sin reglas en las opciones, distractores reales, preguntas bien formuladas
+        {q:'¿Cuál de estas está bien escrita? (lo que hacés para no caerte)', a:'equilibrio', o:['equilibrio','equilívrio','equilíbrio','equilibvrio']},
+        {q:'¿Con qué letra se escribe el verbo de caer en "ayer me ___ del banco"?', a:'caí', o:['caí','callí','cayí','callé']},
+        {q:'¿Cuál de estas está bien escrita? (lo que sentís antes de un examen)', a:'nervios', o:['nervios','nervvios','nerbios','nerbvios']},
+        {q:'¿Cómo se escribe el animal con cuello muy largo?', a:'jirafa', o:['jirafa','girafa','xirafa','jirafa']},
+        {q:'¿Cuál de estas está bien escrita? (fruta tropical amarilla)', a:'naranja', o:['naranja','naranga','naranca','naranxa']},
+        {q:'¿Cómo se escribe el vehículo con dos ruedas a motor?', a:'moto', o:['moto','motta','motto','mouto']},
+        {q:'"Ca_ó" — ¿Y o LL? (acción de descender)', a:'cayó', o:['cayó','calló','cayio','callio']},
+        {q:'¿Cuál está bien escrita? (instrumento de dibujo técnico)', a:'regla', o:['regla','rregla','reglla','regelá']},
+        {q:'¿Cómo se escribe el animal de la selva con rayas negras?', a:'tigre', o:['tigre','tígre','tirgre','tigrre']},
+        {q:'¿Cuál de estas está bien escrita? (lo que hacés cuando dormís profundo)', a:'roncar', o:['roncar','rroncar','ronkar','ronckar']},
+        {q:'"El cu___illo tiene filo" — ¿CH o LL?', a:'cuchillo', o:['cuchillo','cuchillo','cuchiyo','cuchijllo']},
+        {q:'¿Cuál está bien escrita? (persona que cura a los animales)', a:'veterinario', o:['veterinario','beterinario','veterinário','beterinário']},
       ],
       5:[
         {q:'Lee: "El equipo hi_o un gran esfuerzo para ganar." ¿Z o C?', a:'C (hizo) — el pretérito de verbos en -CER/-CIR usa C', o:['C (hizo) — el pretérito de verbos en -CER/-CIR usa C','Z (hizo)','S (hiso)','depende']},
@@ -1097,7 +1187,12 @@ function makeQ(g, topic, lv, idx, easy, diff){
     let gradeKey = Math.min(7, Math.max(2, g));
     while(!byGrade[gradeKey] && gradeKey > 2) gradeKey--;
     let pool = byGrade[gradeKey];
-    let item = pool[idx % pool.length];
+    // Selección por nivel: cada nivel usa un segmento diferente del pool
+    // Si el pool tiene suficientes preguntas, nivel 1 usa las primeras, nivel 2 las siguientes, etc.
+    let _segSize = Math.min(pool.length, 6); // tamaño del segmento = QPL
+    let _startIdx = gs ? ((gs.lv - 1) * _segSize + _qOffset) % pool.length : (_qOffset % pool.length);
+    let _poolIdx = (_startIdx + idx) % pool.length;
+    let item = pool[_poolIdx];
     q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
 
   } else if(topic==='oraciones'){
@@ -1146,84 +1241,160 @@ function makeQ(g, topic, lv, idx, easy, diff){
     let gradeKey=Math.min(7,Math.max(3,g));
     while(!byGrade[gradeKey]&&gradeKey>3)gradeKey--;
     let pool=byGrade[gradeKey];
-    let item=pool[idx%pool.length];
+    let _segSize2=Math.min(pool.length,6);
+    let _startIdx2=gs?((gs.lv-1)*_segSize2+_qOffset)%pool.length:(_qOffset%pool.length);
+    let _poolIdx2=(_startIdx2+idx)%pool.length;
+    let item=pool[_poolIdx2];
     q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
 
   } else if(topic==='acentuación'){
-    const banks=[
-      [
-        {q:'"CAMIÓN" es una palabra:', a:'aguda', o:['aguda','grave','esdrújula','sobreesdrújula']},
-        {q:'"MESA" es una palabra:', a:'grave', o:['grave','aguda','esdrújula','paroxítona']},
-        {q:'"MÚSICA" es una palabra:', a:'esdrújula', o:['esdrújula','aguda','grave','paroxítona']},
-        {q:'¿Cuál lleva tilde? La palabra que significa "más de uno":', a:'más', o:['más','mas','maas','mas']},
-        {q:'¿Lleva tilde "EXAMEN"?', a:'no, es grave terminada en N', o:['no, es grave terminada en N','sí, es aguda','sí, es esdrújula','no, es aguda']},
-        {q:'"ÁRBOL" lleva tilde porque es…', a:'grave que termina en consonante (no n, s)', o:['grave que termina en consonante (no n, s)','aguda terminada en vocal','esdrújula','sobreesdrújula']},
+    const byGrade={
+      5:[
+        {q:'¿Cómo se clasifica "CAMIÓN" según su acento?', a:'aguda', o:['aguda','grave','esdrújula','sobreesdrújula']},
+        {q:'¿Cómo se clasifica "MESA"?', a:'grave', o:['grave','aguda','esdrújula','llana']},
+        {q:'¿Cómo se clasifica "MÚSICA"?', a:'esdrújula', o:['esdrújula','aguda','grave','llana']},
+        {q:'¿"EXAMEN" lleva tilde?', a:'no, es grave terminada en N', o:['no, es grave terminada en N','sí, es aguda','sí siempre','no, es aguda']},
+        {q:'¿Por qué "ÁRBOL" lleva tilde?', a:'es grave y termina en consonante que no es N ni S', o:['es grave y termina en consonante que no es N ni S','es aguda terminada en vocal','es esdrújula','no lleva tilde']},
+        {q:'¿"CAFÉ" lleva tilde? ¿Por qué?', a:'sí, es aguda terminada en vocal', o:['sí, es aguda terminada en vocal','no, es grave','no, es esdrújula','sí, es grave']},
+        {q:'¿"SÁBADO" lleva tilde? ¿Por qué?', a:'sí, es esdrújula', o:['sí, es esdrújula','no, es grave terminada en vocal','sí, es aguda','no lleva tilde']},
+        {q:'¿Cuál de estas palabras es aguda?', a:'café', o:['café','árbol','música','sábado']},
+        {q:'¿Cuál de estas palabras es esdrújula?', a:'pájaro', o:['pájaro','camión','mesa','café']},
+        {q:'¿Cuál de estas palabras NO lleva tilde?', a:'examen', o:['examen','música','árbol','sábado']},
+        {q:'¿Cómo se clasifica "TELÉFONO"?', a:'esdrújula', o:['esdrújula','aguda','grave','sobreesdrújula']},
+        {q:'¿Cuál de estas es grave y lleva tilde?', a:'árbol', o:['árbol','camión','pájaro','café']},
       ],
-      [
-        {q:'"SÁBADO" lleva tilde porque es…', a:'esdrújula (siempre llevan tilde)', o:['esdrújula (siempre llevan tilde)','aguda terminada en vocal','grave terminada en consonante','llana']},
-        {q:'¿Cuál lleva tilde diacrítica? El que consulta libros:', a:'él (pronombre)', o:['él (pronombre)','el (artículo)','ambos','ninguno']},
-        {q:'"CAFÉ" lleva tilde porque es una palabra:', a:'aguda terminada en vocal', o:['aguda terminada en vocal','grave terminada en vocal','esdrújula','no lleva tilde']},
-        {q:'¿Cuántas sílabas tiene "BIOLOGÍA"?', a:'5 (bio-lo-gí-a)', o:['5 (bio-lo-gí-a)','4 (bio-lo-gi-a)','4 (biol-o-gí-a)','3']},
+      6:[
+        {q:'¿Cuál lleva tilde diacrítica? (pronombre, no artículo)', a:'él', o:['él','el','ambos','ninguno']},
+        {q:'¿Cuándo lleva tilde "tú"?', a:'cuando es pronombre personal, no adjetivo posesivo', o:['cuando es pronombre personal, no adjetivo posesivo','siempre','nunca','cuando va al inicio']},
+        {q:'¿Cuándo lleva tilde "sí"?', a:'cuando significa afirmación o pronombre reflexivo', o:['cuando significa afirmación o pronombre reflexivo','siempre','nunca','cuando es conjunción condicional']},
+        {q:'"POLICÍA" lleva tilde porque tiene:', a:'hiato entre vocal abierta y cerrada tónica', o:['hiato entre vocal abierta y cerrada tónica','diptongo','es aguda','es esdrújula']},
+        {q:'¿Cuántas sílabas tiene "BIOLOGÍA"?', a:'5', o:['5','4','3','6']},
+        {q:'¿"GUION" lleva tilde según las normas actuales?', a:'no, se considera monosílabo', o:['no, se considera monosílabo','sí siempre','depende del contexto','sí, es diacrítica']},
+        {q:'¿Cuál de estos pares tiene tilde diacrítica?', a:'tú/tu', o:['tú/tu','casa/casá','árbol/arbol','mesa/mesá']},
+        {q:'"RÍO" lleva tilde porque:', a:'tiene hiato: I y O van en sílabas distintas', o:['tiene hiato: I y O van en sílabas distintas','es aguda terminada en vocal','es esdrújula','el diptongo lo requiere']},
+        {q:'¿Cuándo "más" lleva tilde?', a:'cuando es adverbio de cantidad, no conjunción', o:['cuando es adverbio de cantidad, no conjunción','siempre','nunca','solo en preguntas']},
+        {q:'¿Cuál de estas tiene diptongo?', a:'ciudad', o:['ciudad','día','frío','maíz']},
+        {q:'¿Qué es un hiato?', a:'dos vocales consecutivas en sílabas distintas', o:['dos vocales consecutivas en sílabas distintas','dos vocales en la misma sílaba','una vocal con tilde','dos consonantes juntas']},
+        {q:'¿"SOLO" lleva tilde según la RAE actual?', a:'no, las normas actuales no la requieren', o:['no, las normas actuales no la requieren','sí, cuando es adverbio','sí, es diacrítica','depende del escritor']},
       ],
-      [
-        {q:'"¿Por qué viniste?" — "por qué" se escribe así porque es:', a:'interrogativo (dos palabras)', o:['interrogativo (dos palabras)','causal (porque)','pronombre (porqué)','cualquiera sirve']},
-        {q:'"POLICÍA" tiene hiato porque:', a:'dos vocales que se pronuncian en sílabas distintas', o:['dos vocales que se pronuncian en sílabas distintas','forman diptongo','lleva tilde aguda','es esdrújula']},
-      ]
-    ];
-    let bank=ediff<=2?banks[0]:ediff<=4?banks[1]:banks[2];
-    let item=bank[idx%bank.length];
+      7:[
+        {q:'"No sé por qué llegó tarde." — ¿Por qué se escribe "por qué" separado y con tilde?', a:'es interrogativo indirecto', o:['es interrogativo indirecto','es causal','es pronombre','es conjunción']},
+        {q:'"Llegó tarde porque perdió el colectivo." — ¿Por qué "porque" va junto y sin tilde?', a:'es conjunción causal', o:['es conjunción causal','es interrogativo','es pronombre','lleva tilde siempre']},
+        {q:'"El porqué de su enojo nadie lo entiende." — ¿Por qué "porqué" va junto y con tilde?', a:'funciona como sustantivo', o:['funciona como sustantivo','es conjunción','es interrogativo','es adverbio']},
+        {q:'¿Cuál de estos casos necesita tilde diacrítica?', a:'mas/más', o:['mas/más','casa/casas','árbol/arboles','mesa/mesas']},
+        {q:'"Aún no llegó" vs "Aun así, lo intentó" — ¿cuál es la diferencia?', a:'aún con tilde = todavía; aun sin tilde = incluso', o:['aún con tilde = todavía; aun sin tilde = incluso','son equivalentes','ambas llevan tilde','ninguna lleva tilde']},
+        {q:'¿Cuándo se usa tilde en los pronombres interrogativos?', a:'siempre: qué, quién, cuál, cuándo, dónde, cómo, cuánto', o:['siempre: qué, quién, cuál, cuándo, dónde, cómo, cuánto','solo en preguntas directas','nunca llevan tilde','solo qué y quién']},
+        {q:'¿"SOLO" lleva tilde según la RAE actual?', a:'no, las normas actuales no la requieren', o:['no, las normas actuales no la requieren','sí, cuando es adverbio','sí, es diacrítica','depende del escritor']},
+        {q:'¿En qué caso se usa tilde en "que"?', a:'cuando es interrogativo o exclamativo', o:['cuando es interrogativo o exclamativo','siempre','nunca','cuando introduce subordinadas']},
+        {q:'¿"LÍDER" lleva tilde?', a:'sí, es grave y termina en R', o:['sí, es grave y termina en R','no, es aguda','no, las graves no llevan','sí, es esdrújula']},
+        {q:'¿"INTERVIU" lleva tilde?', a:'no, es aguda terminada en vocal', o:['no, es aguda terminada en vocal','sí, es grave','sí, es esdrújula','depende del uso']},
+        {q:'¿"ROBOT" lleva tilde?', a:'no, es grave terminada en T', o:['no, es grave terminada en T','sí, es aguda','sí, lleva tilde por excepción','no, es esdrújula']},
+        {q:'¿Los demostrativos (este, ese, aquel) llevan tilde?', a:'no, las normas actuales los escriben sin tilde', o:['no, las normas actuales los escriben sin tilde','sí siempre','solo cuando son pronombres','solo este y ese']},
+      ],
+    };
+    let gradeKeyAc=Math.min(7,Math.max(5,g));
+    if(!byGrade[gradeKeyAc]) gradeKeyAc=5;
+    let poolAc=byGrade[gradeKeyAc];
+    let _segSizeAc=Math.min(poolAc.length,6);
+    let _startIdxAc=gs?((gs.lv-1)*_segSizeAc+_qOffset)%poolAc.length:(_qOffset%poolAc.length);
+    let _poolIdxAc=(_startIdxAc+idx)%poolAc.length;
+    let item=poolAc[_poolIdxAc];
     q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
 
-  } else if(topic==='signos'){
-    const banks=[
-      [
-        {q:'¿Qué signo va al final de una pregunta?', a:'?', o:['?','!','.','...']},
-        {q:'¿Qué signo va al final de una exclamación?', a:'!', o:['!','?','.','...']},
-        {q:'¿Qué signo separa ideas dentro de una oración?', a:',', o:[',','.','!','?']},
-        {q:'"Compré manzanas, peras y naranjas" — la coma se usa para:', a:'enumerar', o:['enumerar','separar oraciones','hacer pausa larga','expresar emoción']},
-        {q:'Los puntos suspensivos (...) se usan para:', a:'dejar algo incompleto o en suspenso', o:['dejar algo incompleto o en suspenso','terminar una oración','hacer una pregunta','expresar alegría']},
-        {q:'¿En qué momento se usa mayúscula?', a:'Al inicio de oración y en nombres propios', o:['Al inicio de oración y en nombres propios','Solo en nombres propios','Al azar','Solo al inicio']},
+    } else if(topic==='signos'){
+    const byGrade={
+      5:[
+        {q:'¿Qué signo va al final de una oración que pregunta?', a:'?', o:['?','!','.','...']},
+        {q:'¿Qué signo va al final de una oración que expresa emoción?', a:'!', o:['!','?','.','...']},
+        {q:'"Compré pan, leche y huevos." — ¿Para qué se usó la coma?', a:'para enumerar', o:['para enumerar','para separar oraciones','para pausa larga','para emoción']},
+        {q:'¿Cuándo se usa mayúscula?', a:'al inicio de oración y en nombres propios', o:['al inicio de oración y en nombres propios','solo en nombres propios','después de coma','en palabras importantes']},
+        {q:'Los puntos suspensivos (...) se usan para:', a:'dejar algo sin terminar o crear suspenso', o:['dejar algo sin terminar o crear suspenso','terminar una oración','hacer preguntas','enumerar']},
+        {q:'"Aunque llovía, salimos igual." — ¿Para qué se usó la coma?', a:'para separar la proposición subordinada', o:['para separar la proposición subordinada','para enumerar','por estética','para reemplazar el punto']},
+        {q:'¿Cuántos signos de apertura exclusivos tiene el español?', a:'2 (¿ y ¡)', o:['2 (¿ y ¡)','1','3','ninguno']},
+        {q:'"Llegué, saludé, me fui." — ¿Qué indica la coma?', a:'separa acciones de la misma persona', o:['separa acciones de la misma persona','enumera objetos','introduce explicación','reemplaza punto y coma']},
+        {q:'¿Qué signo va después del saludo en una carta formal? ("Estimada doctora:")', a:'dos puntos (:)', o:['dos puntos (:)','coma','punto','punto y coma']},
+        {q:'"Había una solución: salir corriendo." — Los dos puntos anuncian:', a:'una explicación', o:['una explicación','una enumeración larga','una pregunta','un nombre propio']},
+        {q:'¿Qué signo delimita una aclaración? "Mi colega —la más experimentada— resolvió el problema."', a:'raya (—)', o:['raya (—)','guión (-)','coma','paréntesis']},
+        {q:'¿Cuándo se usa punto y aparte?', a:'cuando se cambia de tema o párrafo', o:['cuando se cambia de tema o párrafo','después de cada oración','solo al final','cuando la línea se llena']},
       ],
-      [
-        {q:'¿Qué signo introduce una aclaración? "Mi amigo —el más alto— llegó tarde"', a:'raya (—)', o:['raya (—)','guión (-)','coma (,)','punto y coma (;)']},
-        {q:'El punto y coma (;) se usa para:', a:'separar oraciones relacionadas con pausa mayor que la coma', o:['separar oraciones relacionadas con pausa mayor que la coma','hacer una pregunta','terminar un párrafo','enumerar siempre']},
-        {q:'¿Cuándo se usan comillas?', a:'Para citar palabras textuales o títulos', o:['Para citar palabras textuales o títulos','Siempre después de punto','Para enumerar','Nunca se usan']},
+      6:[
+        {q:'¿Para qué se usan las comillas?', a:'para reproducir palabras textuales o destacar términos', o:['para reproducir palabras textuales o destacar términos','para indicar ironía siempre','para abrir diálogos','para títulos siempre']},
+        {q:'¿Qué diferencia hay entre el guión (-) y la raya (—)?', a:'el guión une palabras; la raya introduce aclaraciones o diálogos', o:['el guión une palabras; la raya introduce aclaraciones o diálogos','son lo mismo','el guión es más largo','la raya se usa al inicio']},
+        {q:'El punto y coma (;) se usa para:', a:'separar oraciones relacionadas con pausa mayor que la coma', o:['separar oraciones relacionadas con pausa mayor que la coma','hacer preguntas','terminar el texto','enumerar siempre']},
+        {q:'"Trajo todo: cuaderno, lapicera y regla." — Los dos puntos introducen:', a:'una enumeración', o:['una enumeración','una pregunta','una aclaración parentética','un diálogo']},
+        {q:'¿Cuándo se usa la raya para abrir diálogo?', a:'al inicio de cada parlamento en un diálogo narrativo', o:['al inicio de cada parlamento en un diálogo narrativo','siempre que alguien habla','solo en obras de teatro','después del punto']},
+        {q:'¿Cuándo no va coma antes de "y"?', a:'cuando une dos elementos simples sin enumeración previa', o:['cuando une dos elementos simples sin enumeración previa','nunca va coma antes de y','siempre va coma antes de y','cuando hay más de dos elementos']},
+        {q:'"Llegó tarde; sin embargo, terminó primero." — El punto y coma separa:', a:'dos oraciones con nexo adversativo', o:['dos oraciones con nexo adversativo','una enumeración','una aclaración','una cita']},
+        {q:'¿Dónde va el punto en relación a las comillas de cierre?', a:'después de las comillas de cierre', o:['después de las comillas de cierre','antes de las comillas','dentro siempre','no va punto si hay comillas']},
+        {q:'¿Para qué se usan los paréntesis?', a:'para agregar información complementaria', o:['para agregar información complementaria','para citar textualmente','para indicar ironía','para abrir diálogos']},
+        {q:'"La reunión fue un éxito (aunque llegamos tarde)." — Los paréntesis encierran:', a:'una aclaración secundaria', o:['una aclaración secundaria','una enumeración','el tema principal','una cita']},
+        {q:'¿Cuándo se usan puntos suspensivos entre corchetes ([...])?', a:'para indicar que se omitió parte de una cita', o:['para indicar que se omitió parte de una cita','para hacer suspenso','para separar párrafos','para ironía']},
+        {q:'¿Qué signo abre y cierra una explicación dentro de otra?', a:'paréntesis ( )', o:['paréntesis ( )','comillas','raya —','corchetes [ ]']},
       ],
-      [
-        {q:'"El director dijo: «Mañana hay feriado»" — las comillas indican:', a:'discurso directo (cita textual)', o:['discurso directo (cita textual)','ironía','énfasis','título de obra']},
-        {q:'¿Qué diferencia hay entre ":" y ";"?', a:'Los dos puntos anuncian, el punto y coma separa', o:['Los dos puntos anuncian, el punto y coma separa','Son lo mismo','El ; anuncia y el : separa','Ninguna']},
-      ]
-    ];
-    let bank=ediff<=2?banks[0]:ediff<=4?banks[1]:banks[2];
-    let item=bank[idx%bank.length];
+      7:[
+        {q:'"El gobierno anunció nuevas medidas; los ciudadanos aguardaban." — ¿Por qué punto y coma?', a:'separa dos oraciones largas relacionadas', o:['separa dos oraciones largas relacionadas','enumera elementos','introduce cita','es decorativo']},
+        {q:'¿Cuándo va coma antes de "pero"?', a:'siempre que introduce una oración adversativa', o:['siempre que introduce una oración adversativa','nunca','solo si la oración es larga','cuando hay sujeto diferente']},
+        {q:'¿Cuál es la función de las comillas en un apodo? (Juan el "Toro" Pérez)', a:'destacar el sobrenombre', o:['destacar el sobrenombre','citar textualmente','indicar ironía','abrir diálogo']},
+        {q:'¿Dónde van los signos de interrogación cuando están dentro de un estilo directo?', a:'dentro de las comillas', o:['dentro de las comillas','fuera','se omiten','se reemplazan por puntos']},
+        {q:'¿Cuándo se puede dividir una palabra al final del renglón con guión?', a:'solo entre sílabas, nunca dentro de una sílaba', o:['solo entre sílabas, nunca dentro de una sílaba','en cualquier parte','después de vocales','antes de consonantes dobles']},
+        {q:'"¡Increíble!, exclamó." — ¿Hay error de puntuación?', a:'sí: después de ¡! no va coma', o:['sí: después de ¡! no va coma','no, está correcto','sí: falta punto','sí: sobra la coma y el punto']},
+        {q:'¿Para qué se usan los corchetes [ ]?', a:'para agregar aclaraciones dentro de una cita textual', o:['para agregar aclaraciones dentro de una cita textual','igual que los paréntesis siempre','para títulos','para diálogos']},
+        {q:'"La ley 1234/98 —aprobada en diciembre— entró en vigencia en enero." — Las rayas encierran:', a:'una aclaración parentética dentro de la oración', o:['una aclaración parentética dentro de la oración','una cita textual','una enumeración','el sujeto de la oración']},
+      ],
+    };
+    let gradeKeySig=Math.min(7,Math.max(5,g));
+    if(!byGrade[gradeKeySig]) gradeKeySig=5;
+    let poolSig=byGrade[gradeKeySig];
+    let _segSizeSig=Math.min(poolSig.length,6);
+    let _startIdxSig=gs?((gs.lv-1)*_segSizeSig+_qOffset)%poolSig.length:(_qOffset%poolSig.length);
+    let _poolIdxSig=(_startIdxSig+idx)%poolSig.length;
+    let item=poolSig[_poolIdxSig];
     q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
 
-  } else if(topic==='textos'){
-    const banks=[
-      [
-        {q:'¿Qué tipo de texto narra una historia inventada con personajes?', a:'cuento', o:['cuento','noticia','receta','poema']},
-        {q:'¿Qué tipo de texto informa sobre un hecho real reciente?', a:'noticia', o:['noticia','cuento','fábula','carta']},
-        {q:'¿Qué tipo de texto da instrucciones paso a paso?', a:'texto instructivo', o:['texto instructivo','cuento','noticia','poema']},
-        {q:'¿Qué característica tiene un poema?', a:'Está escrito en versos', o:['Está escrito en versos','Informa hechos reales','Da instrucciones','Tiene sujeto y predicado']},
-        {q:'¿Qué tipo de texto explica cómo se produce un fenómeno?', a:'texto expositivo', o:['texto expositivo','narrativo','instructivo','poético']},
-        {q:'La fábula siempre termina con:', a:'una moraleja', o:['una moraleja','un diálogo','una receta','una noticia']},
-      ],
-      [
+    } else if(topic==='textos'){
+    // ESPIRAL POR GRADO:
+    // 6°: tipos de texto + estructura + narrador + conectores
+    // 7°: análisis de textos literarios, recursos, intención del autor
+    const byGrade={
+      6:[
+        {q:'¿Qué tipo de texto narra una historia inventada con personajes y conflicto?', a:'cuento', o:['cuento','noticia','informe','receta']},
+        {q:'¿Qué tipo de texto informa sobre un hecho real y reciente?', a:'noticia', o:['noticia','cuento','fábula','carta']},
+        {q:'¿Qué tipo de texto explica cómo funciona algo o por qué ocurre un fenómeno?', a:'expositivo', o:['expositivo','narrativo','instructivo','poético']},
         {q:'¿Cuáles son las partes del cuento?', a:'inicio, nudo y desenlace', o:['inicio, nudo y desenlace','introducción y conclusión','título y texto','planteo y moraleja']},
-        {q:'"Había una vez un dragón..." — comienza con fórmula de:', a:'cuento', o:['cuento','noticia','carta','obra de teatro']},
-        {q:'¿Qué tipo de texto tiene "yo te escribo para contarte..."?', a:'carta o email', o:['carta o email','noticia','cuento','fábula']},
-        {q:'¿Qué tipo de narrador participa en la historia?', a:'protagonista (1ra persona)', o:['protagonista (1ra persona)','omnisciente (3ra)','testigo (1ra ajena)','autor real']},
+        {q:'¿Qué tipo de narrador dice "yo vi lo que pasó"?', a:'testigo en 1ra persona', o:['testigo en 1ra persona','omnisciente en 3ra','protagonista en 1ra','externo en 3ra']},
+        {q:'"Sin embargo, aunque, a pesar de" son conectores:', a:'adversativos o concesivos', o:['adversativos o concesivos','causales','consecutivos','temporales']},
+        {q:'¿Qué es la cohesión textual?', a:'los mecanismos que unen las oraciones entre sí', o:['los mecanismos que unen las oraciones entre sí','que el texto tenga buena ortografía','que el texto sea corto','que las ideas sean originales']},
+        {q:'"Por lo tanto, en consecuencia, así que" son conectores:', a:'consecutivos', o:['consecutivos','causales','adversativos','temporales']},
+        {q:'¿Qué diferencia hay entre narrador protagonista y omnisciente?', a:'el protagonista es personaje; el omnisciente lo sabe todo desde afuera', o:['el protagonista es personaje; el omnisciente lo sabe todo desde afuera','son lo mismo','el omnisciente está dentro de la historia','el protagonista habla en 3ra persona']},
+        {q:'Un texto argumentativo tiene como objetivo:', a:'convencer al lector de una postura', o:['convencer al lector de una postura','narrar una historia','explicar un proceso','dar instrucciones']},
+        {q:'¿Qué es la intertextualidad?', a:'cuando un texto hace referencia a otro texto', o:['cuando un texto hace referencia a otro texto','cuando un texto tiene muchas páginas','cuando un texto rima','cuando un texto es difícil']},
+        {q:'"Ya que, porque, puesto que" son conectores:', a:'causales', o:['causales','consecutivos','adversativos','temporales']},
       ],
-      [
-        {q:'¿Qué es la coherencia en un texto?', a:'Que las ideas estén bien conectadas y tengan sentido', o:['Que las ideas estén bien conectadas y tengan sentido','Que no tenga errores ortográficos','Que sea corto','Que rime']},
-        {q:'"Por lo tanto, entonces, así que" son conectores:', a:'consecutivos', o:['consecutivos','causales','adversativos','temporales']},
-      ]
-    ];
-    let bank=ediff<=2?banks[0]:ediff<=4?banks[1]:banks[2];
-    let item=bank[idx%bank.length];
+      7:[
+        {q:'¿Qué es el punto de vista del narrador y cómo afecta al texto?', a:'la perspectiva desde la que se cuenta la historia, que determina qué información se revela', o:['la perspectiva desde la que se cuenta la historia, que determina qué información se revela','el lugar donde ocurre la historia','la opinión del autor real','la posición física del personaje']},
+        {q:'¿Qué recurso usa un texto cuando dice "El tiempo es oro"?', a:'metáfora', o:['metáfora','símil','personificación','hipérbole']},
+        {q:'¿Qué diferencia hay entre el autor y el narrador?', a:'el autor es quien escribe; el narrador es una voz ficticia dentro del texto', o:['el autor es quien escribe; el narrador es una voz ficticia dentro del texto','son lo mismo','el narrador es real; el autor es ficticio','el autor siempre narra en 1ra persona']},
+        {q:'Un texto expositivo-argumentativo combina:', a:'explicación de un tema con defensa de una postura', o:['explicación de un tema con defensa de una postura','narración y poesía','instrucciones y diálogos','descripción e instrucciones']},
+        {q:'¿Qué es el paratexto?', a:'todo lo que rodea al texto: título, subtítulos, imágenes, epígrafes', o:['todo lo que rodea al texto: título, subtítulos, imágenes, epígrafes','el texto principal','la conclusión','la bibliografía']},
+        {q:'¿Qué función tiene un epígrafe?', a:'anticipar o enmarcar el sentido del texto que le sigue', o:['anticipar o enmarcar el sentido del texto que le sigue','resumir el texto','citar al autor','dar instrucciones de lectura']},
+        {q:'¿Qué es la intertextualidad en la literatura?', a:'cuando una obra hace referencia o dialoga con otra obra', o:['cuando una obra hace referencia o dialoga con otra obra','cuando el texto tiene muchos personajes','cuando hay muchas palabras difíciles','cuando el autor cita su propia obra']},
+        {q:'¿Qué es el verosímil en una obra literaria?', a:'la lógica interna que hace que el mundo narrado sea creíble en sus propios términos', o:['la lógica interna que hace que el mundo narrado sea creíble en sus propios términos','que la historia sea real','que el texto no tenga errores','que los personajes sean reales']},
+        {q:'¿Cómo se llama el recurso que usa preguntas que no esperan respuesta? ("¿Para qué sirve vivir sin libertad?")', a:'pregunta retórica', o:['pregunta retórica','interrogativo','hipérbole','anáfora']},
+        {q:'¿Qué es la anáfora?', a:'repetición de una misma palabra o frase al inicio de versos u oraciones', o:['repetición de una misma palabra o frase al inicio de versos u oraciones','comparación con como','personificación','pregunta sin respuesta']},
+        {q:'¿Cuál es la diferencia entre tema y tópico literario?', a:'el tema es el asunto general; el tópico es un motivo recurrente en la literatura universal', o:['el tema es el asunto general; el tópico es un motivo recurrente en la literatura universal','son sinónimos','el tópico es más específico que el tema','el tema es exclusivo de la poesía']},
+        {q:'¿Qué es la función poética del lenguaje?', a:'cuando el lenguaje busca crear belleza o efecto estético más allá del significado', o:['cuando el lenguaje busca crear belleza o efecto estético más allá del significado','cuando el texto informa','cuando el texto convence','cuando el texto da instrucciones']},
+      ],
+    };
+    let gradeKeyTex=Math.min(7,Math.max(6,g));
+    if(!byGrade[gradeKeyTex]) gradeKeyTex=6;
+    let poolTex=byGrade[gradeKeyTex];
+    let _segSizeTex=Math.min(poolTex.length,6);
+    let _startIdxTex=gs?((gs.lv-1)*_segSizeTex+_qOffset)%poolTex.length:(_qOffset%poolTex.length);
+    let _poolIdxTex=(_startIdxTex+idx)%poolTex.length;
+    let item=poolTex[_poolIdxTex];
     q=item.q; answer=item.a; opts=shuffle(item.o).map(v=>({key:v,html:v}));
 
-  } else if(topic==='sinónimos'){
+    } else if(topic==='sinónimos'){
     const banks=[
       [
         {q:'"Grande" y "enorme" significan casi lo mismo. Estas palabras son:', a:'sinónimos', o:['sinónimos','antónimos','iguales','opuestas']},
@@ -1313,6 +1484,7 @@ function makeQ(g, topic, lv, idx, easy, diff){
    GAME STATE & ADAPTIVE DIFF
 ═══════════════════════════ */
 let gs={lv:1,score:0,lives:3,cur:0,qs:[],answered:false,correct:0,combo:1,maxCombo:1,timerID:null,timeLeft:TIMER,fastCount:0,reinforceMode:false,hintShown:false,diff:1,consecutiveCorrect:0,consecutiveWrong:0};
+let _qOffset=0; // offset aleatorio para rotación de preguntas
 let noTimerMode=false;
 let gsApaErrors=0, apaShownForCurrent=false;
 
@@ -1333,6 +1505,7 @@ function startGame(lv,reinforceMode){
   let nb=document.getElementById('no-timer-btn');
   if(nb){nb.textContent='⏸ Sin tiempo';nb.style.background='rgba(255,255,255,.12)';nb.style.color='rgba(255,255,255,.7)';}
   gsApaErrors=0;apaShownForCurrent=false;
+  _qOffset=Math.floor(Math.random()*100) + gs.lv * 7; // nivel afecta punto de inicio
   gs.qs=Array.from({length:QPL},(_,i)=>makeQ(currentGrade.id,currentTopic,lv,i,reinforceMode,gs.diff));
   document.getElementById('hud-lv').textContent=TOPICS[currentTopic].name+' · Nivel '+lv+(reinforceMode?' 🔁':'');
   document.getElementById('hint-banner').classList.remove('show');
@@ -1409,6 +1582,12 @@ function renderQ(){
       b.style.padding='1rem .8rem';
       b.style.letterSpacing='.05em';
     });
+    // Convertir mini-bubble a mayúsculas para 1° y 2°
+    let mb=document.getElementById('mini-bubble');
+    if(mb) mb.textContent=mb.textContent.toUpperCase();
+    // Convertir q-num a mayúsculas
+    let qn=document.getElementById('q-num');
+    if(qn) qn.textContent=qn.textContent.toUpperCase();
   }
   startTimer();
 }
@@ -1427,12 +1606,12 @@ function updateTimerBar(){
 function timeOut(){
   gs.answered=true;gs.combo=1;gs.lives--;adaptDifficulty(false);
   setMouth('gm-mouth',false);setSay('mini-bubble','timeout');
-  document.getElementById('fb').textContent='⏰ ¡Tiempo!';document.getElementById('fb').className='fb no';
+  document.getElementById('fb').textContent='⏰ ¡SE ACABÓ EL TIEMPO! VAMOS, VOS PODÉS';document.getElementById('fb').className='fb no';document.getElementById('fb').style.fontSize='14px';document.getElementById('fb').style.fontWeight='900';
   updateLives();
   let allBtns=document.querySelectorAll('.opt');
   gs.qs[gs.cur].opts.forEach((opt,i)=>{if(opt.key===gs.qs[gs.cur].answer)allBtns[i].classList.add('show');});
   sndTimeout();
-  setTimeout(()=>{gs.cur++;if(gs.lives<=0||gs.cur>=QPL)showResult();else{gs.qs[gs.cur]=makeQ(currentGrade.id,currentTopic,gs.lv,gs.cur,gs.reinforceMode,gs.diff);renderQ();}},1300);
+  setTimeout(()=>{gs.cur++;if(gs.lives<=0||gs.cur>=QPL)showResult();else{gs.qs[gs.cur]=makeQ(currentGrade.id,currentTopic,gs.lv,gs.cur,gs.reinforceMode,gs.diff);renderQ();}},2200);
 }
 
 function checkAns(key,btn,q){
@@ -1465,7 +1644,13 @@ function checkAns(key,btn,q){
     updateLives();
     let allBtns=document.querySelectorAll('.opt');
     q.opts.forEach((opt,i)=>{if(opt.key===q.answer)allBtns[i].classList.add('show');});
-    fb.textContent='¡Casi! La respuesta correcta es: '+q.answer;fb.className='fb no';
+    // Feedback amigable sin revelar la respuesta
+    let _hints_fb = ['¡Casi! Pensalo de nuevo 💪','¡No te rindas, seguí intentando!','¡Estuvo cerca! ¿Lo revisamos?','¡Casi! Mirá las opciones con calma'];
+    fb.textContent = _hints_fb[Math.floor(Math.random()*_hints_fb.length)];
+    fb.className='fb no';
+    fb.style.fontSize='15px';
+    fb.style.fontWeight='900';
+    fb.style.minHeight='36px';
     setMouth('gm-mouth',false);setSay('mini-bubble','fail');sndWrong();adaptDifficulty(false);
   }
   document.getElementById('hud-combo').textContent='✨ ×'+gs.combo;
@@ -1474,7 +1659,7 @@ function checkAns(key,btn,q){
     gs.cur++;
     if(gs.lives<=0||gs.cur>=QPL)showResult();
     else{gs.qs[gs.cur]=makeQ(currentGrade.id,currentTopic,gs.lv,gs.cur,gs.reinforceMode,gs.diff);renderQ();}
-  },1300);
+  },2200);
 }
 
 function updateLives(){document.getElementById('hud-lives').querySelectorAll('span').forEach((s,i)=>{s.style.opacity=i<gs.lives?1:.2;});}
@@ -1506,6 +1691,7 @@ function showResult(){
   document.getElementById('ap-sub').innerHTML=gs.correct+' de '+QPL+' correctas · '+gs.score+' puntos<br><span style="color:'+DIFF_COLORS[gs.diff]+'">'+DIFF_LABELS[gs.diff]+'</span>'+(gs.lives<=0?'<br>Se te fueron todas las vidas 💔':'');
   let rb=document.getElementById('rec-box'),ri=document.getElementById('rec-icon'),rt=document.getElementById('rec-title'),rd=document.getElementById('rec-desc');
   let actions=document.getElementById('ap-actions');actions.innerHTML='';
+  let _btnCase = (s) => (currentGrade && currentGrade.id <= 2) ? s.toUpperCase() : s;
   let nextLv=gs.lv+1,sameLv=gs.lv,prevLv=Math.max(1,gs.lv-1);
   if(unlocked&&nextLv<=ML){
     rb.className='rec-box go-up';ri.textContent='🚀';
@@ -1535,6 +1721,14 @@ function showResult(){
   if(gs.correct===QPL&&gs.lives===3)bd.innerHTML+='<span class="rbadge rb-clean">🏅 Sin errores</span>';
   if(gs.fastCount>=3)bd.innerHTML+='<span class="rbadge rb-speed">⚡ Velocidad</span>';
   if(p.badStreak>=3)bd.innerHTML+='<span class="rbadge rb-keep">💙 ¡Persistencia!</span>';
+  // Convertir textos de botones a mayúsculas para 1° y 2°
+  if(currentGrade && currentGrade.id <= 2){
+    actions.querySelectorAll && setTimeout(()=>{
+      document.querySelectorAll('#ap-actions button').forEach(b=>{
+        b.innerHTML = b.innerHTML.replace(/([a-záéíóúüñ]{2,})/gi, m => m.toUpperCase());
+      });
+    }, 50);
+  }
   if(stars>=2||unlocked)setTimeout(()=>confetti(),400);
   if(unlocked)setTimeout(()=>sndUnlock(),600);else if(stars===3)setTimeout(()=>sndPerfect(),300);else if(stars===0)sndWrong();
   go('s-result');
@@ -1554,7 +1748,7 @@ function computeMission(grade){
   let tid,lv,mode,title,sub;
   if(toReinforce){tid=toReinforce;let p=getP(grade.id,tid);lv=Math.max(1,p.ml-1);mode='reinforce';title='Repasemos '+TOPICS[tid].name;sub='Funsi vio que necesitás más práctica 💪';}
   else if(toAdvance){tid=toAdvance.tid;lv=toAdvance.lv;mode='advance';title='¡Subí al Nivel '+lv+' de '+TOPICS[tid].name+'!';sub='¡La estás rompiendo! 🚀';}
-  else{let fresh=topics.find(t=>getP(grade.id,t).attempts===0);if(fresh){tid=fresh;lv=1;mode='new';title='¡Empecemos con '+TOPICS[tid].name+'!';sub='Tema nuevo — ¡Funsi te guía! 🌟';}else{tid=weakest||topics[0];let p=getP(grade.id,tid);lv=p.ml;mode='practice';title='Practicá '+TOPICS[tid].name;sub='Un poco más de práctica para afianzarlo';}}
+  else{let fresh=topics.find(t=>getP(grade.id,t).attempts===0);if(fresh){tid=fresh;lv=1;mode='new';let _p=getP(gr.id,fresh);title='¡Empecemos con '+TOPICS[tid].name+'!';sub=_p.attempts===0?'¡Tema nuevo! Funsi te guía 🌟':'¡Seguís practicando '+TOPICS[tid].name+'!';}else{tid=weakest||topics[0];let p=getP(grade.id,tid);lv=p.ml;mode='practice';title='Practicá '+TOPICS[tid].name;sub='Un poco más de práctica para afianzarlo';}}
   pendingMission={tid,lv,mode};
   document.getElementById('mission-title').textContent=title;
   document.getElementById('mission-sub').textContent=sub;
@@ -1570,7 +1764,14 @@ function launchMission(){if(!pendingMission)return;currentTopic=pendingMission.t
 /* ═══════════════════════════
    RENDER SCREENS
 ═══════════════════════════ */
-function go(id){document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));let el=document.getElementById(id);if(el)el.classList.add('on');window.scrollTo(0,0);}
+function go(id){
+  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
+  let el=document.getElementById(id);if(el)el.classList.add('on');
+  // Re-renderizar pantallas dinámicas al navegar
+  if(id==='s-dash' && currentGrade) renderDash(currentGrade);
+  if(id==='s-home'){renderGrades();updateXPBar();renderBadgeShelf();}
+  window.scrollTo(0,0);
+}
 function renderGrades(){
   let g=document.getElementById('grade-grid');g.innerHTML='';
   GRADES.forEach(gr=>{
@@ -1683,15 +1884,15 @@ function doReset(){prog={};totalXP=0;globalStreak=0;unlockedBadges=[];ortografia
 ═══════════════════════════ */
 var APA_DATA={
   lectura:{title:'Cómo leer y comprender un texto',
-    b1:'Para responder bien, primero hay que leer el texto con atención. La respuesta siempre está en el texto, ¡no hay que inventar! 😊',
-    s1:[{n:'1',t:'Leé el texto entero sin apuro'},{n:'2',t:'Leé la pregunta y buscá la palabra clave'},{n:'3',t:'Volvé al texto y encontrá esa parte'}],
-    e1:[{a:false,t:'"El gato duerme en el sillón azul."'},{a:false,t:'Pregunta: ¿Dónde duerme el gato?'},{a:true,t:'→ Busco en el texto "duerme"'},{a:true,t:'→ Respuesta: en el sillón azul ✅'}],
-    f1:'1. Leé todo el texto\n2. ¿Qué te pregunta exactamente?\n3. Volvé al texto y encontrá esa parte\n¡La respuesta siempre está en el texto!',
-    b2:'A veces la respuesta no está dicha directamente — hay que pensar un poco 😊',
-    s2:[{n:'1',t:'Preguntate: ¿por qué pasó eso?'},{n:'2',t:'¿Qué siente o piensa el personaje?'},{n:'3',t:'Elegí la opción que más encaje con el texto'}],
-    e2:[{a:false,t:'"Pedro no quería comer. Miraba el plato sin tocarlo."'},{a:false,t:'Pregunta: ¿Cómo se sentía Pedro?'},{a:true,t:'→ No dice "triste" pero no quería comer...'},{a:true,t:'→ Se infiere que no tenía hambre o estaba preocupado ✅'}],
-    f2:'Leer bien = entender lo que dice Y lo que sugiere\nPalabra clave → buscala en el texto\nSi no está dicho, pensá qué tiene más sentido'},
-  conciencia:{title:'Conciencia fonológica',
+    b1:'Hay dos tipos de preguntas: las que tienen la respuesta DENTRO del texto, y las que piden que PENSÉS a partir de lo que dice el texto. ¡Las dos son válidas! 😊',
+    s1:[{n:'1',t:'Leé el texto entero con calma'},{n:'2',t:'Fijate si la pregunta dice "¿Qué dice el texto?" o "¿Qué podés inferir?"'},{n:'3',t:'Si la respuesta está en el texto → buscala. Si no → usá las pistas del texto para razonar'}],
+    e1:[{a:false,t:'"El cielo se puso gris. Sopló viento."'},{a:false,t:'Pregunta: ¿Qué podés inferir?'},{a:true,t:'→ El texto no dice "va a llover" pero da pistas'},{a:true,t:'→ Cielo gris + viento = probablemente llueve ✅'}],
+    f1:'Comprensión LITERAL: la respuesta está en el texto\nComprensión INFERENCIAL: razonás a partir de las pistas\nSiempre descartá las opciones que el texto NO apoya',
+    b2:'Para descartar opciones incorrectas en preguntas de inferencia 😊',
+    s2:[{n:'1',t:'Leé cada opción y preguntate: ¿el texto dice algo que apoye esto?'},{n:'2',t:'Descartá las opciones que inventan cosas no mencionadas'},{n:'3',t:'Quedarte con la opción que MÁS PISTAS del texto tiene a favor'}],
+    e2:[{a:false,t:'"Nadie vino a su cumpleaños. La torta quedó sin cortar."'},{a:false,t:'¿Cómo se sintió? Opciones: triste / sorprendida / enojada / indiferente'},{a:true,t:'→ "Nadie vino" + "torta sin cortar" → pistas de decepción'},{a:true,t:'→ "Triste o decepcionada" es la opción más apoyada por el texto ✅'}],
+    f2:'No inventés — usá lo que el texto te da\nDescartá lo que el texto NO dice\nElegí la opción con MÁS pistas a favor\nUna sola opción tiene sentido con TODO el texto'},
+  conciencia:{title:'Los sonidos',
     b1:'Las palabras están hechas de sonidos. ¡Podemos jugar con esos sonidos! 😊',
     s1:[{n:'1',t:'Escuchá la palabra en voz alta, sin apuro'},{n:'2',t:'Fijate con qué sonido empieza o termina'},{n:'3',t:'Golpeá la mesa para contar las sílabas'}],
     e1:[{a:false,t:'¿Qué palabra empieza como "PELOTA"?'},{a:true,t:'→ PELOTA empieza con /P/'},{a:true,t:'→ Busco otra palabra con /P/: PATO ✅'}],
