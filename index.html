@@ -1748,7 +1748,7 @@ function computeMission(grade){
   let tid,lv,mode,title,sub;
   if(toReinforce){tid=toReinforce;let p=getP(grade.id,tid);lv=Math.max(1,p.ml-1);mode='reinforce';title='Repasemos '+TOPICS[tid].name;sub='Funsi vio que necesitás más práctica 💪';}
   else if(toAdvance){tid=toAdvance.tid;lv=toAdvance.lv;mode='advance';title='¡Subí al Nivel '+lv+' de '+TOPICS[tid].name+'!';sub='¡La estás rompiendo! 🚀';}
-  else{let fresh=topics.find(t=>getP(grade.id,t).attempts===0);if(fresh){tid=fresh;lv=1;mode='new';let _p=getP(gr.id,fresh);title='¡Empecemos con '+TOPICS[tid].name+'!';sub=_p.attempts===0?'¡Tema nuevo! Funsi te guía 🌟':'¡Seguís practicando '+TOPICS[tid].name+'!';}else{tid=weakest||topics[0];let p=getP(grade.id,tid);lv=p.ml;mode='practice';title='Practicá '+TOPICS[tid].name;sub='Un poco más de práctica para afianzarlo';}}
+  else{let fresh=topics.find(t=>getP(grade.id,t).attempts===0);if(fresh){tid=fresh;lv=1;mode='new';let _p=getP(grade.id,fresh);title='¡Empecemos con '+TOPICS[tid].name+'!';sub=_p.attempts===0?'¡Tema nuevo! Funsi te guía 🌟':'¡Seguís practicando '+TOPICS[tid].name+'!';}else{tid=weakest||topics[0];let p=getP(grade.id,tid);lv=p.ml;mode='practice';title='Practicá '+TOPICS[tid].name;sub='Un poco más de práctica para afianzarlo';}}
   pendingMission={tid,lv,mode};
   document.getElementById('mission-title').textContent=title;
   document.getElementById('mission-sub').textContent=sub;
